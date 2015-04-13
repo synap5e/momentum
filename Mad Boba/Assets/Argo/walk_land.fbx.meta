@@ -1,0 +1,399 @@
+fileFormatVersion: 2
+guid: f044b73cd96c3af488a19b1210cca821
+timeCreated: 1428711831
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: BODY_REF_01
+    100002: BODY_REF_02
+    100004: BODY_REF_03
+    100006: GROOMING_01
+    100008: GROOMING_02
+    100010: grooming_03
+    100012: HIPS
+    100014: ikHandle_L_ARM
+    100016: ikHandle_R_ARM
+    100018: joint12
+    100020: joint16
+    100022: joint19
+    100024: joint24
+    100026: joint28
+    100028: joint32
+    100030: joint36
+    100032: joint40
+    100034: joint8
+    100036: l_ANKLE
+    100038: L_ELBOW
+    100040: L_ELBOW1
+    100042: L_FOOT
+    100044: l_HIP
+    100046: l_index_01
+    100048: l_index_02
+    100050: l_index_03
+    100052: l_KNEE
+    100054: l_mid_01
+    100056: l_mid_02
+    100058: l_mid_03
+    100060: L_SHOULDER_01
+    100062: L_SHOULDER_02
+    100064: L_SHOULDER_03
+    100066: L_SHOULDER_04
+    100068: L_TOE
+    100070: L_WRIST
+    100072: L_WRIST1
+    100074: Master
+    100076: Neck_Base_01
+    100078: PINKY_02
+    100080: PINKY_03
+    100082: PINKY_04
+    100084: PINKYY_01
+    100086: R_ANKLE
+    100088: R_FOOT
+    100090: r_HIP
+    100092: r_index_01
+    100094: r_index_02
+    100096: r_index_03
+    100098: R_KNEE
+    100100: r_mid_01
+    100102: r_mid_02
+    100104: r_mid_03
+    100106: r_ring_01
+    100108: r_ring_02
+    100110: r_ring_03
+    100112: r_thumb_01
+    100114: r_thumb_02
+    100116: r_thumb_03
+    100118: R_TOE
+    100120: Spine1
+    100122: Spine2
+    100124: Spine3
+    100126: Spine3 1
+    100128: SPINE4
+    100130: SPINE5
+    100132: SPINE6
+    100134: Spine_Root
+    100136: thumb_01
+    100138: thumb_01 1
+    100140: thumb_02
+    100142: thumb_02 1
+    100144: thumb_03
+    100146: thumb_03 1
+    100148: //RootNode
+    400000: BODY_REF_01
+    400002: BODY_REF_02
+    400004: BODY_REF_03
+    400006: GROOMING_01
+    400008: GROOMING_02
+    400010: grooming_03
+    400012: HIPS
+    400014: ikHandle_L_ARM
+    400016: ikHandle_R_ARM
+    400018: joint12
+    400020: joint16
+    400022: joint19
+    400024: joint24
+    400026: joint28
+    400028: joint32
+    400030: joint36
+    400032: joint40
+    400034: joint8
+    400036: l_ANKLE
+    400038: L_ELBOW
+    400040: L_ELBOW1
+    400042: L_FOOT
+    400044: l_HIP
+    400046: l_index_01
+    400048: l_index_02
+    400050: l_index_03
+    400052: l_KNEE
+    400054: l_mid_01
+    400056: l_mid_02
+    400058: l_mid_03
+    400060: L_SHOULDER_01
+    400062: L_SHOULDER_02
+    400064: L_SHOULDER_03
+    400066: L_SHOULDER_04
+    400068: L_TOE
+    400070: L_WRIST
+    400072: L_WRIST1
+    400074: Master
+    400076: Neck_Base_01
+    400078: PINKY_02
+    400080: PINKY_03
+    400082: PINKY_04
+    400084: PINKYY_01
+    400086: R_ANKLE
+    400088: R_FOOT
+    400090: r_HIP
+    400092: r_index_01
+    400094: r_index_02
+    400096: r_index_03
+    400098: R_KNEE
+    400100: r_mid_01
+    400102: r_mid_02
+    400104: r_mid_03
+    400106: r_ring_01
+    400108: r_ring_02
+    400110: r_ring_03
+    400112: r_thumb_01
+    400114: r_thumb_02
+    400116: r_thumb_03
+    400118: R_TOE
+    400120: Spine1
+    400122: Spine2
+    400124: Spine3
+    400126: Spine3 1
+    400128: SPINE4
+    400130: SPINE5
+    400132: SPINE6
+    400134: Spine_Root
+    400136: thumb_01
+    400138: thumb_01 1
+    400140: thumb_02
+    400142: thumb_02 1
+    400144: thumb_03
+    400146: thumb_03 1
+    400148: //RootNode
+    7400000: argo_anim_walk
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: argo_anim_walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 44
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle_L_ARM
+        weight: 1
+      - path: ikHandle_R_ARM
+        weight: 1
+      - path: Master
+        weight: 1
+      - path: Master/HIPS
+        weight: 1
+      - path: Neck_Base_01
+        weight: 1
+      - path: Spine_Root
+        weight: 1
+      - path: Spine_Root/l_HIP
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT/L_TOE
+        weight: 1
+      - path: Spine_Root/r_HIP
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT/R_TOE
+        weight: 1
+      - path: Spine_Root/Spine1
+        weight: 1
+      - path: Spine_Root/Spine1/BODY_REF_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/BODY_REF_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/BODY_REF_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/GROOMING_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/GROOMING_01/GROOMING_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/GROOMING_01/GROOMING_02/grooming_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/GROOMING_01/GROOMING_02/grooming_03/joint8
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_index_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_index_03/l_index_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_index_03/l_index_02/l_index_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_index_03/l_index_02/l_index_01/joint16
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03/joint12
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/PINKYY_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/PINKYY_01/PINKY_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/PINKYY_01/PINKY_02/PINKY_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/PINKYY_01/PINKY_02/PINKY_03/PINKY_04
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19/thumb_03
+          1
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_index_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_index_03/r_index_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_index_03/r_index_02/r_index_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_index_03/r_index_02/r_index_01/joint36
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_mid_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_mid_01/r_mid_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_mid_01/r_mid_02/r_mid_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_mid_01/r_mid_02/r_mid_03/joint32
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_ring_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_ring_01/r_ring_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_ring_01/r_ring_02/r_ring_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_ring_01/r_ring_02/r_ring_03/joint28
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_thumb_01
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_thumb_01/r_thumb_02
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_thumb_01/r_thumb_02/r_thumb_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/r_thumb_01/r_thumb_02/r_thumb_03/joint24
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/thumb_01
+          1
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/thumb_01
+          1/thumb_02 1
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/L_SHOULDER_03/L_SHOULDER_04/L_ELBOW1/L_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03/joint40
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/Spine3 1
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/Spine3 1/SPINE4
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/Spine3 1/SPINE4/SPINE5
+        weight: 1
+      - path: Spine_Root/Spine1/Spine2/Spine3/Spine3 1/SPINE4/SPINE5/SPINE6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

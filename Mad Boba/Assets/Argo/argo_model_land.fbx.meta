@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: 3e4b54d7eabab4c4481de33fe7b8c772
+timeCreated: 1428711799
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: BODY_REF_01
+    100002: BODY_REF_02
+    100004: BODY_REF_03
+    100006: geometry
+    100008: GROOMING_01
+    100010: GROOMING_02
+    100012: grooming_03
+    100014: joint12
+    100016: joint16
+    100018: joint19
+    100020: joint24
+    100022: joint28
+    100024: joint32
+    100026: joint36
+    100028: joint40
+    100030: joint8
+    100032: l_ANKLE
+    100034: L_ELBOW
+    100036: L_ELBOW1
+    100038: L_FOOT
+    100040: l_HIP
+    100042: l_index_01
+    100044: l_index_02
+    100046: l_index_03
+    100048: l_KNEE
+    100050: l_mid_01
+    100052: l_mid_02
+    100054: l_mid_03
+    100056: L_SHOULDER_01
+    100058: L_SHOULDER_02
+    100060: L_SHOULDER_03
+    100062: L_SHOULDER_04
+    100064: L_TOE
+    100066: L_WRIST
+    100068: L_WRIST1
+    100070: PINKY_02
+    100072: PINKY_03
+    100074: PINKY_04
+    100076: PINKYY_01
+    100078: R_ANKLE
+    100080: R_FOOT
+    100082: r_HIP
+    100084: r_index_01
+    100086: r_index_02
+    100088: r_index_03
+    100090: R_KNEE
+    100092: r_mid_01
+    100094: r_mid_02
+    100096: r_mid_03
+    100098: r_ring_01
+    100100: r_ring_02
+    100102: r_ring_03
+    100104: r_thumb_01
+    100106: r_thumb_02
+    100108: r_thumb_03
+    100110: R_TOE
+    100112: Spine1
+    100114: Spine2
+    100116: Spine3
+    100118: Spine3 1
+    100120: SPINE4
+    100122: SPINE5
+    100124: SPINE6
+    100126: Spine_Root
+    100128: //RootNode
+    100130: thumb_01
+    100132: thumb_01 1
+    100134: thumb_02
+    100136: thumb_02 1
+    100138: thumb_03
+    100140: thumb_03 1
+    400000: BODY_REF_01
+    400002: BODY_REF_02
+    400004: BODY_REF_03
+    400006: geometry
+    400008: GROOMING_01
+    400010: GROOMING_02
+    400012: grooming_03
+    400014: joint12
+    400016: joint16
+    400018: joint19
+    400020: joint24
+    400022: joint28
+    400024: joint32
+    400026: joint36
+    400028: joint40
+    400030: joint8
+    400032: l_ANKLE
+    400034: L_ELBOW
+    400036: L_ELBOW1
+    400038: L_FOOT
+    400040: l_HIP
+    400042: l_index_01
+    400044: l_index_02
+    400046: l_index_03
+    400048: l_KNEE
+    400050: l_mid_01
+    400052: l_mid_02
+    400054: l_mid_03
+    400056: L_SHOULDER_01
+    400058: L_SHOULDER_02
+    400060: L_SHOULDER_03
+    400062: L_SHOULDER_04
+    400064: L_TOE
+    400066: L_WRIST
+    400068: L_WRIST1
+    400070: PINKY_02
+    400072: PINKY_03
+    400074: PINKY_04
+    400076: PINKYY_01
+    400078: R_ANKLE
+    400080: R_FOOT
+    400082: r_HIP
+    400084: r_index_01
+    400086: r_index_02
+    400088: r_index_03
+    400090: R_KNEE
+    400092: r_mid_01
+    400094: r_mid_02
+    400096: r_mid_03
+    400098: r_ring_01
+    400100: r_ring_02
+    400102: r_ring_03
+    400104: r_thumb_01
+    400106: r_thumb_02
+    400108: r_thumb_03
+    400110: R_TOE
+    400112: Spine1
+    400114: Spine2
+    400116: Spine3
+    400118: Spine3 1
+    400120: SPINE4
+    400122: SPINE5
+    400124: SPINE6
+    400126: Spine_Root
+    400128: //RootNode
+    400130: thumb_01
+    400132: thumb_01 1
+    400134: thumb_02
+    400136: thumb_02 1
+    400138: thumb_03
+    400140: thumb_03 1
+    4300000: geometry
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: geometry
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
