@@ -6,6 +6,7 @@ public class UI : MonoBehaviour {
 
 	public Slider health;
 	public Slider mana;
+	public Text coins;
 	public Button[] abilities;
 
 	public GameObject magicUser;
@@ -40,16 +41,17 @@ public class UI : MonoBehaviour {
 			selectButton (1);
 		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
 			selectButton (2);
-		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+		} /*else if (Input.GetKeyDown (KeyCode.Alpha4)) {
 			selectButton (3);
-		}
+		}*/
 
+		coins.text = castMagicScript.coins + "";
 		mana.value = castMagicScript.mana;
 	}
 
 	public void selectButton (int buttonIndex)
 	{
-		Debug.Log (buttonIndex);
+		//Debug.Log (buttonIndex);
 		castMagicScript.switchTo(buttonIndex);
 
 		for (int i = 0; i < abilities.Length; i++) {

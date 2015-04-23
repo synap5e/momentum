@@ -10,8 +10,10 @@ public class CastMagic : MonoBehaviour {
 		public GameObject spellPrefab;
 		public int cooldownFrames = 100;
 		public float manaCost = 0.25f;
+		public int coinCost = 0;
 	}
 	public CastableSpell[] spells;
+	public GameObject player;
 
 	public KeyCode fireButton; 
 
@@ -38,17 +40,23 @@ public class CastMagic : MonoBehaviour {
 		spellIndex = i;
 	}
 
+	public int coins {
+		get;
+		set;
+	}
+
 	// Update is called once per frame
 	void Update () {
-		manaValue = Mathf.Max (manaValue +  manaRecoveryRate * Time.deltaTime);
+		manaValue = Mathf.Min (1, manaValue +  manaRecoveryRate * Time.deltaTime);
 		for(int i=0; i < cooldownTimers.Length; i++)
 		{
 			cooldownTimers[i]--;
 		}
 		if (Input.GetButton("Fire1") && Input.mousePosition.y > mouseDeadZone) {
-			Debug.Log(spellIndex);
+			//Debug.Log(spellIndex);
 			CastableSpell spell = spells[spellIndex];
-			if (cooldownTimers[spellIndex] <= 0 && manaValue - spell.manaCost >= 0){
+			if (cooldownTimers[spellIndex] <= 0 && manaValue - spell.manaCost >= 0 && coins - spell.coinCost >= 0){
+				coins -= spell.coinCost;
 				manaValue -= spell.manaCost;
 					cooldownTimers[spellIndex] = spell.cooldownFrames;
 					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -57,7 +65,12 @@ public class CastMagic : MonoBehaviour {
 						Vector3 hitPoint = ray.GetPoint(rayDistance);
 						hitPoint.y = 0;
 						GameObject mb = Instantiate(spell.spellPrefab, transform.position + new Vector3(0, 2.1f, 0) + transform.forward * 0.5f, Quaternion.LookRotation(hitPoint - transform.position)) as GameObject;
-						//mb.GetComponent<MagicBehaviour>().speed = 
+						if (mb.GetComponent<PickupableCoin>()){
+							mb.GetComponent<PickupableCoin>().pickerUpper = gameObject;
+							mb.GetComponent<PickupableCoin>().coinThrower = this;
+							mb.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
+						}
+					//mb.GetComponent<MagicBehaviour>().speed = 
 				}
 			}
 		}

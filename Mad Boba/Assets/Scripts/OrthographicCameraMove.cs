@@ -34,10 +34,10 @@ public class OrthographicCameraMove : MonoBehaviour {
 
 		if (Input.mousePosition.y < edgeDistance) {
 			// bottom edge
-			move.y += Mathf.Min(edgeDistance - Input.mousePosition.y, edgeDistance);
+			move.z += Mathf.Min(edgeDistance - Input.mousePosition.y, edgeDistance);
 		} else if (Input.mousePosition.y > Screen.height - edgeDistance) {
 			// top edge
-			move.y -= Mathf.Min(edgeDistance - (Screen.height - Input.mousePosition.y), edgeDistance);
+			move.z -= Mathf.Min(edgeDistance - (Screen.height - Input.mousePosition.y), edgeDistance);
 		}
 
 		if (Input.GetKey (KeyCode.Space)) {

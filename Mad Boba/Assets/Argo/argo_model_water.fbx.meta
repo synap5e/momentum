@@ -1,0 +1,1073 @@
+fileFormatVersion: 2
+guid: 824ba1560b0ae1446ae196ff3588ce36
+timeCreated: 1428898253
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: BODY_REF_01
+    100002: BODY_REF_02
+    100004: BODY_REF_03
+    100006: Bot_Spine
+    100008: Bot_Spine_02
+    100010: Bottom_Neck
+    100012: Fin_spine_01
+    100014: fin_spine_02
+    100016: fin_spine_03
+    100018: Head_01
+    100020: Head_02
+    100022: Head_Fin_FarLeft_01
+    100024: Head_Fin_FarLeft_01 1
+    100026: Head_Fin_FarRight_01
+    100028: Head_Fin_FarRight_02
+    100030: Head_Fin_Left_01
+    100032: Head_Fin_Left_02
+    100034: Head_Fin_LeftMid_01
+    100036: Head_Fin_LeftMid_02
+    100038: Head_Fin_Right_01
+    100040: Head_Fin_Right_02
+    100042: Head_Fin_RightMid_01
+    100044: Head_Fin_RightMid_02
+    100046: Head_Fine_base
+    100048: HIPS
+    100050: ikHandle_L_ARM
+    100052: ikHandle_R_ARM
+    100054: joint12
+    100056: joint19
+    100058: joint32
+    100060: joint40
+    100062: joint41
+    100064: l_ANKLE
+    100066: L_ELBOW
+    100068: L_FOOT
+    100070: l_HIP
+    100072: l_KNEE
+    100074: l_mid_01
+    100076: l_mid_02
+    100078: l_mid_03
+    100080: L_SHOULDER_01
+    100082: L_SHOULDER_02
+    100084: L_TOE
+    100086: L_WRIST
+    100088: Master
+    100090: Mid_Spine_02
+    100092: //RootNode
+    100094: polySurface4ShapeShape8
+    100096: R_ANKLE
+    100098: R_ELBOW1
+    100100: R_FOOT
+    100102: r_HIP
+    100104: R_KNEE
+    100106: r_mid_01
+    100108: r_mid_02
+    100110: r_mid_03
+    100112: R_SHOULDER_03
+    100114: R_SHOULDER_04
+    100116: R_TOE
+    100118: R_WRIST1
+    100120: Spine_Joint_bit
+    100122: Spine_Root
+    100124: thumb_01
+    100126: thumb_01 1
+    100128: thumb_02
+    100130: thumb_02 1
+    100132: thumb_03
+    100134: thumb_03 1
+    100136: Top_Neck
+    100138: Top_Spine
+    400000: BODY_REF_01
+    400002: BODY_REF_02
+    400004: BODY_REF_03
+    400006: Bot_Spine
+    400008: Bot_Spine_02
+    400010: Bottom_Neck
+    400012: Fin_spine_01
+    400014: fin_spine_02
+    400016: fin_spine_03
+    400018: Head_01
+    400020: Head_02
+    400022: Head_Fin_FarLeft_01
+    400024: Head_Fin_FarLeft_01 1
+    400026: Head_Fin_FarRight_01
+    400028: Head_Fin_FarRight_02
+    400030: Head_Fin_Left_01
+    400032: Head_Fin_Left_02
+    400034: Head_Fin_LeftMid_01
+    400036: Head_Fin_LeftMid_02
+    400038: Head_Fin_Right_01
+    400040: Head_Fin_Right_02
+    400042: Head_Fin_RightMid_01
+    400044: Head_Fin_RightMid_02
+    400046: Head_Fine_base
+    400048: HIPS
+    400050: ikHandle_L_ARM
+    400052: ikHandle_R_ARM
+    400054: joint12
+    400056: joint19
+    400058: joint32
+    400060: joint40
+    400062: joint41
+    400064: l_ANKLE
+    400066: L_ELBOW
+    400068: L_FOOT
+    400070: l_HIP
+    400072: l_KNEE
+    400074: l_mid_01
+    400076: l_mid_02
+    400078: l_mid_03
+    400080: L_SHOULDER_01
+    400082: L_SHOULDER_02
+    400084: L_TOE
+    400086: L_WRIST
+    400088: Master
+    400090: Mid_Spine_02
+    400092: //RootNode
+    400094: polySurface4ShapeShape8
+    400096: R_ANKLE
+    400098: R_ELBOW1
+    400100: R_FOOT
+    400102: r_HIP
+    400104: R_KNEE
+    400106: r_mid_01
+    400108: r_mid_02
+    400110: r_mid_03
+    400112: R_SHOULDER_03
+    400114: R_SHOULDER_04
+    400116: R_TOE
+    400118: R_WRIST1
+    400120: Spine_Joint_bit
+    400122: Spine_Root
+    400124: thumb_01
+    400126: thumb_01 1
+    400128: thumb_02
+    400130: thumb_02 1
+    400132: thumb_03
+    400134: thumb_03 1
+    400136: Top_Neck
+    400138: Top_Spine
+    4300000: polySurface4ShapeShape8
+    7400000: sprint
+    7400002: swim
+    7400004: idle start
+    7400006: idle
+    7400008: idle stop
+    9500000: //RootNode
+    13700000: polySurface4ShapeShape8
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: sprint
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle_L_ARM
+        weight: 1
+      - path: ikHandle_R_ARM
+        weight: 1
+      - path: Master
+        weight: 1
+      - path: Master/HIPS
+        weight: 1
+      - path: polySurface4ShapeShape8
+        weight: 1
+      - path: Spine_Root
+        weight: 1
+      - path: Spine_Root/Bot_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/BODY_REF_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03/Bot_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/BODY_REF_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02/Mid_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/BODY_REF_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01/joint41
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01/Head_Fin_FarLeft_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01/Head_Fin_FarRight_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01/Head_Fin_Left_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01/Head_Fin_LeftMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01/Head_Fin_Right_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01/Head_Fin_RightMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03/joint12
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19/thumb_03
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03/joint32
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03/joint40
+        weight: 1
+      - path: Spine_Root/l_HIP
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT/L_TOE
+        weight: 1
+      - path: Spine_Root/r_HIP
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT/R_TOE
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: swim
+      takeName: Take 001
+      firstFrame: 39
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle_L_ARM
+        weight: 1
+      - path: ikHandle_R_ARM
+        weight: 1
+      - path: Master
+        weight: 1
+      - path: Master/HIPS
+        weight: 1
+      - path: polySurface4ShapeShape8
+        weight: 1
+      - path: Spine_Root
+        weight: 1
+      - path: Spine_Root/Bot_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/BODY_REF_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03/Bot_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/BODY_REF_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02/Mid_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/BODY_REF_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01/joint41
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01/Head_Fin_FarLeft_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01/Head_Fin_FarRight_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01/Head_Fin_Left_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01/Head_Fin_LeftMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01/Head_Fin_Right_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01/Head_Fin_RightMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03/joint12
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19/thumb_03
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03/joint32
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03/joint40
+        weight: 1
+      - path: Spine_Root/l_HIP
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT/L_TOE
+        weight: 1
+      - path: Spine_Root/r_HIP
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT/R_TOE
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle start
+      takeName: Take 001
+      firstFrame: 79
+      lastFrame: 106
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle_L_ARM
+        weight: 1
+      - path: ikHandle_R_ARM
+        weight: 1
+      - path: Master
+        weight: 1
+      - path: Master/HIPS
+        weight: 1
+      - path: polySurface4ShapeShape8
+        weight: 1
+      - path: Spine_Root
+        weight: 1
+      - path: Spine_Root/Bot_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/BODY_REF_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03/Bot_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/BODY_REF_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02/Mid_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/BODY_REF_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01/joint41
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01/Head_Fin_FarLeft_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01/Head_Fin_FarRight_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01/Head_Fin_Left_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01/Head_Fin_LeftMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01/Head_Fin_Right_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01/Head_Fin_RightMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03/joint12
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19/thumb_03
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03/joint32
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03/joint40
+        weight: 1
+      - path: Spine_Root/l_HIP
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT/L_TOE
+        weight: 1
+      - path: Spine_Root/r_HIP
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT/R_TOE
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 106
+      lastFrame: 154
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle_L_ARM
+        weight: 1
+      - path: ikHandle_R_ARM
+        weight: 1
+      - path: Master
+        weight: 1
+      - path: Master/HIPS
+        weight: 1
+      - path: polySurface4ShapeShape8
+        weight: 1
+      - path: Spine_Root
+        weight: 1
+      - path: Spine_Root/Bot_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/BODY_REF_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03/Bot_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/BODY_REF_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02/Mid_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/BODY_REF_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01/joint41
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01/Head_Fin_FarLeft_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01/Head_Fin_FarRight_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01/Head_Fin_Left_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01/Head_Fin_LeftMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01/Head_Fin_Right_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01/Head_Fin_RightMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03/joint12
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19/thumb_03
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03/joint32
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03/joint40
+        weight: 1
+      - path: Spine_Root/l_HIP
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT/L_TOE
+        weight: 1
+      - path: Spine_Root/r_HIP
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT/R_TOE
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle stop
+      takeName: Take 001
+      firstFrame: 154
+      lastFrame: 181
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ikHandle_L_ARM
+        weight: 1
+      - path: ikHandle_R_ARM
+        weight: 1
+      - path: Master
+        weight: 1
+      - path: Master/HIPS
+        weight: 1
+      - path: polySurface4ShapeShape8
+        weight: 1
+      - path: Spine_Root
+        weight: 1
+      - path: Spine_Root/Bot_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/BODY_REF_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/fin_spine_03/Bot_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/BODY_REF_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/fin_spine_02/Mid_Spine_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/BODY_REF_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Fin_spine_01/joint41
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarLeft_01/Head_Fin_FarLeft_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_FarRight_01/Head_Fin_FarRight_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Left_01/Head_Fin_Left_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_LeftMid_01/Head_Fin_LeftMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_Right_01/Head_Fin_Right_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/Bottom_Neck/Top_Neck/Head_01/Head_Fine_base/Head_Fin_RightMid_01/Head_Fin_RightMid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/l_mid_01/l_mid_02/l_mid_03/joint12
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/L_SHOULDER_01/L_SHOULDER_02/L_ELBOW/L_WRIST/thumb_01/thumb_02/joint19/thumb_03
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/r_mid_01/r_mid_02/r_mid_03/joint32
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03
+        weight: 1
+      - path: Spine_Root/Bot_Spine/Top_Spine/Spine_Joint_bit/R_SHOULDER_03/R_SHOULDER_04/R_ELBOW1/R_WRIST1/thumb_01
+          1/thumb_02 1/thumb_03/joint40
+        weight: 1
+      - path: Spine_Root/l_HIP
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT
+        weight: 1
+      - path: Spine_Root/l_HIP/l_KNEE/l_ANKLE/L_FOOT/L_TOE
+        weight: 1
+      - path: Spine_Root/r_HIP
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT
+        weight: 1
+      - path: Spine_Root/r_HIP/R_KNEE/R_ANKLE/R_FOOT/R_TOE
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
