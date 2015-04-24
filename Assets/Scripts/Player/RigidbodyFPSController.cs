@@ -13,7 +13,7 @@ public class RigidbodyFPSController : MonoBehaviour {
 	private float speed = 10.0f;
 	private float jumpHeight = 4.0f;
 
-	private float bunnyhopThreshold = 0.6f;
+	private float bunnyhopThreshold = 0.2f;
 	
 	private bool grounded = true;
 	bool onGround {
@@ -25,8 +25,7 @@ public class RigidbodyFPSController : MonoBehaviour {
 
 	private float jump = 0;
 	private float onGroundTime;
-	private float incomingMagnitude;
-	private bool compensatingBhop = false; 
+	private Vector3 incomingVel;
 	
 	void Awake () {
 		rigidBody = GetComponent<Rigidbody> ();
@@ -77,7 +76,7 @@ public class RigidbodyFPSController : MonoBehaviour {
 		GUI.Label (new Rect (0, 40, 100, 100), Mathf.Round(f*10000)/10000F + "");
 
 
-		GUI.Label (new Rect (0, 80, 100, 100), Mathf.Round(horvel.magnitude*10000)/10000F + " / " + Mathf.Round(incomingMagnitude*10000)/10000F + "");
+		GUI.Label (new Rect (0, 80, 100, 100), Mathf.Round(horvel.magnitude*10000)/10000F + " / " + Mathf.Round(incomingVel.magnitude*10000)/10000F + "");
 	}
 
 
@@ -96,18 +95,18 @@ public class RigidbodyFPSController : MonoBehaviour {
 				jump = 0;
 
 				if (onGroundTime < bunnyhopThreshold / 2F){
-					// we have already hit the ground, but jumped within the bhop window
+					// we have already hit the ground, but jumped within the bhop window (and still had velocity left)
 
 
-					if (Mathf.Abs (rigidBody.velocity.magnitude - incomingMagnitude) < 0.000001){
+					if (Mathf.Abs (rigidBody.velocity.sqrMagnitude - incomingVel.sqrMagnitude) < 0.000001){
 						// no velocity was lost, perfect bhop
 						Debug.Log ("Perfect");
 					} else {
 						Debug.Log ("imperfect");
+						// player has lost some (or all) of the velocity that they came into this bhop with, but we will
+						// grant it back
 
-						compensatingBhop = true;
-						// we have lost some of the velocity that we came into this bhop with, but will \
-						// grant it back to the player
+						rigidBody.velocity = new Vector3(incomingVel.x, rigidBody.velocity.y, incomingVel.z);
 
 					}
 				}
@@ -126,21 +125,15 @@ public class RigidbodyFPSController : MonoBehaviour {
 				Vector3 velocity = rigidBody.velocity;
 				Vector3 velocityChange = (targetVelocity - velocity);
 				velocityChange.y = 0;
-				velocityChange = Vector3.ClampMagnitude (velocityChange, 0.5f);
+				//velocityChange = Vector3.ClampMagnitude (velocityChange, 1.5f);
 
-				rigidBody.AddForce (velocityChange, ForceMode.VelocityChange);
+				rigidBody.AddForce (velocityChange / 4F, ForceMode.VelocityChange);
 			}
 		} else {
 		}
 
-		if (compensatingBhop) {
-			if (rigidBody.velocity.magnitude < incomingMagnitude){
-				float requiredMultiplier = incomingMagnitude / rigidBody.velocity.magnitude;
-				requiredMultiplier = Mathf.Min (requiredMultiplier, 1.5F);
-				rigidBody.velocity *= requiredMultiplier;
-			} else {
-				compensatingBhop = false;
-			}
+		if (Input.GetKey(KeyCode.LeftShift)) {
+			rigidBody.AddForce(transform.TransformVector(new Vector3(0, 30, 100)));
 		}
 		
 		// We apply gravity manually for more tuning control
@@ -158,7 +151,7 @@ public class RigidbodyFPSController : MonoBehaviour {
 	void OnCollisionEnter(Collision collisionInfo) {
 		Vector3 incomingVelocity = rigidBody.velocity;
 		incomingVelocity.y = 0;
-		incomingMagnitude = incomingVelocity.magnitude;
+		incomingVel = incomingVelocity;
 
 		secondsTo0 = 0;
 		//	if (collisionInfo.collider.tag == "ground") {
