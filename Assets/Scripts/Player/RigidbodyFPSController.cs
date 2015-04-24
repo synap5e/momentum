@@ -14,8 +14,11 @@ public class RigidbodyFPSController : MonoBehaviour {
 	public float maxVelocityChange = 10.0f;
 	public bool canJump = true;
 	public float jumpHeight = 2.0f;
-	
-	private bool grounded = false;
+
+	private bool grounded = true;
+	bool onGround {
+		get { return grounded; }
+	}
 	
 	private Rigidbody rigidBody;
 	private Camera viewCamera;
