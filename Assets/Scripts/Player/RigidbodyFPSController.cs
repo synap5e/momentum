@@ -16,7 +16,7 @@ public class RigidbodyFPSController : MonoBehaviour {
 	public float jumpHeight = 2.0f;
 
 	private bool grounded = true;
-	bool onGround {
+	public bool onGround {
 		get { return grounded; }
 	}
 	

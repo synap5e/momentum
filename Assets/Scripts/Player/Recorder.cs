@@ -39,7 +39,7 @@ public class Recorder : MonoBehaviour {
 				Rigidbody playerRigidbody = player.GetComponent<Rigidbody> ();
 				Vector3 position = playerRigidbody.position;
 				Quaternion rotation = playerRigidbody.rotation;
-				bool inJump = GetComponent<RigidbodyFPSController> ().onGround ();
+				bool inJump = GetComponent<RigidbodyFPSController> ().onGround;
 				float duration = frameDuration;
 
 				//Add the snapshot to the list
