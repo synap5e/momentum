@@ -3,17 +3,30 @@ using System.Collections;
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (CapsuleCollider))]
+[RequireComponent (typeof (DebugMovement))]
 
 // adapted from http://wiki.unity3d.com/index.php?title=RigidbodyFPSWalker
 public class RigidbodyFPSController : MonoBehaviour {
-	
-	private float sensitivityX = 5F;
-	private float sensitivityY = 5F;
-	
-	private float speed = 10.0f;
-	private float jumpHeight = 4.0f;
 
-	private float bunnyhopThreshold = 0.2f;
+	[Header("Input")]
+	[Range(0.01f, 20f)]
+	public float mouseSensitivity = 5F;
+
+	[Header("Basic Movement")]
+	public float speed = 10.0f;
+	public float jumpForce = 10.0f;
+
+	[Header("Bunnyhopping")]
+	[Tooltip("Length of the window that we will accept a bunnyhop in.\n" +
+	         "This allows the player 1/2 that time before hitting the ground and 1/2 after. " + 
+	         "If they jump within this time they will not lose any velocity to friction.")]
+	public float bunnyhopWindow = 0.2f;
+	public bool autoBunnyhop = false;
+
+	[Header("Airstrafing")]
+	public float maxStrafeSpeed = 5.0f;
+	public float airAccelerate = 0.2f;
+
 	
 	private bool grounded = true;
 	bool onGround {
@@ -44,36 +57,33 @@ public class RigidbodyFPSController : MonoBehaviour {
 		
 	}
 
-	private float secondsTo0;
-
-
 	void Update(){
+		// TODO: hack to reset while testing 
+		if (transform.position.y < -20) {
+			transform.position= Vector3.zero;
+		}
+
+		// TODO: hack to simulate explosive jump
+		if (Input.GetKeyDown(KeyCode.LeftShift)) {
+			rigidBody.AddForce(transform.TransformVector(new Vector3(0, 600, 2000)));
+		}
+
 		if (grounded) {
 			onGroundTime += Time.deltaTime;
 		}
 
-		if (rigidBody.velocity.magnitude > 0.0001) {
-			secondsTo0 += Time.deltaTime;
-		}
-
-		if (jump <= 0 && Input.GetButtonDown ("Jump")) {
-			jump = bunnyhopThreshold / 2F;
+		if ((autoBunnyhop && Input.GetButton ("Jump")) || (jump <= 0 && Input.GetButtonDown ("Jump"))) {
+			jump = bunnyhopWindow / 2F;
 		}
 		jump -= Time.deltaTime;
-	}
 
-	float f = 0;
+		//Debug.DrawLine(transform.position, transform.position + rigidBody.velocity * Time.deltaTime, Color.green, 10);
+	}
 
 	void OnGUI(){
 		Vector3 horvel = rigidBody.velocity;
 		horvel.y = 0;
 		GUI.Label (new Rect (0, 0, 100, 100), Mathf.Round(horvel.magnitude*100)/100F + "");
-		if (rigidBody.velocity.magnitude < 0.0001) {
-
-			GUI.Label (new Rect (0, 20, 100, 100), secondsTo0 + "s");
-		}
-
-		GUI.Label (new Rect (0, 40, 100, 100), Mathf.Round(f*10000)/10000F + "");
 
 
 		GUI.Label (new Rect (0, 80, 100, 100), Mathf.Round(horvel.magnitude*10000)/10000F + " / " + Mathf.Round(incomingVel.magnitude*10000)/10000F + "");
@@ -81,22 +91,27 @@ public class RigidbodyFPSController : MonoBehaviour {
 
 
 	void FixedUpdate () {
+		Debug.DrawLine(transform.position, transform.position + transform.forward, Color.blue);
+
+		Vector3 rv = rigidBody.velocity;
+		rv.y = 0;
+		Debug.DrawLine(transform.position, transform.position + rv, Color.green);
+
+
 		// mouse X axis rotates the playerm but the Y axis simply tilts the camera
-		float rotationX = Input.GetAxis("Mouse X") * sensitivityX;
-		float cameraTilt = -Input.GetAxis("Mouse Y") * sensitivityY;
+		float rotationX = Input.GetAxis("Mouse X") * mouseSensitivity;
+		float cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
 		
 		transform.Rotate(new Vector3(0, rotationX, 0));
 		applyTiltClamped (cameraTilt, 90, 270);
 		 
 		if (onGround) {
 			if (jump > 0) {
-				rigidBody.AddForce (Vector3.up * jumpHeight, ForceMode.VelocityChange);
-				f = jump;
+				rigidBody.AddForce (Vector3.up * jumpForce, ForceMode.VelocityChange);
 				jump = 0;
 
-				if (onGroundTime < bunnyhopThreshold / 2F){
+				if (onGroundTime < bunnyhopWindow / 2F){
 					// we have already hit the ground, but jumped within the bhop window (and still had velocity left)
-
 
 					if (Mathf.Abs (rigidBody.velocity.sqrMagnitude - incomingVel.sqrMagnitude) < 0.000001){
 						// no velocity was lost, perfect bhop
@@ -117,53 +132,58 @@ public class RigidbodyFPSController : MonoBehaviour {
 				targetVelocity = transform.TransformDirection (targetVelocity);
 				targetVelocity *= speed;
 
-				if (targetVelocity.magnitude > 0.001) {
-					secondsTo0 = 0;
-				}
-				
 				// Apply a force that attempts to reach our target velocity
 				Vector3 velocity = rigidBody.velocity;
 				Vector3 velocityChange = (targetVelocity - velocity);
 				velocityChange.y = 0;
-				//velocityChange = Vector3.ClampMagnitude (velocityChange, 1.5f);
 
-				rigidBody.AddForce (velocityChange / 4F, ForceMode.VelocityChange);
+				// friction coefficient
+				velocityChange *= 0.25f;
+
+				rigidBody.AddForce (velocityChange, ForceMode.VelocityChange);
 			}
 		} else {
+			// airstrafe
+
+			if (rotationX != 0){
+
+				Vector3 accellDir = transform.TransformVector(new Vector3(
+					(rotationX > 0 ? 1 : -1) * airAccelerate, 0, 0
+				));
+
+				Debug.DrawLine(transform.position, transform.position + accellDir, Color.red);
+
+				float projectedSpeed = Vector3.Dot(rigidBody.velocity, accellDir);
+
+				float allowedAccell = Mathf.Max (0, maxStrafeSpeed - projectedSpeed);
+
+				rigidBody.velocity = rigidBody.velocity + accellDir * allowedAccell;
+
+			}
+
 		}
 
-		if (Input.GetKey(KeyCode.LeftShift)) {
-			rigidBody.AddForce(transform.TransformVector(new Vector3(0, 30, 100)));
-		}
-		
 		// We apply gravity manually for more tuning control
-		rigidBody.AddForce(Physics.gravity * rigidBody.mass);
+		rigidBody.AddForce(Physics.gravity * 3.0f * rigidBody.mass);
 	}
 	
 	void OnCollisionExit(Collision collisionInfo) {
-		//if (collisionInfo.collider.tag == "ground") {
+		// TODO: only on ground object
 		grounded = false;
 		onGroundTime = 0;
-		//	}
-		//	Debug.Log ("OP_exit");
 	}
 	
 	void OnCollisionEnter(Collision collisionInfo) {
+		// TODO: only for ground objects with a correct normal of the face we hit
+
 		Vector3 incomingVelocity = rigidBody.velocity;
 		incomingVelocity.y = 0;
 		incomingVel = incomingVelocity;
 
-		secondsTo0 = 0;
-		//	if (collisionInfo.collider.tag == "ground") {
-		
-		//	}
-		//Debug.Log ("OP_enter");
+		grounded = true; 
 	}
 	
 	void OnCollisionStay (Collision collisionInfo) {
-		grounded = true; 
-		//	Debug.Log ("OP_s");
-		//	grounded = true;    
 	}
 	
 	void applyTiltClamped (float cameraTilt, float lowerLimit, float upperLimit)
@@ -182,11 +202,5 @@ public class RigidbodyFPSController : MonoBehaviour {
 		}
 		viewCamera.transform.localEulerAngles = new Vector3(newTilt, 0, 0);
 	}
-	
-	/*float CalculateJumpVerticalSpeed () {
-		// From the jump height and gravity we deduce the upwards speed 
-		// for the character to reach at the apex.
-		return Mathf.Sqrt(2 * jumpHeight * -Physics.gravity.y);
-	}*/
 	
 }
