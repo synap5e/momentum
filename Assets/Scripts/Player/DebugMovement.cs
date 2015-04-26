@@ -31,7 +31,7 @@ public class DebugMovement : MonoBehaviour
         {
             // show arc we can turn within without losing velocity
 
-            float angle = GetComponent<HeadingCorrectiveAirstrafeController>().maximumConservationStrafeAngle;
+            float angle = GetComponent<HeadingCorrectiveAirstrafeController>().overstrafeAngle;
             Vector3 vel = GetComponent<Rigidbody>().velocity;
             vel.y = 0;
             vel.Normalize();

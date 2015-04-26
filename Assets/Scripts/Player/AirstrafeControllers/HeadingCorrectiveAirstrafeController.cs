@@ -3,58 +3,61 @@ using System.Collections;
 
 public class HeadingCorrectiveAirstrafeController : MonoBehaviour, AirstrafeController{
 
-    public float correctionScale = 1.0f;
-    [Range(0, 90)]
-    public float maximumConservationStrafeAngle = 80.0f;
+    public float correctionScale = 5.0f;
+    [Range(0, 180)]
+    public float overstrafeAngle = 80.0f;
+
+    public float baseOverstrafeDecay = 0.1f;
+    public float multiplicativeOverstrafeDecay = 0.01f;
+    public float squaredOverstrafeDecay = 0.0f;
+    public float maxDecay = 40;
 
     public bool PerformAirstrafe(float horizontalAxis, float verticalAxis)
     {
         
-        Rigidbody rigidBody = GetComponent<Rigidbody>();
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
 
-        Vector3 velocityForward = rigidBody.velocity;
+        Vector3 velocityForward = rigidbody.velocity;
         velocityForward.y = 0;
-        if (velocityForward.magnitude == 0)
+        if (velocityForward.magnitude < 1)
             return false;
 
         Vector3 forward = transform.forward;
         forward.y = 0;
         forward.Normalize();
 
-        float correctionAngle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(forward, velocityForward.normalized));
+        float correctionAngle = Vector3.Angle(forward, velocityForward.normalized);
+        float correctionFactor = Vector3.Dot(Vector3.up, Vector3.Cross(velocityForward.normalized, forward));
 
-        // correction vector from the direction we are facing to the direction we want to be facing
-        // magnitude proportional to the difference
-        Vector3 correction = (forward - velocityForward.normalized) * correctionScale;
-
-        // new velocity (excluding y component)
-        Vector3 newVelocityForward;
-
-        if (correctionAngle < maximumConservationStrafeAngle)
+        if (correctionAngle > overstrafeAngle)
         {
-            // conserve velocity
-            newVelocityForward = velocityForward + correction;
-            newVelocityForward *= (velocityForward.magnitude / newVelocityForward.magnitude);
-            if (correction.sqrMagnitude > 0.1)
-            {
-                GetComponent<ActionFeedback>().Strafe();
-            }
-            GetComponent<DebugMovement>().clampedStrafe = false;
+            Debug.Log(correctionAngle);
+
+            Debug.Log(forward + ", " + velocityForward.normalized);
         }
-        else
+
+        velocityForward = Quaternion.Euler(0, correctionFactor * correctionScale, 0) * velocityForward;
+        if (correctionAngle > 5)
+        {
+            GetComponent<ActionFeedback>().Strafe();
+        }
+        if (correctionAngle > overstrafeAngle)
         {
             GetComponent<ActionFeedback>().ImperfectStrafe();
             GetComponent<DebugMovement>().clampedStrafe = true;
 
-            newVelocityForward = velocityForward * 0.9f + correction;
-           // newVelocityForward -= correction * 0.9f;
+            float overstrafe = (correctionAngle - overstrafeAngle)/360.0f;
+            float decay = baseOverstrafeDecay + overstrafe * multiplicativeOverstrafeDecay + Mathf.Pow(overstrafe, 2) * squaredOverstrafeDecay;
+            decay = Mathf.Min(maxDecay, decay);
+            decay *= Time.deltaTime;
+            velocityForward *= (1-decay);
+        }
+        else
+        {
+            GetComponent<DebugMovement>().clampedStrafe = false;
         }
 
-        // use original y component
-        newVelocityForward.y = rigidBody.velocity.y;
-
-        rigidBody.velocity = newVelocityForward;
-
-        return true; // TODO
+        rigidbody.velocity = new Vector3(velocityForward.x, rigidbody.velocity.y, velocityForward.z);
+        return true;
     }
 }
