@@ -1,102 +1,292 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (Rigidbody))]
-[RequireComponent (typeof (CapsuleCollider))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(AirstrafeController))]
+[RequireComponent(typeof(DebugMovement))]
 
 // adapted from http://wiki.unity3d.com/index.php?title=RigidbodyFPSWalker
-public class RigidbodyFPSController : MonoBehaviour {
-	
-	public float sensitivityX = 15F;
-	public float sensitivityY = 15F;
-	
-	public float speed = 10.0f;
-	public float maxVelocityChange = 10.0f;
-	public bool canJump = true;
-	public float jumpHeight = 2.0f;
+public class RigidbodyFPSController : MonoBehaviour
+{
 
-	private bool grounded = true;
-	public bool onGround {
-		get { return grounded; }
-	}
-	
-	private Rigidbody rigidBody;
-	private Camera viewCamera;
+    [Header("Input")]
+    [Range(0.01f, 20f)]
+    public float
+        mouseSensitivity = 5F;
 
-	
-	void Awake () {
-		rigidBody = GetComponent<Rigidbody> ();
-		viewCamera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
+    [Header("Basic Movement")]
+    public float
+        speed = 10.0f;
+    public float jumpForce = 10.0f;
 
-		rigidBody.freezeRotation = true;
-		rigidBody.useGravity = false;
-	}
+    [Header("Bunnyhopping")]
+    [Tooltip("Length of the window that we will accept a bunnyhop in.\n" +
+             "This allows the player 1/2 that time before hitting the ground and 1/2 after. " +
+             "If they jump within this time they will not lose any velocity to friction.")]
+    public float bunnyhopWindow = 0.2f;
+    public bool autoBunnyhop = false;
 
-		
-	void Start() {
 
-	}
-	
-	void FixedUpdate () {
-		// mouse X axis rotates the playerm but the Y axis simply tilts the camera
-		float rotationX = Input.GetAxis("Mouse X") * sensitivityX;
-		float cameraTilt = -Input.GetAxis("Mouse Y") * sensitivityY;
+    [Header("Other (WIP)")]
+    [Range(0, 1)]
+    public float surfaceFriction = 0.25f;
 
-		transform.Rotate(new Vector3(0, rotationX, 0));
-		applyTiltClamped (cameraTilt, 90, 270);
 
-		if (grounded) {
-			// Calculate how fast we should be moving
-			Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-			targetVelocity.Normalize();
-			targetVelocity = transform.TransformDirection(targetVelocity);
-			targetVelocity *= speed;
-			
-			// Apply a force that attempts to reach our target velocity
-			Vector3 velocity = rigidBody.velocity;
-			Vector3 velocityChange = (targetVelocity - velocity);
-			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-			velocityChange.y = 0;
-			rigidBody.AddForce(velocityChange, ForceMode.VelocityChange);
-			
-			// Jump
-			if (canJump && Input.GetButton("Jump")) {
-				rigidBody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-			}
-		}
-		
-		// We apply gravity manually for more tuning control
-		rigidBody.AddForce(Physics.gravity * rigidBody.mass);
-		
-		grounded = false;
-	}
-	
-	void OnCollisionStay () {
-		grounded = true;    
-	}
+    private Camera viewCamera;
 
-	void applyTiltClamped (float cameraTilt, float lowerLimit, float upperLimit)
-	{
-		float newTilt = viewCamera.transform.localEulerAngles.x + cameraTilt;
-		newTilt = newTilt % 360;
-		if (newTilt < 0){
-			newTilt += 360;
-		}
-		if (newTilt <= 180) {
-			// looking down
-			newTilt = Mathf.Min(lowerLimit, newTilt);
-		} else if (newTilt != 0){
-			// looking up
-			newTilt = Mathf.Max(upperLimit, newTilt);
-		}
-		viewCamera.transform.localEulerAngles = new Vector3(newTilt, 0, 0);
-	}
-	
-	float CalculateJumpVerticalSpeed () {
-		// From the jump height and gravity we deduce the upwards speed 
-		// for the character to reach at the apex.
-		return Mathf.Sqrt(2 * jumpHeight * -Physics.gravity.y);
-	}
-	
+    private int groundApplicationTicks = 5;
+
+    // number of ticks the player has been on the ground
+    private int onGroundTicks;
+
+    // number of ticks the player has been off the ground
+    private int offGroundTicks;
+
+    internal bool usingGroundedPhysics
+    {
+        get
+        {
+            return onGroundTicks > groundApplicationTicks;
+        }
+    }
+    private bool inAir = false;
+    internal bool onGround
+    {
+        get
+        {
+            return !inAir;
+        }
+    }
+
+    private bool doJump = false;
+    private float jumpQueuedTime;
+    private bool prematureJump;
+    private bool perfectJump;
+    private Vector3 incomingVel;
+
+
+    void Awake()
+    {
+        viewCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        GetComponent<Rigidbody>().freezeRotation = true;
+        GetComponent<Rigidbody>().useGravity = false;
+
+        // frictionless
+        GetComponent<Collider>().material.dynamicFriction = 0;
+        GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Multiply;
+    }
+
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        // TODO: hack to reset while testing 
+        if (transform.position.y < -50)
+        {
+            transform.position = Vector3.zero;
+        }
+
+        // TODO: hack to simulate explosive jump
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
+        }
+
+        if (!doJump && Input.GetButton("Jump"))
+        {
+            doJump = true;
+            jumpQueuedTime = Time.time;
+            prematureJump = inAir;
+            perfectJump = !inAir;
+        }
+    }
+
+    void OnGUI()
+    {
+        Vector3 horvel = GetComponent<Rigidbody>().velocity;
+        horvel.y = 0;
+
+        GUI.Label(new Rect(0, 20, 500, 500), Mathf.Round(horvel.magnitude * 10000) / 10000F + " / " + Mathf.Round(incomingVel.magnitude * 10000) / 10000F + "");
+    }
+
+    void FixedUpdate()
+    {
+        CheckGrounded();
+
+        // mouse X axis rotates the player but the Y axis simply tilts the camera
+        float rotation = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        transform.Rotate(new Vector3(0, rotation, 0));
+        applyTiltClamped(cameraTilt, 90, 270);
+
+        if (!inAir)
+        {
+            if (!performJump())
+            {
+                // if we are not jumping then accellerate to our target velocity
+                accellerateToDesired();
+            }
+        }
+        else
+        {
+            if (GetComponent<AirstrafeController>() != null)
+                GetComponent<AirstrafeController>().PerformAirstrafe(rotation, cameraTilt);
+        }
+
+
+        // We apply gravity manually for more tuning control
+        GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
+
+
+        perfectJump = false;
+    }
+
+    private void CheckGrounded()
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position + Vector3.up, Vector3.down);
+        if (Physics.Raycast(ray, out hit) && hit.distance <= 1.1)
+        {
+            if (onGroundTicks == 0)
+            {
+                // first frame of being on the ground
+                inAir = false;
+
+                Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
+                incomingVelocity.y = 0;
+                incomingVel = incomingVelocity;
+            }
+            offGroundTicks = 0;
+            onGroundTicks++;
+        }
+        else
+        {
+            if (offGroundTicks == 0)
+            {
+                // first frame of actually being in the air
+                inAir = true;
+            }
+            offGroundTicks++;
+            onGroundTicks = 0;
+        }
+    }
+
+
+    void accellerateToDesired()
+    {
+        // Calculate how fast we want to be moving
+        Vector3 targetVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        targetVelocity.Normalize();
+        targetVelocity = transform.TransformDirection(targetVelocity);
+        targetVelocity *= speed;
+
+        // Apply a force that attempts to reach our target velocity
+        Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        Vector3 velocityChange = (targetVelocity - velocity);
+        velocityChange.y = 0;
+
+        //  if (targetVelocity.sqrMagnitude == 0)
+        // {
+        // pure stopping force - apply at friction rate
+        velocityChange *= surfaceFriction;
+        // }
+
+        // GetComponent<Rigidbody>().velocity += velocityChange * surfaceFriction;
+
+        GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
+    }
+
+    bool performJump()
+    {
+        if (!doJump) return false;
+
+        doJump = false;
+        if (autoBunnyhop && Input.GetButton("Jump"))
+        {
+            GetComponent<ActionFeedback>().PerfectBHop();
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            return true;
+        }
+        else
+        {
+            float timeAgo = Time.time - jumpQueuedTime;
+
+            if (prematureJump)
+            {
+                // jump was premature (fired while still airbourne)
+                if (timeAgo < bunnyhopWindow / 2.0f)
+                {
+                    // although premature, jump was within the bhop window, so we allow it as a bhop
+                    GetComponent<ActionFeedback>().ImperfectBHop();
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    return true;
+                }
+                else
+                {
+                    // outside of our bhop window, so no-go
+                    GetComponent<ActionFeedback>().FailedJump();
+                    return false;
+                }
+            }
+            else
+            {
+                // jump was performed while grounded
+                if (perfectJump)
+                {
+                    // perfectjump hasn't been unset, so this is the first FixedUpdate from the jump, and we have not 
+                    // lost any velocity through "friction"
+                    GetComponent<ActionFeedback>().PerfectBHop();
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    return true;
+                }
+                else if (onGroundTicks * Time.fixedDeltaTime < bunnyhopWindow / 2.0f)
+                {
+                    // jump was performed after we had been on the ground for some time, but still within our window
+                    GetComponent<ActionFeedback>().ImperfectBHop();
+
+                    // the player has lost some velocity due to friction (or even gained some by moving), but we are
+                    // now reverting this contact with the ground and pretending it was a bunnyhop
+                    GetComponent<Rigidbody>().velocity = new Vector3(incomingVel.x, GetComponent<Rigidbody>().velocity.y, incomingVel.z);
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    return true;
+                }
+                else
+                {
+                    // player was on the ground too long to be a bunnyhop, so it's just a garden-variety jump
+                    GetComponent<ActionFeedback>().Jump();
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    return true;
+                }
+            }
+        }
+    }
+
+    void applyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)
+    {
+        float newTilt = viewCamera.transform.localEulerAngles.x + cameraTilt;
+        newTilt = newTilt % 360;
+        if (newTilt < 0)
+        {
+            newTilt += 360;
+        }
+        if (newTilt <= 180)
+        {
+            // looking down
+            newTilt = Mathf.Min(lowerLimit, newTilt);
+        }
+        else if (newTilt != 0)
+        {
+            // looking up
+            newTilt = Mathf.Max(upperLimit, newTilt);
+        }
+        viewCamera.transform.localEulerAngles = new Vector3(newTilt, 0, 0);
+    }
+
 }
