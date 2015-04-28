@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,10 +7,21 @@ public class Recorder : MonoBehaviour {
 	public float recordingFrameDurationMin;
 	public List<Snapshot> snapshotList {get; set;}
 	private bool recording = false;
-	private GameObject player;
+
+
+	public GameObject player;
+	private Rigidbody playerRigidbody;
+	private RigidbodyFPSController rigidbodyFPSController;
+
 	private float frameDuration;
 
-
+	public bool IsRecording
+	{
+		get
+		{
+			return recording;
+		}
+	}
 
 	public class Snapshot{
 		public Vector3 position{ get; set;}
@@ -26,9 +37,10 @@ public class Recorder : MonoBehaviour {
 		}
 	}
 
-
 	void Start () {
 		snapshotList = new List<Snapshot> ();
+		playerRigidbody = player.GetComponent<Rigidbody>();
+		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
 	}
 
 
@@ -36,10 +48,9 @@ public class Recorder : MonoBehaviour {
 		if (recording) {
 			frameDuration += Time.deltaTime;
 			if (frameDuration > recordingFrameDurationMin) {
-				Rigidbody playerRigidbody = player.GetComponent<Rigidbody> ();
 				Vector3 position = playerRigidbody.position;
 				Quaternion rotation = playerRigidbody.rotation;
-				bool inJump = GetComponent<RigidbodyFPSController> ().onGround;
+				bool inJump = rigidbodyFPSController.onGround;
 				float duration = frameDuration;
 
 				//Add the snapshot to the list
@@ -52,11 +63,12 @@ public class Recorder : MonoBehaviour {
 		}		
 	}
 
-	void StartRecording(){
+	public void StartRecording()
+	{
 		recording = true;
 	}
 
-	void StopRecording(){
+	public void StopRecording(){
 		recording = false;
 	}
 
