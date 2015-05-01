@@ -12,12 +12,10 @@ public class RigidbodyFPSController : MonoBehaviour
 
     [Header("Input")]
     [Range(0.01f, 20f)]
-    public float
-        mouseSensitivity = 5F;
+    public float mouseSensitivity = 5F;
 
     [Header("Basic Movement")]
-    public float
-        speed = 10.0f;
+    public float speed = 10.0f;
     public float jumpForce = 10.0f;
 
     [Header("Bunnyhopping")]
@@ -124,14 +122,14 @@ public class RigidbodyFPSController : MonoBehaviour
         float cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         transform.Rotate(new Vector3(0, rotation, 0));
-        applyTiltClamped(cameraTilt, 90, 270);
+        ApplyTiltClamped(cameraTilt, 90, 270);
 
         if (!inAir)
         {
-            if (!performJump())
+            if (!PerformJump())
             {
                 // if we are not jumping then accellerate to our target velocity
-                accellerateToDesired();
+                AccellerateToDesired();
             }
         }
         else
@@ -179,7 +177,7 @@ public class RigidbodyFPSController : MonoBehaviour
     }
 
 
-    void accellerateToDesired()
+    void AccellerateToDesired()
     {
         // Calculate how fast we want to be moving
         Vector3 targetVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -192,18 +190,15 @@ public class RigidbodyFPSController : MonoBehaviour
         Vector3 velocityChange = (targetVelocity - velocity);
         velocityChange.y = 0;
 
-        //  if (targetVelocity.sqrMagnitude == 0)
-        // {
-        // pure stopping force - apply at friction rate
+        // apply acceleration at friction rate
         velocityChange *= surfaceFriction;
-        // }
 
         // GetComponent<Rigidbody>().velocity += velocityChange * surfaceFriction;
 
         GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
     }
 
-    bool performJump()
+    bool PerformJump()
     {
         if (!doJump) return false;
 
@@ -268,7 +263,7 @@ public class RigidbodyFPSController : MonoBehaviour
         }
     }
 
-    void applyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)
+    void ApplyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)
     {
         float newTilt = viewCamera.transform.localEulerAngles.x + cameraTilt;
         newTilt = newTilt % 360;
