@@ -18,6 +18,10 @@ public class RigidbodyFPSController : MonoBehaviour
     public float speed = 10.0f;
     public float jumpForce = 10.0f;
 
+    [Header("Air Movement")]
+    public float aircontrolForce = 0.1f;
+    public float airMovementMaxVelocitySq = 100.0f;
+
     [Header("Bunnyhopping")]
     [Tooltip("Length of the window that we will accept a bunnyhop in.\n" +
              "This allows the player 1/2 that time before hitting the ground and 1/2 after. " +
@@ -136,6 +140,8 @@ public class RigidbodyFPSController : MonoBehaviour
         {
             if (GetComponent<AirstrafeController>() != null)
                 GetComponent<AirstrafeController>().PerformAirstrafe(rotation, cameraTilt);
+
+            AirControl();
         }
 
 
@@ -150,6 +156,7 @@ public class RigidbodyFPSController : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position + Vector3.up, Vector3.down);
+
         if (Physics.Raycast(ray, out hit) && hit.distance <= 1.1)
         {
             if (onGroundTicks == 0)
@@ -176,6 +183,20 @@ public class RigidbodyFPSController : MonoBehaviour
         }
     }
 
+    private void AirControl()
+    {
+        Vector3 velocityChange = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        velocityChange.Normalize();
+        velocityChange = transform.TransformDirection(velocityChange);
+        velocityChange *= aircontrolForce;
+
+        if (GetComponent<Rigidbody>().velocity.sqrMagnitude < airMovementMaxVelocitySq ||
+            (GetComponent<Rigidbody>().velocity + velocityChange).sqrMagnitude < GetComponent<Rigidbody>().velocity.sqrMagnitude) 
+        {
+            GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
+        }   
+    }
+    
 
     void AccellerateToDesired()
     {
