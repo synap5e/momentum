@@ -64,7 +64,6 @@ public class RigidbodyFPSController : MonoBehaviour
     private bool doJump = false;
     private float jumpQueuedTime;
     private bool prematureJump;
-    private bool perfectJump;
     private Vector3 incomingVel;
 
 
@@ -74,6 +73,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
         GetComponent<Rigidbody>().freezeRotation = true;
         GetComponent<Rigidbody>().useGravity = false;
+
+      //  Time.timeScale = 0.1f;
 
         // frictionless
         GetComponent<Collider>().material.dynamicFriction = 0;
@@ -100,12 +101,11 @@ public class RigidbodyFPSController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
         }
 
-        if (!doJump && Input.GetButton("Jump"))
+        if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
         {
             doJump = true;
             jumpQueuedTime = Time.time;
             prematureJump = inAir;
-            perfectJump = !inAir;
         }
     }
 
@@ -148,8 +148,6 @@ public class RigidbodyFPSController : MonoBehaviour
         // We apply gravity manually for more tuning control
         GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
 
-
-        perfectJump = false;
     }
 
     private void CheckGrounded()
@@ -167,6 +165,8 @@ public class RigidbodyFPSController : MonoBehaviour
                 Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
+
+                //Debug.Log(incomingVel);
             }
             offGroundTicks = 0;
             onGroundTicks++;
@@ -227,7 +227,7 @@ public class RigidbodyFPSController : MonoBehaviour
         if (autoBunnyhop)
         {
             if (!Input.GetButton("Jump")) return false;
-            GetComponent<ActionFeedback>().PerfectBHop();
+            GetComponent<ActionFeedback>().EarlyBHop(0);
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             return true;
         }
@@ -235,14 +235,17 @@ public class RigidbodyFPSController : MonoBehaviour
         {
             float timeAgo = Time.time - jumpQueuedTime;
 
+            Vector3 newvel = GetComponent<Rigidbody>().velocity;
             if (prematureJump)
             {
                 // jump was premature (fired while still airbourne)
                 if (timeAgo < bunnyhopWindow / 2.0f)
                 {
                     // although premature, jump was within the bhop window, so we allow it as a bhop
-                    GetComponent<ActionFeedback>().ImperfectBHop();
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    GetComponent<ActionFeedback>().EarlyBHop((int)Mathf.Round(timeAgo / Time.fixedDeltaTime));
+                    
+                    newvel.y = jumpForce;
+                    GetComponent<Rigidbody>().velocity = newvel;
                     return true;
                 }
                 else
@@ -255,33 +258,34 @@ public class RigidbodyFPSController : MonoBehaviour
             else
             {
                 // jump was performed while grounded
-                if (perfectJump)
-                {
-                    // perfectjump hasn't been unset, so this is the first FixedUpdate from the jump, and we have not 
-                    // lost any velocity through "friction"
-                    GetComponent<ActionFeedback>().PerfectBHop();
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-                    return true;
-                }
-                else if (onGroundTicks * Time.fixedDeltaTime < bunnyhopWindow / 2.0f)
+                if (onGroundTicks * Time.fixedDeltaTime < bunnyhopWindow / 2.0f)
                 {
                     // jump was performed after we had been on the ground for some time, but still within our window
-                    GetComponent<ActionFeedback>().ImperfectBHop();
+                    GetComponent<ActionFeedback>().LateBHop(onGroundTicks);
 
                     // the player has lost some velocity due to friction (or even gained some by moving), but we are
                     // now reverting this contact with the ground and pretending it was a bunnyhop
-                    GetComponent<Rigidbody>().velocity = new Vector3(incomingVel.x, GetComponent<Rigidbody>().velocity.y, incomingVel.z);
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    newvel = incomingVel;
+                    newvel.y = jumpForce;
+                    GetComponent<Rigidbody>().velocity = newvel;
+                    //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                     return true;
                 }
                 else
                 {
                     // player was on the ground too long to be a bunnyhop, so it's just a garden-variety jump
                     GetComponent<ActionFeedback>().Jump();
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    newvel.y = jumpForce;
+                    GetComponent<Rigidbody>().velocity = newvel;
                     return true;
                 }
-            }
+
+            } 
+           /* Debug.Log("jump");
+            Vector3 newvel = GetComponent<Rigidbody>().velocity;
+            newvel.y = jumpForce;
+            GetComponent<Rigidbody>().velocity = newvel;// .AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            return true;*/
         }
     }
 

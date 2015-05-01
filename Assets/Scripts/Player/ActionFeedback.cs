@@ -2,17 +2,13 @@
 using System.Collections;
 
 public class ActionFeedback : MonoBehaviour {
-
-
-
-    internal void PerfectBHop()
+    internal void EarlyBHop(int t)
     {
-     //   Debug.Log("PerfectBHop");
+        Debug.Log("early by " + t);
     }
-
-    internal void ImperfectBHop()
+    internal void LateBHop(int t)
     {
-   //     Debug.Log("ImperfectBHop");
+        Debug.Log("late by " + t);
     }
 
     internal void FailedBHop()
@@ -39,4 +35,6 @@ public class ActionFeedback : MonoBehaviour {
     {
     //    Debug.Log("Strafe");
     }
+
+
 }
