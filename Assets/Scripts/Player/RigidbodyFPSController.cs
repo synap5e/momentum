@@ -203,8 +203,9 @@ public class RigidbodyFPSController : MonoBehaviour
         if (!doJump) return false;
 
         doJump = false;
-        if (autoBunnyhop && Input.GetButton("Jump"))
+        if (autoBunnyhop)
         {
+            if (!Input.GetButton("Jump")) return false;
             GetComponent<ActionFeedback>().PerfectBHop();
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             return true;
