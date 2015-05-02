@@ -29,13 +29,6 @@ public class HeadingCorrectiveAirstrafeController : MonoBehaviour, AirstrafeCont
         float correctionAngle = Vector3.Angle(forward, velocityForward.normalized);
         float correctionFactor = Vector3.Dot(Vector3.up, Vector3.Cross(velocityForward.normalized, forward));
 
-        if (correctionAngle > overstrafeAngle)
-        {
-            Debug.Log(correctionAngle);
-
-            Debug.Log(forward + ", " + velocityForward.normalized);
-        }
-
         velocityForward = Quaternion.Euler(0, correctionFactor * correctionScale, 0) * velocityForward;
         if (correctionAngle > 5)
         {

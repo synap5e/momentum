@@ -12,13 +12,15 @@ public class RigidbodyFPSController : MonoBehaviour
 
     [Header("Input")]
     [Range(0.01f, 20f)]
-    public float
-        mouseSensitivity = 5F;
+    public float mouseSensitivity = 5F;
 
     [Header("Basic Movement")]
-    public float
-        speed = 10.0f;
+    public float speed = 10.0f;
     public float jumpForce = 10.0f;
+
+    [Header("Air Movement")]
+    public float aircontrolForce = 0.1f;
+    public float airMovementMaxVelocitySq = 100.0f;
 
     [Header("Bunnyhopping")]
     [Tooltip("Length of the window that we will accept a bunnyhop in.\n" +
@@ -62,7 +64,6 @@ public class RigidbodyFPSController : MonoBehaviour
     private bool doJump = false;
     private float jumpQueuedTime;
     private bool prematureJump;
-    private bool perfectJump;
     private Vector3 incomingVel;
 
 
@@ -73,6 +74,8 @@ public class RigidbodyFPSController : MonoBehaviour
         GetComponent<Rigidbody>().freezeRotation = true;
         GetComponent<Rigidbody>().useGravity = false;
 
+      //  Time.timeScale = 0.1f;
+
         // frictionless
         GetComponent<Collider>().material.dynamicFriction = 0;
         GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Multiply;
@@ -81,15 +84,19 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     void Update()
     {
+        Screen.lockCursor = true;
+
         // TODO: hack to reset while testing 
         if (transform.position.y < -50)
         {
             transform.position = Vector3.zero;
+            if (GetComponent<BombActivator>() != null)
+                GetComponent<BombActivator>().ReactivateBombs();
         }
 
         // TODO: hack to simulate explosive jump
@@ -98,12 +105,11 @@ public class RigidbodyFPSController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
         }
 
-        if (!doJump && Input.GetButton("Jump"))
+        if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
         {
             doJump = true;
             jumpQueuedTime = Time.time;
             prematureJump = inAir;
-            perfectJump = !inAir;
         }
     }
 
@@ -124,34 +130,35 @@ public class RigidbodyFPSController : MonoBehaviour
         float cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         transform.Rotate(new Vector3(0, rotation, 0));
-        applyTiltClamped(cameraTilt, 90, 270);
+        ApplyTiltClamped(cameraTilt, 90, 270);
 
         if (!inAir)
         {
-            if (!performJump())
+            if (!PerformJump())
             {
                 // if we are not jumping then accellerate to our target velocity
-                accellerateToDesired();
+                AccellerateToDesired();
             }
         }
         else
         {
             if (GetComponent<AirstrafeController>() != null)
                 GetComponent<AirstrafeController>().PerformAirstrafe(rotation, cameraTilt);
+
+            AirControl();
         }
 
 
         // We apply gravity manually for more tuning control
         GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
 
-
-        perfectJump = false;
     }
 
     private void CheckGrounded()
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position + Vector3.up, Vector3.down);
+
         if (Physics.Raycast(ray, out hit) && hit.distance <= 1.1)
         {
             if (onGroundTicks == 0)
@@ -162,6 +169,8 @@ public class RigidbodyFPSController : MonoBehaviour
                 Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
+
+                //Debug.Log(incomingVel);
             }
             offGroundTicks = 0;
             onGroundTicks++;
@@ -178,8 +187,22 @@ public class RigidbodyFPSController : MonoBehaviour
         }
     }
 
+    private void AirControl()
+    {
+        Vector3 velocityChange = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        velocityChange.Normalize();
+        velocityChange = transform.TransformDirection(velocityChange);
+        velocityChange *= aircontrolForce;
 
-    void accellerateToDesired()
+        if (GetComponent<Rigidbody>().velocity.sqrMagnitude < airMovementMaxVelocitySq ||
+            (GetComponent<Rigidbody>().velocity + velocityChange).sqrMagnitude < GetComponent<Rigidbody>().velocity.sqrMagnitude) 
+        {
+            GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
+        }   
+    }
+    
+
+    void AccellerateToDesired()
     {
         // Calculate how fast we want to be moving
         Vector3 targetVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -192,25 +215,23 @@ public class RigidbodyFPSController : MonoBehaviour
         Vector3 velocityChange = (targetVelocity - velocity);
         velocityChange.y = 0;
 
-        //  if (targetVelocity.sqrMagnitude == 0)
-        // {
-        // pure stopping force - apply at friction rate
+        // apply acceleration at friction rate
         velocityChange *= surfaceFriction;
-        // }
 
         // GetComponent<Rigidbody>().velocity += velocityChange * surfaceFriction;
 
         GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
     }
 
-    bool performJump()
+    bool PerformJump()
     {
         if (!doJump) return false;
 
         doJump = false;
-        if (autoBunnyhop && Input.GetButton("Jump"))
+        if (autoBunnyhop)
         {
-            GetComponent<ActionFeedback>().PerfectBHop();
+            if (!Input.GetButton("Jump")) return false;
+            GetComponent<ActionFeedback>().EarlyBHop(0);
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             return true;
         }
@@ -218,14 +239,17 @@ public class RigidbodyFPSController : MonoBehaviour
         {
             float timeAgo = Time.time - jumpQueuedTime;
 
+            Vector3 newvel = GetComponent<Rigidbody>().velocity;
             if (prematureJump)
             {
                 // jump was premature (fired while still airbourne)
                 if (timeAgo < bunnyhopWindow / 2.0f)
                 {
                     // although premature, jump was within the bhop window, so we allow it as a bhop
-                    GetComponent<ActionFeedback>().ImperfectBHop();
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    GetComponent<ActionFeedback>().EarlyBHop((int)Mathf.Round(timeAgo / Time.fixedDeltaTime));
+                    
+                    newvel.y = jumpForce;
+                    GetComponent<Rigidbody>().velocity = newvel;
                     return true;
                 }
                 else
@@ -238,37 +262,38 @@ public class RigidbodyFPSController : MonoBehaviour
             else
             {
                 // jump was performed while grounded
-                if (perfectJump)
-                {
-                    // perfectjump hasn't been unset, so this is the first FixedUpdate from the jump, and we have not 
-                    // lost any velocity through "friction"
-                    GetComponent<ActionFeedback>().PerfectBHop();
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-                    return true;
-                }
-                else if (onGroundTicks * Time.fixedDeltaTime < bunnyhopWindow / 2.0f)
+                if (onGroundTicks * Time.fixedDeltaTime < bunnyhopWindow / 2.0f)
                 {
                     // jump was performed after we had been on the ground for some time, but still within our window
-                    GetComponent<ActionFeedback>().ImperfectBHop();
+                    GetComponent<ActionFeedback>().LateBHop(onGroundTicks);
 
                     // the player has lost some velocity due to friction (or even gained some by moving), but we are
                     // now reverting this contact with the ground and pretending it was a bunnyhop
-                    GetComponent<Rigidbody>().velocity = new Vector3(incomingVel.x, GetComponent<Rigidbody>().velocity.y, incomingVel.z);
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    newvel = incomingVel;
+                    newvel.y = jumpForce;
+                    GetComponent<Rigidbody>().velocity = newvel;
+                    //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                     return true;
                 }
                 else
                 {
                     // player was on the ground too long to be a bunnyhop, so it's just a garden-variety jump
                     GetComponent<ActionFeedback>().Jump();
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    newvel.y = jumpForce;
+                    GetComponent<Rigidbody>().velocity = newvel;
                     return true;
                 }
-            }
+
+            } 
+           /* Debug.Log("jump");
+            Vector3 newvel = GetComponent<Rigidbody>().velocity;
+            newvel.y = jumpForce;
+            GetComponent<Rigidbody>().velocity = newvel;// .AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            return true;*/
         }
     }
 
-    void applyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)
+    void ApplyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)
     {
         float newTilt = viewCamera.transform.localEulerAngles.x + cameraTilt;
         newTilt = newTilt % 360;
