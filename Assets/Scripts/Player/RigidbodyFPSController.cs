@@ -84,15 +84,19 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     void Update()
     {
+        Screen.lockCursor = true;
+
         // TODO: hack to reset while testing 
         if (transform.position.y < -50)
         {
             transform.position = Vector3.zero;
+            if (GetComponent<BombActivator>() != null)
+                GetComponent<BombActivator>().ReactivateBombs();
         }
 
         // TODO: hack to simulate explosive jump
