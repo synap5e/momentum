@@ -77,6 +77,7 @@ public class Recorder : MonoBehaviour {
 		recording = false;
 	}
 
+	public void ResetRecording(){
 		snapshotList = new List<Snapshot> ();
 		recording = true;
 	}
