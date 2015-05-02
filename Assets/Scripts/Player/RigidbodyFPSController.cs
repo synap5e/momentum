@@ -61,6 +61,8 @@ public class RigidbodyFPSController : MonoBehaviour
         }
     }
 
+    private float rotation, cameraTilt;
+
     private bool doJump = false;
     private float jumpQueuedTime;
     private bool prematureJump;
@@ -84,12 +86,17 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     void Update()
     {
-        Screen.lockCursor = true;
+
+        // mouse X axis rotates the player but the Y axis simply tilts the camera
+        rotation = Input.GetAxis("Mouse X") * mouseSensitivity;
+        cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        transform.Rotate(new Vector3(0, rotation, 0));
+        ApplyTiltClamped(cameraTilt, 90, 270);
 
         // TODO: hack to reset while testing 
         if (transform.position.y < -50)
@@ -111,6 +118,8 @@ public class RigidbodyFPSController : MonoBehaviour
             jumpQueuedTime = Time.time;
             prematureJump = inAir;
         }
+
+        Screen.lockCursor = true;
     }
 
     void OnGUI()
@@ -124,13 +133,6 @@ public class RigidbodyFPSController : MonoBehaviour
     void FixedUpdate()
     {
         CheckGrounded();
-
-        // mouse X axis rotates the player but the Y axis simply tilts the camera
-        float rotation = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
-
-        transform.Rotate(new Vector3(0, rotation, 0));
-        ApplyTiltClamped(cameraTilt, 90, 270);
 
         if (!inAir)
         {
