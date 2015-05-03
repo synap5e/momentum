@@ -9,6 +9,7 @@ public class Recorder : MonoBehaviour {
 	private bool recording = false;
 
 	public GameObject player;
+	public Camera camera;
 	private Rigidbody playerRigidbody;
 	private RigidbodyFPSController rigidbodyFPSController;
 	private float frameDuration;
@@ -56,10 +57,14 @@ public class Recorder : MonoBehaviour {
 				bool inJump = rigidbodyFPSController.onGround;
 				float duration = frameDuration;
 				float playerRotation = player.transform.localEulerAngles.y;
-				float cameraRotation = player.GetComponent<Camera>().transform.localEulerAngles.x;
+				float cameraRotation = camera.transform.localEulerAngles.x;
 
 				//Add the snapshot to the list
 				Snapshot s = new Snapshot (position, rotation, inJump, duration,playerRotation,cameraRotation);
+
+				//Checks snapshotList is initialised for hot swapping
+				if(snapshotList ==null)
+					snapshotList = new List<Snapshot> ();
 				snapshotList.Add (s);
 
 				//reset frame duration
