@@ -45,8 +45,12 @@ public class Recorder : MonoBehaviour {
 		}
 	}
 
+	public Recorder()
+	{
+		snapshotList = new List<Snapshot>();
+	}
+
 	void Start () {
-		snapshotList = new List<Snapshot> ();
 		File.CreateText (fileName);
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
@@ -74,10 +78,7 @@ public class Recorder : MonoBehaviour {
 			
 			//Add the snapshot to the list
 			Snapshot s = new Snapshot (position, rotation, inJump, duration,playerRotation,cameraRotation);
-			
-			//Checks snapshotList is initialised for hot swapping
-			if(snapshotList ==null)
-				snapshotList = new List<Snapshot> ();
+
 			snapshotList.Add (s);
 			
 			//reset frame duration
