@@ -10,11 +10,12 @@ public class Recorder : MonoBehaviour {
 	public List<Snapshot> snapshotList {get; set;}
 	private bool recording = false;
 
-	public GameObject player;
 	public bool recordKeys = true;
+	public GameObject player;
 	private Rigidbody playerRigidbody;
 	private RigidbodyFPSController rigidbodyFPSController;
 	private float frameDuration;
+	private String fileName = "Keylog.txt";
 
 	public bool IsRecording
 	{
