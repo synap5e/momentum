@@ -37,8 +37,12 @@ public class Recorder : MonoBehaviour {
 		}
 	}
 
+	public Recorder()
+	{
+		snapshotList = new List<Snapshot>();
+	}
+
 	void Start () {
-		snapshotList = new List<Snapshot> ();
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
 	}
@@ -50,7 +54,7 @@ public class Recorder : MonoBehaviour {
 			if (frameDuration > recordingFrameDurationMin) {
 				Vector3 position = playerRigidbody.position;
 				Quaternion rotation = playerRigidbody.rotation;
-				bool inJump = rigidbodyFPSController.onGround;
+				bool inJump = !rigidbodyFPSController.onGround;
 				float duration = frameDuration;
 
 				//Add the snapshot to the list

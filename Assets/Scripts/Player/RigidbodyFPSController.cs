@@ -118,8 +118,6 @@ public class RigidbodyFPSController : MonoBehaviour
             jumpQueuedTime = Time.time;
             prematureJump = inAir;
         }
-
-        Screen.lockCursor = true;
     }
 
     void OnGUI()
