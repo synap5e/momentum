@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.IO;
 
 public class Recorder : MonoBehaviour {
 
@@ -9,7 +11,7 @@ public class Recorder : MonoBehaviour {
 	private bool recording = false;
 
 	public GameObject player;
-	public Camera camera;
+	public bool recordKeys = true;
 	private Rigidbody playerRigidbody;
 	private RigidbodyFPSController rigidbodyFPSController;
 	private float frameDuration;
@@ -43,38 +45,57 @@ public class Recorder : MonoBehaviour {
 
 	void Start () {
 		snapshotList = new List<Snapshot> ();
+		File.CreateText (fileName);
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
 	}
 
 
 	void Update(){
-		if (recording) {
-			frameDuration += Time.deltaTime;
-			if (frameDuration > recordingFrameDurationMin) {
-				Vector3 position = playerRigidbody.position;
-				Quaternion rotation = playerRigidbody.rotation;
-				bool inJump = rigidbodyFPSController.onGround;
-				float duration = frameDuration;
-				float playerRotation = player.transform.localEulerAngles.y;
-				float cameraRotation = camera.transform.localEulerAngles.x;
+		if (recording) 
+			RecordSnapshot();
 
-				//Add the snapshot to the list
-				Snapshot s = new Snapshot (position, rotation, inJump, duration,playerRotation,cameraRotation);
-
-				//Checks snapshotList is initialised for hot swapping
-				if(snapshotList ==null)
-					snapshotList = new List<Snapshot> ();
-				snapshotList.Add (s);
-
-				//reset frame duration
-				frameDuration = 0;
-			}
-		}		
+		if(recordKeys)
+			RecordKeys ();
 	}
 
-	public void StartRecording()
-	{
+	public void RecordSnapshot(){
+		frameDuration += Time.deltaTime;
+		if (frameDuration > recordingFrameDurationMin) {
+			Vector3 position = playerRigidbody.position;
+			Quaternion rotation = playerRigidbody.rotation;
+			bool inJump = rigidbodyFPSController.onGround;
+			float duration = frameDuration;
+			float playerRotation = player.transform.localEulerAngles.y;
+			Camera camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+			float cameraRotation = camera.transform.localEulerAngles.x;
+			
+			//Add the snapshot to the list
+			Snapshot s = new Snapshot (position, rotation, inJump, duration,playerRotation,cameraRotation);
+			
+			//Checks snapshotList is initialised for hot swapping
+			if(snapshotList ==null)
+				snapshotList = new List<Snapshot> ();
+			snapshotList.Add (s);
+			
+			//reset frame duration
+			frameDuration = 0;
+		}
+	}
+
+	public void RecordKeys(){
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			File.AppendAllText(fileName, DateTime.Now.ToString() + " Space" +"\n");
+		}
+		else if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			File.AppendAllText(fileName, DateTime.Now.ToString() + " LeftShift" +"\n");
+		}
+		else if (Input.anyKeyDown) {
+			File.AppendAllText(fileName, DateTime.Now.ToString() + " "+Input.inputString +"\n");
+		}
+	}
+
+	public void StartRecording(){
 		recording = true;
 	}
 
@@ -85,6 +106,19 @@ public class Recorder : MonoBehaviour {
 	public void ResetRecording(){
 		snapshotList = new List<Snapshot> ();
 		recording = true;
+	}
+
+	public void StartLoggingKeys(){
+		recordKeys = true;
+	}
+	
+	public void StopLoggingKeys(){
+		recordKeys = false;
+	}
+
+	public void ResetLoggingKeys(){
+		File.CreateText (fileName);
+		recordKeys = true;
 	}
 
 }
