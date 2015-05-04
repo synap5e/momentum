@@ -54,6 +54,7 @@ public class Recorder : MonoBehaviour {
 		File.CreateText (fileName);
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
+		Save ();
 	}
 
 
@@ -122,6 +123,28 @@ public class Recorder : MonoBehaviour {
 	public void ResetLoggingKeys(){
 		File.CreateText (fileName);
 		recordKeys = true;
+	}
+
+	public void Save(){
+		JSONNode N = new JSONClass (); // Start with JSONArray or JSONClass
+
+		N ["player recording"] ["total duration"].AsInt = 11;
+		N ["player recording"] ["number frames"].AsInt = 400;
+		N ["player recording"] ["frames"] [0] ["duration"].AsFloat = 0.023f;
+		N ["player recording"] ["frames"] [0] ["position"][0].AsInt = 4;
+		N ["player recording"] ["frames"] [0] ["position"][1].AsInt = 4; 
+		N ["player recording"] ["frames"] [0] ["position"][2].AsInt = 6;  
+		N ["player recording"] ["frames"] [0] ["inJump"].AsInt = 0;
+		N ["player recording"] ["frames"] [0] ["y rotation"].AsFloat = 45f;
+		N ["player recording"] ["frames"] [0] ["camera tilt"].AsFloat = 11f;
+		N ["player recording"] ["frames"] [0] ["key events"] [0] ["time"].AsFloat = 0.008f;
+		N ["player recording"] ["frames"] [0] ["key events"] [0] ["type"] = "keyup";
+		N ["player recording"] ["frames"] [0] ["key events"] [0] ["key"].AsInt = 32;
+		N ["player recording"] ["frames"] [0] ["key events"] [1] ["time"].AsFloat = 0.008f;
+		N ["player recording"] ["frames"] [0] ["key events"] [1] ["type"] = "keyup";
+		N ["player recording"] ["frames"] [0] ["key events"] [1] ["key"].AsInt = 32;
+
+		Debug.Log (N.ToJSON (4));
 	}
 
 }
