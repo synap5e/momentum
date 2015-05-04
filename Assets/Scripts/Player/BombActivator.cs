@@ -82,6 +82,7 @@ public class BombActivator : MonoBehaviour
                 oldvel += forceDirection;
                 GetComponent<Rigidbody>().velocity = oldvel;
 
+				ReactivateBombs();
             }
         }
     }

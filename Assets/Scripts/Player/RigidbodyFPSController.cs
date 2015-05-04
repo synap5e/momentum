@@ -91,6 +91,8 @@ public class RigidbodyFPSController : MonoBehaviour
     void Update()
     {
 
+		Screen.lockCursor = true;
+
         // mouse X axis rotates the player but the Y axis simply tilts the camera
         rotation = Input.GetAxis("Mouse X") * mouseSensitivity;
         cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
