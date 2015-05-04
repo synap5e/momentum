@@ -1,0 +1,127 @@
+{ 
+          "player recording": { 
+            "total duration": 0.9282925, 
+            "number frames": 7, 
+            "frames": [ 
+              { 
+                "duration": 0.1808633, 
+                "position": [ 
+                  -1.067645E-09, 
+                  -0.00999999, 
+                  0
+                  ], 
+                "rotation": [ 
+                  0, 
+                  0, 
+                  0, 
+                  1
+                  ], 
+                "inJump": 1, 
+                "y rotation": 0, 
+                "camera tilt": 0
+                }, 
+              { 
+                "duration": 0.1252212, 
+                "position": [ 
+                  -9.497709E-10, 
+                  -0.00999999, 
+                  2.63214E-13
+                  ], 
+                "rotation": [ 
+                  0, 
+                  -0.01527104, 
+                  0, 
+                  0.9998834
+                  ], 
+                "inJump": 1, 
+                "y rotation": 358.25, 
+                "camera tilt": 2
+                }, 
+              { 
+                "duration": 0.1237792, 
+                "position": [ 
+                  -8.322324E-10, 
+                  -0.00999999, 
+                  2.635072E-13
+                  ], 
+                "rotation": [ 
+                  0, 
+                  -0.01527104, 
+                  0, 
+                  0.9998834
+                  ], 
+                "inJump": 1, 
+                "y rotation": 358.25, 
+                "camera tilt": 2
+                }, 
+              { 
+                "duration": 0.1245002, 
+                "position": [ 
+                  -7.133816E-10, 
+                  -0.00999999, 
+                  2.638057E-13
+                  ], 
+                "rotation": [ 
+                  0, 
+                  -0.0130896, 
+                  0, 
+                  0.9999143
+                  ], 
+                "inJump": 1, 
+                "y rotation": 358.5, 
+                "camera tilt": 1.750001
+                }, 
+              { 
+                "duration": 0.1245006, 
+                "position": [ 
+                  -5.839673E-10, 
+                  -0.00999999, 
+                  2.641057E-13
+                  ], 
+                "rotation": [ 
+                  0, 
+                  -0.03053851, 
+                  0, 
+                  0.9995337
+                  ], 
+                "inJump": 1, 
+                "y rotation": 356.5, 
+                "camera tilt": 4.500001
+                }, 
+              { 
+                "duration": 0.1245002, 
+                "position": [ 
+                  -6.048703E-10, 
+                  -0.00999999, 
+                  -8.133626E-12
+                  ], 
+                "rotation": [ 
+                  0, 
+                  -0.04797813, 
+                  0, 
+                  0.9988484
+                  ], 
+                "inJump": 1, 
+                "y rotation": 354.5, 
+                "camera tilt": 7.500002
+                }, 
+              { 
+                "duration": 0.1249278, 
+                "position": [ 
+                  -7.230639E-10, 
+                  -0.00999999, 
+                  -2.49488E-11
+                  ], 
+                "rotation": [ 
+                  0, 
+                  -0.04797813, 
+                  0, 
+                  0.9988484
+                  ], 
+                "inJump": 1, 
+                "y rotation": 354.5, 
+                "camera tilt": 6.250004
+                }
+              ]
+            }
+          }

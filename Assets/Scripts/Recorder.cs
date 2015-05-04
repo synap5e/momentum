@@ -50,7 +50,6 @@ public class Recorder : MonoBehaviour {
 		File.CreateText (fileName);
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
-		Save ();
 	}
 
 
@@ -75,10 +74,7 @@ public class Recorder : MonoBehaviour {
 			
 			//Add the snapshot to the list
 			Snapshot s = new Snapshot (position, rotation, inJump, duration,playerRotation,cameraRotation);
-			
-			//Checks snapshotList is initialised for hot swapping
-			if(snapshotList ==null)
-				snapshotList = new List<Snapshot> ();
+
 			snapshotList.Add (s);
 			
 			//reset frame duration
@@ -104,6 +100,7 @@ public class Recorder : MonoBehaviour {
 
 	public void StopRecording(){
 		recording = false;
+		Save ("save.json");
 	}
 
 	public void ResetRecording(){
@@ -124,26 +121,71 @@ public class Recorder : MonoBehaviour {
 		recordKeys = true;
 	}
 
-	public void Save(){
+	public void Save(String filename){
 		JSONNode N = new JSONClass (); // Start with JSONArray or JSONClass
-
-		N ["player recording"] ["total duration"].AsInt = 11;
-		N ["player recording"] ["number frames"].AsInt = 400;
-		N ["player recording"] ["frames"] [0] ["duration"].AsFloat = 0.023f;
-		N ["player recording"] ["frames"] [0] ["position"][0].AsInt = 4;
-		N ["player recording"] ["frames"] [0] ["position"][1].AsInt = 4; 
-		N ["player recording"] ["frames"] [0] ["position"][2].AsInt = 6;  
-		N ["player recording"] ["frames"] [0] ["inJump"].AsInt = 0;
-		N ["player recording"] ["frames"] [0] ["y rotation"].AsFloat = 45f;
-		N ["player recording"] ["frames"] [0] ["camera tilt"].AsFloat = 11f;
-		N ["player recording"] ["frames"] [0] ["key events"] [0] ["time"].AsFloat = 0.008f;
-		N ["player recording"] ["frames"] [0] ["key events"] [0] ["type"] = "keyup";
-		N ["player recording"] ["frames"] [0] ["key events"] [0] ["key"].AsInt = 32;
-		N ["player recording"] ["frames"] [0] ["key events"] [1] ["time"].AsFloat = 0.008f;
-		N ["player recording"] ["frames"] [0] ["key events"] [1] ["type"] = "keyup";
-		N ["player recording"] ["frames"] [0] ["key events"] [1] ["key"].AsInt = 32;
-
+		float totalDuration = 0;
+		foreach(Snapshot s in snapshotList){
+			totalDuration +=s.duration;
+		}
+		N ["player recording"] ["total duration"].AsFloat = totalDuration;
+		N ["player recording"] ["number frames"].AsInt = snapshotList.Count;
+		for(int i =0; i<snapshotList.Count; i++){
+			Snapshot snap = snapshotList[i];
+			N ["player recording"] ["frames"] [i] ["duration"].AsFloat = snap.duration;
+			N ["player recording"] ["frames"] [i] ["position"][0].AsFloat = snap.position.x;			
+			N ["player recording"] ["frames"] [i] ["position"][1].AsFloat = snap.position.y;
+			N ["player recording"] ["frames"] [i] ["position"][2].AsFloat = snap.position.z;  
+			N ["player recording"] ["frames"] [i] ["rotation"][0].AsFloat = snap.rotation.x;			
+			N ["player recording"] ["frames"] [i] ["rotation"][1].AsFloat = snap.rotation.y;
+			N ["player recording"] ["frames"] [i] ["rotation"][2].AsFloat = snap.rotation.z;  
+			N ["player recording"] ["frames"] [i] ["rotation"][3].AsFloat = snap.rotation.w;
+			N ["player recording"] ["frames"] [i] ["inJump"].AsFloat = snap.inJump ? 1:0;
+			N ["player recording"] ["frames"] [i] ["y rotation"].AsFloat = snap.playerRotation;
+			N ["player recording"] ["frames"] [i] ["camera tilt"].AsFloat = snap.cameraRotation;
+//			N ["player recording"] ["frames"] [i] ["key events"] [0] ["time"].AsFloat = 0.008f;
+//			N ["player recording"] ["frames"] [i] ["key events"] [0] ["type"] = "keyup";
+//			N ["player recording"] ["frames"] [i] ["key events"] [0] ["key"].AsInt = 32;
+//			N ["player recording"] ["frames"] [i] ["key events"] [1] ["time"].AsFloat = 0.008f;
+//			N ["player recording"] ["frames"] [i] ["key events"] [1] ["type"] = "keyup";
+//			N ["player recording"] ["frames"] [i] ["key events"] [1] ["key"].AsInt = 32;
+		}
 		Debug.Log (N.ToJSON (4));
+		File.WriteAllText(filename,N.ToJSON (4));
 	}
+
+	public void Load(String filename){
+		string text = File.ReadAllText(filename);
+		JSONNode N = JSON.Parse(text);
+		int numberFrames = N ["player recording"] ["number frames"].AsInt;
+		snapshotList = new List<Snapshot> ();
+		for(int i =0; i<numberFrames; i++){
+
+			float duration = N ["player recording"] ["frames"] [i] ["duration"].AsFloat;
+			float playerX = N ["player recording"] ["frames"] [i] ["position"][0].AsFloat;		
+			float playerY = N ["player recording"] ["frames"] [i] ["position"][1].AsFloat;
+			float playerZ = N ["player recording"] ["frames"] [i] ["position"][2].AsFloat; 
+			Vector3 position = new Vector3(playerX,playerY,playerZ);
+			float rotationX = N ["player recording"] ["frames"] [i] ["rotation"][0].AsFloat;			
+			float rotationY = N ["player recording"] ["frames"] [i] ["rotation"][1].AsFloat;
+			float rotationZ = N ["player recording"] ["frames"] [i] ["rotation"][2].AsFloat;
+			float rotationW = N ["player recording"] ["frames"] [i] ["rotation"][3].AsFloat;
+			Quaternion rotation = new Quaternion(rotationX,rotationY,rotationZ,rotationW);
+			bool inJump = false;
+			if(N ["player recording"] ["frames"] [i] ["inJump"].AsFloat ==1) inJump = true;
+			float playerRotation = N ["player recording"] ["frames"] [i] ["y rotation"].AsFloat;
+			float cameraRotation = N ["player recording"] ["frames"] [i] ["camera tilt"].AsFloat;
+//			N ["player recording"] ["frames"] [i] ["key events"] [0] ["time"].AsFloat = 0.008f;
+//			N ["player recording"] ["frames"] [i] ["key events"] [0] ["type"] = "keyup";
+//			N ["player recording"] ["frames"] [i] ["key events"] [0] ["key"].AsInt = 32;
+//			N ["player recording"] ["frames"] [i] ["key events"] [1] ["time"].AsFloat = 0.008f;
+//			N ["player recording"] ["frames"] [i] ["key events"] [1] ["type"] = "keyup";
+//			N ["player recording"] ["frames"] [i] ["key events"] [1] ["key"].AsInt = 32;
+
+			Snapshot snap = new Snapshot(position, rotation, inJump, duration,playerRotation,cameraRotation);
+			snapshotList.Add(snap);
+		}
+	}
+
+
 
 }
