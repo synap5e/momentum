@@ -62,7 +62,7 @@ public class BombActivator : MonoBehaviour
                 selectedBomb.SetActive(false);
                 BombController bombController = selectedBomb.GetComponent<BombController>();
 
-                Vector3 forceDirection = transform.position - selectedBomb.transform.position;
+                Vector3 forceDirection = (transform.position + Vector3.up) - selectedBomb.transform.position;
 
                 float force;
                 if (bombController.radius == 0)
