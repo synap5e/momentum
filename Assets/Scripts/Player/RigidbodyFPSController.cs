@@ -100,14 +100,6 @@ public class RigidbodyFPSController : MonoBehaviour
         transform.Rotate(new Vector3(0, rotation, 0));
         ApplyTiltClamped(cameraTilt, 90, 270);
 
-        // TODO: hack to reset while testing 
-        if (transform.position.y < -100)
-        {
-            transform.position = Vector3.zero;
-            if (GetComponent<BombActivator>() != null)
-                GetComponent<BombActivator>().ReactivateBombs();
-        }
-
         // TODO: hack to simulate explosive jump
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -158,10 +150,11 @@ public class RigidbodyFPSController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position + Vector3.up, Vector3.down);
+        CapsuleCollider collider = GetComponent<CapsuleCollider>();
 
-        if (Physics.Raycast(ray, out hit) && hit.distance <= 1.1)
+        RaycastHit hit;
+        float height;
+        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (height = transform.position.y - hit.point.y) < 0.1)
         {
             if (onGroundTicks == 0)
             {

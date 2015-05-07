@@ -60,7 +60,7 @@ public class Recorder : MonoBehaviour {
 			this.key = key;
 		}
 	}
-
+    
 	void Start () {
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
