@@ -92,7 +92,7 @@ public class RigidbodyFPSController : MonoBehaviour
         Screen.lockCursor = true;
 
         // TODO: hack to reset while testing 
-        if (transform.position.y < -50)
+        if (transform.position.y < -100)
         {
             transform.position = Vector3.zero;
             if (GetComponent<BombActivator>() != null)
