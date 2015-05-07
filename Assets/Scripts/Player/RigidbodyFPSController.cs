@@ -37,8 +37,6 @@ public class RigidbodyFPSController : MonoBehaviour
 
     private Camera viewCamera;
 
-    private int groundApplicationTicks = 5;
-
     // number of ticks the player has been on the ground
     private int onGroundTicks;
 
@@ -49,7 +47,7 @@ public class RigidbodyFPSController : MonoBehaviour
     {
         get
         {
-            return onGroundTicks > groundApplicationTicks;
+            return onGroundTicks > bunnyhopWindow / (2 * Time.fixedDeltaTime);
         }
     }
     private bool inAir = false;
@@ -81,11 +79,6 @@ public class RigidbodyFPSController : MonoBehaviour
         // frictionless
         GetComponent<Collider>().material.dynamicFriction = 0;
         GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Multiply;
-    }
-
-
-    void Start()
-    {
     }
 
     void Update()
@@ -153,8 +146,8 @@ public class RigidbodyFPSController : MonoBehaviour
         CapsuleCollider collider = GetComponent<CapsuleCollider>();
 
         RaycastHit hit;
-        float height;
-        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (height = transform.position.y - hit.point.y) < 0.1)
+        //float height;
+        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
             if (onGroundTicks == 0)
             {
@@ -235,6 +228,7 @@ public class RigidbodyFPSController : MonoBehaviour
             float timeAgo = Time.time - jumpQueuedTime;
 
             Vector3 newvel = GetComponent<Rigidbody>().velocity;
+            Debug.Log(bunnyhopWindow / Time.fixedDeltaTime);
             if (prematureJump)
             {
                 // jump was premature (fired while still airbourne)
@@ -242,7 +236,7 @@ public class RigidbodyFPSController : MonoBehaviour
                 {
                     // although premature, jump was within the bhop window, so we allow it as a bhop
                     GetComponent<ActionFeedback>().EarlyBHop((int)Mathf.Round(timeAgo / Time.fixedDeltaTime));
-                    
+
                     newvel.y = jumpForce;
                     GetComponent<Rigidbody>().velocity = newvel;
                     return true;
