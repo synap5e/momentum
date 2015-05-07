@@ -61,11 +61,6 @@ public class Recorder : MonoBehaviour {
 		}
 	}
 
-	public Recorder()
-	{
-		snapshotList = new List<Snapshot>();
-	}
-
 	void Start () {
 		playerRigidbody = player.GetComponent<Rigidbody>();
 		rigidbodyFPSController = player.GetComponent<RigidbodyFPSController>();
