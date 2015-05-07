@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ExtensionMethods;
 
 public class Playback : MonoBehaviour {
@@ -13,7 +14,6 @@ public class Playback : MonoBehaviour {
 
 	private float frameDuration;
 
-	public GameObject player;
 	private Rigidbody playerRigidbody;
 	private Animator playerAnimator;
 
@@ -29,12 +29,17 @@ public class Playback : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		snapshotIndex = 0;
-		playerRigidbody = player.GetComponent<Rigidbody>();
-		playerAnimator = player.GetComponent<Animator>();
+		playerRigidbody = GetComponent<Rigidbody>();
+		playerAnimator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Snapshots == null)
+		{
+			GameObject.FindObjectOfType<GameController>().RemoveGhost(gameObject);
+			return;
+		}
 		if (!playback)
 		{
 			return;
@@ -64,12 +69,13 @@ public class Playback : MonoBehaviour {
 		playerRigidbody.position = nextPosition;
 		playerRigidbody.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
 
-		Vector3 positionDifference = nextPosition - previousPosition;
-		positionDifference.y = 0;
+		float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
 
-		float instantaneousSpeed = positionDifference.magnitude;
+		if(currentSnapshot.inJump){
+			instantaneousSpeed = 0f;
+		}
+		playerAnimator.SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed,  previousSnapshot == null ? 0 : SpeedDampening, Time.deltaTime);
 
-		playerAnimator.SetFloat(Animator.StringToHash("Speed"), positionDifference.magnitude * Speed,  previousSnapshot == null ? 0 : SpeedDampening, Time.deltaTime);
 	}
 
 	void moveToNextSnapshot()
@@ -115,5 +121,15 @@ public class Playback : MonoBehaviour {
 	{
 		playback = false;
 		wasPaused = true;
+	}
+
+	public Vector3 GetStartPosition()
+	{
+		return Snapshots.First().position;
+	}
+
+	public Quaternion GetStartRotation()
+	{
+		return Snapshots.First().rotation;
 	}
 }
