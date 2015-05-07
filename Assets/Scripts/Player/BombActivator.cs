@@ -23,7 +23,7 @@ public class BombActivator : MonoBehaviour
         {
             GameObject bombObject = b.gameObject;
             float dist = (transform.position - bombObject.transform.position).sqrMagnitude;
-            if (bombObject.activeSelf && dist < closestDist)
+            if (bombObject.GetComponent<BombController>().detonatable && dist < closestDist)
             {
                 closestBomb = bombObject;
                 closestDist = dist;
@@ -32,17 +32,17 @@ public class BombActivator : MonoBehaviour
 
         if (closestBomb == null && selectedBomb != null)
         {
-            selectedBomb.GetComponent<BombController>().deselect();
+            selectedBomb.GetComponent<BombController>().Deselect();
             selectedBomb = null;
         }
         if (closestBomb != null && closestBomb != selectedBomb)
         {
             if (selectedBomb != null)
             {
-                selectedBomb.GetComponent<BombController>().deselect();
+                selectedBomb.GetComponent<BombController>().Deselect();
             }
             selectedBomb = closestBomb;
-            selectedBomb.GetComponent<BombController>().select();
+            selectedBomb.GetComponent<BombController>().Select();
            
         }
 
@@ -59,8 +59,8 @@ public class BombActivator : MonoBehaviour
             fire = false;
             if (selectedBomb != null)
             {
-                selectedBomb.SetActive(false);
                 BombController bombController = selectedBomb.GetComponent<BombController>();
+                bombController.Detonate();
 
                 Vector3 forceDirection = (transform.position + Vector3.up) - selectedBomb.transform.position;
 
@@ -82,7 +82,6 @@ public class BombActivator : MonoBehaviour
                 oldvel += forceDirection;
                 GetComponent<Rigidbody>().velocity = oldvel;
 
-				ReactivateBombs();
             }
         }
     }
@@ -91,7 +90,7 @@ public class BombActivator : MonoBehaviour
     {
         foreach (BombController b in bombs)
         {
-            b.gameObject.SetActive(true);
+            b.Respawn();
         }
     }
 }

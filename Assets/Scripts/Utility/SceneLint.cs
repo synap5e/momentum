@@ -31,6 +31,16 @@ public class SceneLint
             {
                 Suggest(go, go.GetComponent<Checkpoint>().spawn != null, "Checkpoints should specify their spawn points explicitly");
             }
+
+            if (go.GetComponent<BombController>() != null)
+            {
+                Require(go, go.layer == LayerMask.NameToLayer("Bombs"), "A bomb object must be in the Bombs layer");
+                Suggest(go, go.GetComponent<BombController>().respawnTime > 0.5, "A bomb with a respawn time of less than 500ms may allow exploits");
+            }
+            if (go.layer == LayerMask.NameToLayer("Bombs"))
+            {
+                Require(go, go.GetComponent<BombController>() != null, "A bomb object should have a BombController");
+            }
         }
     }
 
@@ -39,6 +49,7 @@ public class SceneLint
         if (!p1)
         {
             Debug.LogWarning("Suggestion: " + p2);
+            Debug.Log(g);
             UnityEditor.Selection.activeGameObject = g;
         }
     }
@@ -48,6 +59,7 @@ public class SceneLint
         if (!p1)
         {
             Debug.LogError("Requirement: " + p2);
+            Debug.Log(g);
             UnityEditor.Selection.activeGameObject = g;
             Application.Quit();
         }
