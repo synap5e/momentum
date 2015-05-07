@@ -69,6 +69,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Awake()
     {
+        SceneLint.Lint();
+
         viewCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         GetComponent<Rigidbody>().freezeRotation = true;
