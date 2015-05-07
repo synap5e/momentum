@@ -100,14 +100,6 @@ public class RigidbodyFPSController : MonoBehaviour
         transform.Rotate(new Vector3(0, rotation, 0));
         ApplyTiltClamped(cameraTilt, 90, 270);
 
-        // TODO: hack to reset while testing 
-        if (transform.position.y < -50)
-        {
-            transform.position = Vector3.zero;
-            if (GetComponent<BombActivator>() != null)
-                GetComponent<BombActivator>().ReactivateBombs();
-        }
-
         // TODO: hack to simulate explosive jump
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
