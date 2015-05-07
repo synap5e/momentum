@@ -158,10 +158,11 @@ public class RigidbodyFPSController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position + Vector3.up, Vector3.down);
+        CapsuleCollider collider = GetComponent<CapsuleCollider>();
 
-        if (Physics.Raycast(ray, out hit) && hit.distance <= 1.1)
+        RaycastHit hit;
+        float height;
+        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (height = transform.position.y - hit.point.y) < 0.1)
         {
             if (onGroundTicks == 0)
             {
