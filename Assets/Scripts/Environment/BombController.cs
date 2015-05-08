@@ -1,18 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class BombController : MonoBehaviour
 {
+
     public float force = 20;
-    
+    [Range(0, 10)]
+    public float zeroFalloffDistance = 5;
+    [Range(0, 10)]
+    public float falloffDistance = 2;
+
+    public float SolveForce(float distance)
+    {
+        // https://www.desmos.com/calculator/r4uuqtr9gw
+        return Mathf.Max(0, force * (Mathf.Abs(distance - zeroFalloffDistance)) / (-distance + zeroFalloffDistance), -(force/Mathf.Pow(falloffDistance, 2)) * Mathf.Pow(distance - zeroFalloffDistance, 2) + force);
+    }
+
+    [CustomEditor(typeof(BombController))]
+    public class BombControllerInspector : Editor
+    {
+
+         public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            Texture2D tex = new Texture2D(301, 101);
+            float xscale = 0.034f;
+            float yscale = 2;
+            for (int x = 0; x < 300; x++)
+            {
+                int y = (int)(((BombController)this.target).SolveForce(x * xscale) * yscale);
+                tex.SetPixel(x, y, Color.black);
+            }
+            tex.Apply();
+            GUILayout.Box(tex);
+            
+        }
+    }
+
     [Tooltip("Whether to nullify the y velocity of a player if they are falling and this explosive force is opposed to their fall. " +
              "Usefull for making pogos consistent and preventing having to use large forces (that may act horizintally too) to break a fall")]
     public bool nullifyFall = true;
-
-    [Tooltip("Falloff radius, knockback is interpoltated from force to 0 as the distance to the explosive increases to radius. " + 
-             "If greater than the activation radius (in the player's BombActivator) then the force at radius will be non-0, but 0 beyond that distance. " +
-             "If 0 there is no falloff, which can increase the consistency jumps using the explosion.")]
-    public float radius = 0;
 
     public float respawnTime = 0.7f;
 

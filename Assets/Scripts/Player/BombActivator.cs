@@ -60,27 +60,24 @@ public class BombActivator : MonoBehaviour
             if (selectedBomb != null)
             {
                 BombController bombController = selectedBomb.GetComponent<BombController>();
-                bombController.Detonate();
 
                 Vector3 forceDirection = (transform.position + Vector3.up) - selectedBomb.transform.position;
 
-                float force;
-                if (bombController.radius == 0)
+                float force = bombController.SolveForce(forceDirection.magnitude);
+                if (force > 0)
                 {
-                    force = bombController.force;
-                } else
-                {
-                    force = Mathf.Lerp(0, bombController.force, 1.0f - (forceDirection.magnitude / bombController.radius));
-                }
-                forceDirection = forceDirection.normalized * force;
+                    bombController.Detonate();
 
-                Vector3 oldvel = GetComponent<Rigidbody>().velocity;
-                if (bombController.nullifyFall && forceDirection.y > 10)
-                {
-                    oldvel.y = 0;
+                    forceDirection = forceDirection.normalized * force;
+
+                    Vector3 oldvel = GetComponent<Rigidbody>().velocity;
+                    if (bombController.nullifyFall && forceDirection.y > 10)
+                    {
+                        oldvel.y = 0;
+                    }
+                    oldvel += forceDirection;
+                    GetComponent<Rigidbody>().velocity = oldvel;
                 }
-                oldvel += forceDirection;
-                GetComponent<Rigidbody>().velocity = oldvel;
 
             }
         }
