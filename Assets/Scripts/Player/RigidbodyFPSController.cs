@@ -30,9 +30,13 @@ public class RigidbodyFPSController : MonoBehaviour
     public bool autoBunnyhop = false;
 
 
-    [Header("Other (WIP)")]
+    [Header("Friction")]
     [Range(0, 1)]
-    public float surfaceFriction = 0.25f;
+    public float defaultSurfaceFriction = 0.2f;
+    [Range(0, 1)]
+    public float highSurfaceFriction = 0.9f;
+    [Range(0, 1)]
+    public float lowSurfaceFriction = 0.05f;
 
 
     private Camera viewCamera;
@@ -66,6 +70,7 @@ public class RigidbodyFPSController : MonoBehaviour
     private bool prematureJump;
     private Vector3 incomingVel;
 
+    private float surfaceFriction;
 
     void Awake()
     {
@@ -81,6 +86,8 @@ public class RigidbodyFPSController : MonoBehaviour
         // frictionless
         GetComponent<Collider>().material.dynamicFriction = 0;
         GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Multiply;
+
+        surfaceFriction = defaultSurfaceFriction;
     }
 
     void Update()
@@ -160,6 +167,18 @@ public class RigidbodyFPSController : MonoBehaviour
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
 
+                if (hit.collider.gameObject.tag == "Low Friction Ground")
+                {
+                    surfaceFriction = lowSurfaceFriction;
+                }
+                else if (hit.collider.gameObject.tag == "High Friction Ground")
+                {
+                    surfaceFriction = highSurfaceFriction;
+                }
+                else
+                {
+                    surfaceFriction = defaultSurfaceFriction;
+                }
                 //Debug.Log(incomingVel);
             }
             offGroundTicks = 0;

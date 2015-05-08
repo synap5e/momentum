@@ -12,7 +12,7 @@ public class SceneLint
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allObjects)
         {
-            if (go.tag == "Ground")
+            if (go.tag == "Ground" || go.tag == "Low Friction Ground" || go.tag == "High Friction Ground")
             {
                 Require(go, go.layer == LayerMask.NameToLayer("Ground"), "An object tagged as ground must be in the ground layer");
             }
