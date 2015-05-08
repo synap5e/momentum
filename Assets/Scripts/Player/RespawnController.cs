@@ -38,6 +38,16 @@ public class RespawnController : MonoBehaviour {
         {
             Respawn();
         }
+       
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        //Debug.Log(GetComponent<RigidbodyFPSController>().usingGroundedPhysics + " && " + (collision.gameObject.tag == "Delayed Kill"));
+        if (GetComponent<RigidbodyFPSController>().usingGroundedPhysics && collision.gameObject.tag == "Delayed Kill")
+        {
+            Respawn();
+        }
     }
 
     private void Respawn()

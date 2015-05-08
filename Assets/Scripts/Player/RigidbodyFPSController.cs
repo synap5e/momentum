@@ -30,14 +30,16 @@ public class RigidbodyFPSController : MonoBehaviour
     public bool autoBunnyhop = false;
 
 
-    [Header("Other (WIP)")]
+    [Header("Friction")]
     [Range(0, 1)]
-    public float surfaceFriction = 0.25f;
+    public float defaultSurfaceFriction = 0.2f;
+    [Range(0, 1)]
+    public float highSurfaceFriction = 0.9f;
+    [Range(0, 1)]
+    public float lowSurfaceFriction = 0.05f;
 
 
     private Camera viewCamera;
-
-    private int groundApplicationTicks = 5;
 
     // number of ticks the player has been on the ground
     private int onGroundTicks;
@@ -49,7 +51,7 @@ public class RigidbodyFPSController : MonoBehaviour
     {
         get
         {
-            return onGroundTicks > groundApplicationTicks;
+            return onGroundTicks > bunnyhopWindow / (2 * Time.fixedDeltaTime);
         }
     }
     private bool inAir = false;
@@ -68,9 +70,12 @@ public class RigidbodyFPSController : MonoBehaviour
     private bool prematureJump;
     private Vector3 incomingVel;
 
+    private float surfaceFriction;
 
     void Awake()
     {
+        SceneLint.Lint();
+
         viewCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         GetComponent<Rigidbody>().freezeRotation = true;
@@ -81,11 +86,8 @@ public class RigidbodyFPSController : MonoBehaviour
         // frictionless
         GetComponent<Collider>().material.dynamicFriction = 0;
         GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Multiply;
-    }
 
-
-    void Start()
-    {
+        surfaceFriction = defaultSurfaceFriction;
     }
 
     void Update()
@@ -153,8 +155,8 @@ public class RigidbodyFPSController : MonoBehaviour
         CapsuleCollider collider = GetComponent<CapsuleCollider>();
 
         RaycastHit hit;
-        float height;
-        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (height = transform.position.y - hit.point.y) < 0.1)
+        //float height;
+        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
             if (onGroundTicks == 0)
             {
@@ -165,6 +167,18 @@ public class RigidbodyFPSController : MonoBehaviour
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
 
+                if (hit.collider.gameObject.tag == "Low Friction Ground")
+                {
+                    surfaceFriction = lowSurfaceFriction;
+                }
+                else if (hit.collider.gameObject.tag == "High Friction Ground")
+                {
+                    surfaceFriction = highSurfaceFriction;
+                }
+                else
+                {
+                    surfaceFriction = defaultSurfaceFriction;
+                }
                 //Debug.Log(incomingVel);
             }
             offGroundTicks = 0;
@@ -235,6 +249,7 @@ public class RigidbodyFPSController : MonoBehaviour
             float timeAgo = Time.time - jumpQueuedTime;
 
             Vector3 newvel = GetComponent<Rigidbody>().velocity;
+            Debug.Log(bunnyhopWindow / Time.fixedDeltaTime);
             if (prematureJump)
             {
                 // jump was premature (fired while still airbourne)
@@ -242,7 +257,7 @@ public class RigidbodyFPSController : MonoBehaviour
                 {
                     // although premature, jump was within the bhop window, so we allow it as a bhop
                     GetComponent<ActionFeedback>().EarlyBHop((int)Mathf.Round(timeAgo / Time.fixedDeltaTime));
-                    
+
                     newvel.y = jumpForce;
                     GetComponent<Rigidbody>().velocity = newvel;
                     return true;
