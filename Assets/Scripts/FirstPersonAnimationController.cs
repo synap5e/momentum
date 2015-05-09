@@ -12,9 +12,9 @@ public class FirstPersonAnimationController : MonoBehaviour {
 	void FixedUpdate () {
 		Animator anim = GetComponent<Animator>();
 		if (Input.GetAxis ("Horizontal") != 0f || Input.GetAxis ("Vertical") != 0f) {
-			anim.SetBool ("Moving", true);
+			anim.SetFloat ("Velocity", 1f);
 		} else {
-			anim.SetBool ("Moving", false);
+			anim.SetFloat ("Velocity", 0);
 		}
 
 		 
