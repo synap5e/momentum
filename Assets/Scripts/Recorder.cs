@@ -77,7 +77,7 @@ public class Recorder : MonoBehaviour {
 		if (frameDuration > recordingFrameDurationMin) {
 			Vector3 position = playerRigidbody.position;
 			Quaternion rotation = playerRigidbody.rotation;
-			bool inJump = rigidbodyFPSController.onGround;
+			bool inJump = !rigidbodyFPSController.onGround;
 			float duration = frameDuration;
 			float playerRotation = player.transform.localEulerAngles.y;
 			Camera camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
