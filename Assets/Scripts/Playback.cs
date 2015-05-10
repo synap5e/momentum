@@ -13,9 +13,7 @@ public class Playback : MonoBehaviour {
 	private bool wasPaused = false;
 
 	private float frameDuration;
-	private float fixedUpdateDuration;
 
-	private Rigidbody playerRigidbody;
 	private Animator playerAnimator;
 
 	private Recorder.Snapshot currentSnapshot;
@@ -30,8 +28,6 @@ public class Playback : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		snapshotIndex = 0;
-		fixedUpdateDuration = 0;
-		playerRigidbody = GetComponent<Rigidbody>();
 		playerAnimator = GetComponent<Animator>();
 	}
 	
@@ -58,38 +54,34 @@ public class Playback : MonoBehaviour {
 		}
 		if (frameDuration >= currentSnapshot.duration)
 		{
-			frameDuration = 0;
+			frameDuration -= currentSnapshot.duration;
 			moveToNextSnapshot();
 		}
 		if(nextSnapshot == null){
 			StopPlayback();
 			StartPlayback();
 		}
+
 		float framePercentageComplete = frameDuration / currentSnapshot.duration;
-		Vector3 previousPosition = previousSnapshot == null ? currentSnapshot.position : playerRigidbody.position;
+		Vector3 previousPosition = previousSnapshot == null ? currentSnapshot.position : transform.position;
 		Vector3 nextPosition = Vector3.Lerp(currentSnapshot.position, nextSnapshot.position, framePercentageComplete);
-		playerRigidbody.position = nextPosition;
-		playerRigidbody.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
+
+		transform.position = nextPosition;
+		transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
 
 		float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
-
 		bool inAir = currentSnapshot.inJump
 			&& (previousSnapshot == null || previousSnapshot.inJump)
 			&& nextSnapshot.inJump;
 
 		if (inAir)
 		{
-			instantaneousSpeed = 0.1f;
+			instantaneousSpeed = 0f;
 		}
-		
 
-	}
+		Debug.Log(instantaneousSpeed * Speed);
 
-	void FixedUpdate()
-	{
-		fixedUpdateDuration += Time.deltaTime;
-		playerAnimator.SetFloat(Animator.StringToHash("Speed"),  * Speed, previousSnapshot == null || currentSnapshot.inJump ? 0 : SpeedDampening, fixedUpdateDuration);
-		fixedUpdateDuration = 0;
+		playerAnimator.SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, instantaneousSpeed);
 	}
 
 	void moveToNextSnapshot()
