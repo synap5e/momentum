@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class SceneLint
 {
 
-    private bool pause = false;
-
     public static void Lint()
     {
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
@@ -50,7 +48,6 @@ public class SceneLint
         {
             Debug.LogWarning("Suggestion: " + p2);
             Debug.Log(g);
-      //      UnityEditor.Selection.activeGameObject = g;
         }
     }
 
@@ -60,7 +57,6 @@ public class SceneLint
         {
             Debug.LogError("Requirement: " + p2);
             Debug.Log(g);
-     //       UnityEditor.Selection.activeGameObject = g;
             Application.Quit();
         }
     }
