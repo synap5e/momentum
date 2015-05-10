@@ -72,6 +72,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     private float surfaceFriction;
 
+    public bool enableInput { get; set; }
+
     void Awake()
     {
         SceneLint.Lint();
@@ -81,38 +83,44 @@ public class RigidbodyFPSController : MonoBehaviour
         GetComponent<Rigidbody>().freezeRotation = true;
         GetComponent<Rigidbody>().useGravity = false;
 
-      //  Time.timeScale = 0.1f;
+        //  Time.timeScale = 0.1f;
 
         // frictionless
         GetComponent<Collider>().material.dynamicFriction = 0;
         GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Multiply;
 
         surfaceFriction = defaultSurfaceFriction;
+
+        enableInput = true;
     }
 
     void Update()
     {
 
-		Screen.lockCursor = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
-        // mouse X axis rotates the player but the Y axis simply tilts the camera
-        rotation = Input.GetAxis("Mouse X") * mouseSensitivity;
-        cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
-
-        transform.Rotate(new Vector3(0, rotation, 0));
-        ApplyTiltClamped(cameraTilt, 90, 270);
-
-        // TODO: hack to simulate explosive jump
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (enableInput)
         {
-            GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
-        }
+            // mouse X axis rotates the player but the Y axis simply tilts the camera
+            rotation = Input.GetAxis("Mouse X") * mouseSensitivity;
+            cameraTilt = -Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
-        {
-            doJump = true;
-            jumpQueuedTime = Time.time;
-            prematureJump = inAir;
+            transform.Rotate(new Vector3(0, rotation, 0));
+            ApplyTiltClamped(cameraTilt, 90, 270);
+
+            // TODO: hack to simulate explosive jump
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+             {
+                 GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
+             }
+
+            if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
+            {
+                doJump = true;
+                jumpQueuedTime = Time.time;
+                prematureJump = inAir;
+            }
         }
     }
 
@@ -128,22 +136,24 @@ public class RigidbodyFPSController : MonoBehaviour
     {
         CheckGrounded();
 
-        if (!inAir)
+        if (enableInput)
         {
-            if (!PerformJump())
+            if (!inAir)
             {
-                // if we are not jumping then accellerate to our target velocity
-                AccellerateToDesired();
+                if (!PerformJump())
+                {
+                    // if we are not jumping then accellerate to our target velocity
+                    AccellerateToDesired();
+                }
+            }
+            else
+            {
+                if (GetComponent<AirstrafeController>() != null)
+                    GetComponent<AirstrafeController>().PerformAirstrafe(rotation, cameraTilt);
+
+                AirControl();
             }
         }
-        else
-        {
-            if (GetComponent<AirstrafeController>() != null)
-                GetComponent<AirstrafeController>().PerformAirstrafe(rotation, cameraTilt);
-
-            AirControl();
-        }
-
 
         // We apply gravity manually for more tuning control
         GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
@@ -167,20 +177,21 @@ public class RigidbodyFPSController : MonoBehaviour
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
 
-                if (hit.collider.gameObject.tag == "Low Friction Ground")
-                {
-                    surfaceFriction = lowSurfaceFriction;
-                }
-                else if (hit.collider.gameObject.tag == "High Friction Ground")
-                {
-                    surfaceFriction = highSurfaceFriction;
-                }
-                else
-                {
-                    surfaceFriction = defaultSurfaceFriction;
-                }
-                //Debug.Log(incomingVel);
             }
+            if (hit.collider.gameObject.tag == "Low Friction Ground")
+            {
+                surfaceFriction = lowSurfaceFriction;
+            }
+            else if (hit.collider.gameObject.tag == "High Friction Ground")
+            {
+                surfaceFriction = highSurfaceFriction;
+            }
+            else
+            {
+                surfaceFriction = defaultSurfaceFriction;
+            }
+            //Debug.Log(incomingVel);
+
             offGroundTicks = 0;
             onGroundTicks++;
         }
@@ -204,12 +215,12 @@ public class RigidbodyFPSController : MonoBehaviour
         velocityChange *= aircontrolForce;
 
         if (GetComponent<Rigidbody>().velocity.sqrMagnitude < airMovementMaxVelocitySq ||
-            (GetComponent<Rigidbody>().velocity + velocityChange).sqrMagnitude < GetComponent<Rigidbody>().velocity.sqrMagnitude) 
+            (GetComponent<Rigidbody>().velocity + velocityChange).sqrMagnitude < GetComponent<Rigidbody>().velocity.sqrMagnitude)
         {
             GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
-        }   
+        }
     }
-    
+
 
     void AccellerateToDesired()
     {
@@ -294,12 +305,12 @@ public class RigidbodyFPSController : MonoBehaviour
                     return true;
                 }
 
-            } 
-           /* Debug.Log("jump");
-            Vector3 newvel = GetComponent<Rigidbody>().velocity;
-            newvel.y = jumpForce;
-            GetComponent<Rigidbody>().velocity = newvel;// .AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-            return true;*/
+            }
+            /* Debug.Log("jump");
+             Vector3 newvel = GetComponent<Rigidbody>().velocity;
+             newvel.y = jumpForce;
+             GetComponent<Rigidbody>().velocity = newvel;// .AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+             return true;*/
         }
     }
 

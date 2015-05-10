@@ -6,8 +6,6 @@ using System.Linq;
 public class GameController : MonoBehaviour {
 
 
-	public Recorder recorder;
-
 	public GameObject Player;
 	public GameObject FirstPersonCamera;
 	public GameObject ThirdPersonCamera;
@@ -26,7 +24,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ThirdPersonCamera.SetActive(false);
-		recorder.StartRecording();
+        Player.GetComponent<Recorder>().StartRecording();
 
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
@@ -34,14 +32,15 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.R))
+		/*if (Input.GetKeyDown(KeyCode.R))
 		{
-			if(recorder.IsRecording){
-				recorder.StopRecording();
+            if (Player.GetComponent<Recorder>().IsRecording)
+            {
+                Player.GetComponent<Recorder>().StopRecording();
 			}
 			else
 			{
-				recorder.StartRecording();
+                Player.GetComponent<Recorder>().StartRecording();
 			}
 		}
 
@@ -56,20 +55,20 @@ public class GameController : MonoBehaviour {
 				StopPlayback();
 
 			}
-		}
+		}*/
 	}
 
-	void StartPlayback()
+	public void StartPlayback()
 	{
-		if (recorder.IsRecording)
+        if (Player.GetComponent<Recorder>().IsRecording)
 		{
-			recorder.StopRecording();
+            Player.GetComponent<Recorder>().StopRecording();
 		}
 
 		GameObject newGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = newGhost.GetComponent<Playback>();
 		playback.StopPlayback();
-		playback.Snapshots = recorder.snapshotList;
+        playback.Snapshots = Player.GetComponent<Recorder>().snapshotList;
 		ghostPlayers.Add(newGhost);
 		Player.SetActive(false);
 
@@ -87,7 +86,7 @@ public class GameController : MonoBehaviour {
 		inPlaybackMode = true;
 	}
 
-	void StopPlayback()
+    public void StopPlayback()
 	{
 		if (ghostPlayers.Any())
 		{
@@ -109,12 +108,12 @@ public class GameController : MonoBehaviour {
 
 		inPlaybackMode = false;
 
-		recorder.StartRecording();
+        Player.GetComponent<Recorder>().StartRecording();
 	}
 
 	void StopRecording()
 	{
-		recorder.StopRecording();
+        Player.GetComponent<Recorder>().StopRecording();
 
 	}
 
