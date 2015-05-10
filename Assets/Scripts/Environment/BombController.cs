@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using UnityEditor;
+using UnityEditor;
 
 public class BombController : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class BombController : MonoBehaviour
         return Mathf.Max(0, force * (Mathf.Abs(distance - zeroFalloffDistance)) / (-distance + zeroFalloffDistance), -(force/Mathf.Pow(falloffDistance, 2)) * Mathf.Pow(distance - zeroFalloffDistance, 2) + force);
     }
 
- /*   [CustomEditor(typeof(BombController))]
+    [CustomEditor(typeof(BombController))]
     public class BombControllerInspector : Editor
     {
 
@@ -37,7 +37,7 @@ public class BombController : MonoBehaviour
             GUILayout.Box(tex);
             
         }
-    } */
+    } 
 
     [Tooltip("Whether to nullify the y velocity of a player if they are falling and this explosive force is opposed to their fall. " +
              "Usefull for making pogos consistent and preventing having to use large forces (that may act horizintally too) to break a fall")]
