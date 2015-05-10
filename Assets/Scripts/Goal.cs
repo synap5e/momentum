@@ -5,7 +5,7 @@ using System;
 public class Goal : MonoBehaviour
 {
 
-    public string postRunURL;
+    public string postRunURL = "http://uint8.me:8196/submit_run";
 
     public enum Mode { Normal, Speedrun, Practice };
     public Mode playMode;
