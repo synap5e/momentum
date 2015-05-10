@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEditor;
 #if UNITY_EDITOR
@@ -13,6 +13,14 @@ public class BombController : MonoBehaviour
     public float zeroFalloffDistance = 5;
     [Range(0, 10)]
     public float falloffDistance = 2;
+
+
+    public float ExpandedMultiplier = 10f;
+
+    private Vector3 originalScale;
+    private Vector3 explodedScale;
+
+    private Color originalColor;
 
     public float SolveForce(float distance)
     {
@@ -50,20 +58,33 @@ public class BombController : MonoBehaviour
     public bool nullifyFall = true;
 
     public float respawnTime = 0.7f;
+    public float animationScaleTime = 0.6f;
+
 
     private bool detonated = false;
     private float detonatedTime;
 
     void Awake()
     {
-        GetComponent<Renderer>().material.color = Color.white;
+        GetComponent<Renderer>().material.color = originalColor = Color.white;
+        originalScale = gameObject.transform.localScale;
+        explodedScale = originalScale * ExpandedMultiplier;
     }
 
     void Update()
     {
-        if (detonated && Time.time > detonatedTime + respawnTime)
+        if (detonated)
         {
-            Respawn();
+            float scaleTimePercent = (Time.time - detonatedTime) / animationScaleTime;
+            gameObject.transform.localScale = Vector3.Lerp(originalScale, explodedScale, scaleTimePercent);
+            Color currentColor = Color.red;
+            currentColor.a = Mathf.Lerp(1f, 0f, scaleTimePercent);
+            GetComponent<Renderer>().material.color = currentColor;
+
+            if (Time.time > detonatedTime + respawnTime)
+            {
+                Respawn();
+            }
         }
     }
 
@@ -84,14 +105,17 @@ public class BombController : MonoBehaviour
         // TODO: animations and stuffs
         detonated = true;
         detonatedTime = Time.time;
+        originalColor = GetComponent<Renderer>().material.color;
 
-        GetComponent<Renderer>().enabled = false;
+        //GetComponent<Renderer>().enabled = false;
     }
 
     internal void Respawn()
     {
         detonated = false;
         GetComponent<Renderer>().enabled = true;
+        gameObject.transform.localScale = originalScale;
+        GetComponent<Renderer>().material.color = originalColor;
     }
 
     public bool detonatable

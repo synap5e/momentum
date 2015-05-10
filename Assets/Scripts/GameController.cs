@@ -19,10 +19,18 @@ public class GameController : MonoBehaviour {
 
 	private bool inPlaybackMode = false;
 	private bool inMenuMode = false;
-	int test = 6;
 
 	private Vector3 cameraOffset = new Vector3(0f, 5f, -5f);
-	private float cameraDistance = 2f;
+
+	public float SnapshotMinDistance = 5;
+	private List<Recorder.Snapshot> replaySnapshots;
+
+    void Awake()
+    {
+		if(ReplayFile != null){
+			replaySnapshots = Recorder.LoadSnapshots(ReplayFile.text);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -32,8 +40,9 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
+
 
 		if (Input.GetKeyDown(KeyCode.R))
 		{
@@ -73,7 +82,7 @@ public class GameController : MonoBehaviour {
 
 	private void CreateReplayGhost()
 	{
-		if (ReplayFile == null)
+		if (replaySnapshots == null)
 		{
 			return;
 		}
@@ -94,16 +103,19 @@ public class GameController : MonoBehaviour {
             Player.GetComponent<Recorder>().StopRecording();
 		}
 
+		//Setup new ghost
 		GameObject newGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = newGhost.GetComponent<Playback>();
         playback.Snapshots = Player.GetComponent<Recorder>().snapshotList;
 		ghostPlayers.Add(newGhost);
 
+		//Set up camera
 		ThirdPersonCamera.transform.position = playback.GetStartPosition() + (playback.GetStartRotation() * cameraOffset);
 		Vector3 focusVector = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().bounds.max;
 		focusVector.x = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.x;
 		ThirdPersonCamera.transform.LookAt(playback.GetStartPosition() + focusVector);
 
+		// Set active camera
 		EnableFirstPersonCamera(false);
 
 		playback.StartPlayback();

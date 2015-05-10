@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -198,6 +198,7 @@ public class Goal : MonoBehaviour
         if (postRunURL != null)
         {
             WWW w = new WWW(postRunURL, form);
+			yield return w; // Better thread non-block?
         }
         yield return null;
     }

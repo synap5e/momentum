@@ -16,7 +16,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 2, 
@@ -46,7 +46,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -64,7 +64,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -82,7 +82,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -100,7 +100,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -118,7 +118,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -136,7 +136,7 @@
                   0, 
                   1
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -154,7 +154,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -172,7 +172,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -190,7 +190,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -208,7 +208,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -226,7 +226,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -244,7 +244,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -262,7 +262,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -280,7 +280,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -298,7 +298,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -316,7 +316,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -334,7 +334,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -352,7 +352,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -370,7 +370,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -388,7 +388,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -406,7 +406,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.15, 
                 "camera tilt": 0, 
                 "numberKeyRec": 0
@@ -424,7 +424,7 @@
                   0, 
                   0.9999692
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.8999999, 
                 "camera tilt": 0.45, 
                 "numberKeyRec": 0
@@ -442,7 +442,7 @@
                   0, 
                   0.9999581
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.05, 
                 "camera tilt": 0.45, 
                 "numberKeyRec": 0
@@ -460,7 +460,7 @@
                   0, 
                   0.9999581
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.05, 
                 "camera tilt": 0.45, 
                 "numberKeyRec": 0
@@ -478,7 +478,7 @@
                   0, 
                   0.9999992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.1499999, 
                 "camera tilt": 0.45, 
                 "numberKeyRec": 0
@@ -496,7 +496,7 @@
                   0, 
                   0.9999306
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.35, 
                 "camera tilt": 0.9000001, 
                 "numberKeyRec": 0
@@ -514,7 +514,7 @@
                   0, 
                   0.9999306
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.35, 
                 "camera tilt": 0.9000001, 
                 "numberKeyRec": 0
@@ -532,7 +532,7 @@
                   0, 
                   0.9999306
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.35, 
                 "camera tilt": 0.9000001, 
                 "numberKeyRec": 0
@@ -550,7 +550,7 @@
                   0, 
                   0.9999306
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.35, 
                 "camera tilt": 0.9000001, 
                 "numberKeyRec": 0
@@ -568,7 +568,7 @@
                   0, 
                   0.9999306
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 1.35, 
                 "camera tilt": 0.9000001, 
                 "numberKeyRec": 0
@@ -586,7 +586,7 @@
                   0, 
                   0.9999692
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 0.9000001, 
                 "camera tilt": 359.8501, 
                 "numberKeyRec": 0
@@ -604,7 +604,7 @@
                   0, 
                   0.9997807
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 2.4, 
                 "camera tilt": 0.4500611, 
                 "numberKeyRec": 0
@@ -622,7 +622,7 @@
                   0, 
                   0.9993284
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 4.2, 
                 "camera tilt": 4.500063, 
                 "numberKeyRec": 0
@@ -640,7 +640,7 @@
                   0, 
                   0.999229
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 4.5, 
                 "camera tilt": 7.950065, 
                 "numberKeyRec": 1, 
@@ -665,7 +665,7 @@
                   0, 
                   0.9972178
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 8.550001, 
                 "camera tilt": 14.10007, 
                 "numberKeyRec": 0
@@ -683,7 +683,7 @@
                   0, 
                   0.9884939
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 17.4, 
                 "camera tilt": 19.20009, 
                 "numberKeyRec": 0
@@ -701,7 +701,7 @@
                   0, 
                   0.9624553
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 31.5, 
                 "camera tilt": 21.15009, 
                 "numberKeyRec": 0
@@ -719,7 +719,7 @@
                   0, 
                   0.9395433
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 40.05001, 
                 "camera tilt": 21.7501, 
                 "numberKeyRec": 0
@@ -737,7 +737,7 @@
                   0, 
                   0.903148
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 50.85001, 
                 "camera tilt": 22.35011, 
                 "numberKeyRec": 1, 
@@ -762,7 +762,7 @@
                   0, 
                   0.8400935
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 65.7, 
                 "camera tilt": 23.70012, 
                 "numberKeyRec": 0
@@ -780,7 +780,7 @@
                   0, 
                   0.7587031
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 81.30002, 
                 "camera tilt": 21.75014, 
                 "numberKeyRec": 0
@@ -798,7 +798,7 @@
                   0, 
                   0.6921431
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 92.40001, 
                 "camera tilt": 18.90015, 
                 "numberKeyRec": 0
@@ -816,7 +816,7 @@
                   0, 
                   0.5930676
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 107.25, 
                 "camera tilt": 17.25016, 
                 "numberKeyRec": 0
@@ -834,7 +834,7 @@
                   0, 
                   0.4222228
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 130.05, 
                 "camera tilt": 15.00017, 
                 "numberKeyRec": 0
@@ -852,7 +852,7 @@
                   0, 
                   0.3002896
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 145.05, 
                 "camera tilt": 12.45018, 
                 "numberKeyRec": 0
@@ -870,7 +870,7 @@
                   0, 
                   0.2448844
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 151.65, 
                 "camera tilt": 11.25019, 
                 "numberKeyRec": 0
@@ -888,7 +888,7 @@
                   0, 
                   0.1266318
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 165.45, 
                 "camera tilt": 8.700191, 
                 "numberKeyRec": 0
@@ -906,7 +906,7 @@
                   0, 
                   -0.02094242
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 182.4, 
                 "camera tilt": 4.200193, 
                 "numberKeyRec": 0
@@ -924,7 +924,7 @@
                   0, 
                   -0.1162374
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 193.35, 
                 "camera tilt": 1.950195, 
                 "numberKeyRec": 0
@@ -942,7 +942,7 @@
                   0, 
                   -0.1706395
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 199.65, 
                 "camera tilt": 0.6001961, 
                 "numberKeyRec": 1, 
@@ -967,7 +967,7 @@
                   0, 
                   -0.2398045
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 207.75, 
                 "camera tilt": 1.650197, 
                 "numberKeyRec": 0
@@ -985,7 +985,7 @@
                   0, 
                   -0.2626102
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 210.45, 
                 "camera tilt": 2.100199, 
                 "numberKeyRec": 0
@@ -1003,7 +1003,7 @@
                   0, 
                   -0.2474218
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 208.65, 
                 "camera tilt": 2.100201, 
                 "numberKeyRec": 1, 
@@ -1028,7 +1028,7 @@
                   0, 
                   -0.2181433
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 205.2, 
                 "camera tilt": 2.100203, 
                 "numberKeyRec": 0
@@ -1046,7 +1046,7 @@
                   0, 
                   -0.2181433
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 205.2, 
                 "camera tilt": 2.100204, 
                 "numberKeyRec": 0
@@ -1064,7 +1064,7 @@
                   0, 
                   -0.2181433
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 205.2, 
                 "camera tilt": 1.650206, 
                 "numberKeyRec": 0
@@ -1082,7 +1082,7 @@
                   0, 
                   -0.2027873
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 203.4, 
                 "camera tilt": 359.7002, 
                 "numberKeyRec": 0
@@ -1100,7 +1100,7 @@
                   0, 
                   -0.1848091
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 201.3, 
                 "camera tilt": 357.0003, 
                 "numberKeyRec": 1, 
@@ -1125,7 +1125,7 @@
                   0, 
                   -0.1860954
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 201.45, 
                 "camera tilt": 357.0003, 
                 "numberKeyRec": 1, 
@@ -1150,7 +1150,7 @@
                   0, 
                   -0.1848091
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 201.3, 
                 "camera tilt": 357.1503, 
                 "numberKeyRec": 1, 
@@ -1175,7 +1175,7 @@
                   0, 
                   -0.165478
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 199.05, 
                 "camera tilt": 359.1004, 
                 "numberKeyRec": 0
@@ -1193,7 +1193,7 @@
                   0, 
                   -0.1590198
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 198.3, 
                 "camera tilt": 1.950397, 
                 "numberKeyRec": 0
@@ -1211,7 +1211,7 @@
                   0, 
                   -0.1460831
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 196.8, 
                 "camera tilt": 5.5504, 
                 "numberKeyRec": 0
@@ -1229,7 +1229,7 @@
                   0, 
                   -0.1383089
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 195.9, 
                 "camera tilt": 8.400402, 
                 "numberKeyRec": 0
@@ -1247,7 +1247,7 @@
                   0, 
                   -0.1409013
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 196.2, 
                 "camera tilt": 9.4504, 
                 "numberKeyRec": 0
@@ -1265,7 +1265,7 @@
                   0, 
                   -0.160312
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 198.45, 
                 "camera tilt": 10.95041, 
                 "numberKeyRec": 0
@@ -1283,7 +1283,7 @@
                   0, 
                   -0.2270764
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 206.25, 
                 "camera tilt": 10.65041, 
                 "numberKeyRec": 0
@@ -1301,7 +1301,7 @@
                   0, 
                   -0.2852703
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 213.15, 
                 "camera tilt": 10.35042, 
                 "numberKeyRec": 0
@@ -1319,7 +1319,7 @@
                   0, 
                   -0.4115145
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 228.6, 
                 "camera tilt": 8.400417, 
                 "numberKeyRec": 0
@@ -1337,7 +1337,7 @@
                   0, 
                   -0.5269559
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 243.6, 
                 "camera tilt": 5.400423, 
                 "numberKeyRec": 1, 
@@ -1362,7 +1362,7 @@
                   0, 
                   -0.6077225
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 254.85, 
                 "camera tilt": 4.950424, 
                 "numberKeyRec": 0
@@ -1380,7 +1380,7 @@
                   0, 
                   -0.6554003
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 261.9, 
                 "camera tilt": 4.800426, 
                 "numberKeyRec": 1, 
@@ -1405,7 +1405,7 @@
                   0, 
                   -0.6902513
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.3, 
                 "camera tilt": 4.500427, 
                 "numberKeyRec": 1, 
@@ -1430,7 +1430,7 @@
                   0, 
                   -0.700598
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.95, 
                 "camera tilt": 4.500427, 
                 "numberKeyRec": 1, 
@@ -1455,7 +1455,7 @@
                   0, 
                   -0.7015315
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.1, 
                 "camera tilt": 4.500427, 
                 "numberKeyRec": 0
@@ -1473,7 +1473,7 @@
                   0, 
                   -0.7015315
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.1, 
                 "camera tilt": 4.500427, 
                 "numberKeyRec": 1, 
@@ -1498,7 +1498,7 @@
                   0, 
                   -0.700598
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.95, 
                 "camera tilt": 4.500427, 
                 "numberKeyRec": 0
@@ -1516,7 +1516,7 @@
                   0, 
                   -0.7117196
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.75, 
                 "camera tilt": 4.950428, 
                 "numberKeyRec": 0
@@ -1534,7 +1534,7 @@
                   0, 
                   -0.7289686
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 273.6, 
                 "camera tilt": 6.300432, 
                 "numberKeyRec": 0
@@ -1552,7 +1552,7 @@
                   0, 
                   -0.7289686
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 273.6, 
                 "camera tilt": 6.300433, 
                 "numberKeyRec": 0
@@ -1570,7 +1570,7 @@
                   0, 
                   -0.7262747
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 273.15, 
                 "camera tilt": 6.150435, 
                 "numberKeyRec": 1, 
@@ -1595,7 +1595,7 @@
                   0, 
                   -0.7208536
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.25, 
                 "camera tilt": 3.000439, 
                 "numberKeyRec": 1, 
@@ -1620,7 +1620,7 @@
                   0, 
                   -0.7208536
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.25, 
                 "camera tilt": 3.00044, 
                 "numberKeyRec": 1, 
@@ -1645,7 +1645,7 @@
                   0, 
                   -0.7208536
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.25, 
                 "camera tilt": 3.00044, 
                 "numberKeyRec": 0
@@ -1663,7 +1663,7 @@
                   0, 
                   -0.7208536
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.25, 
                 "camera tilt": 3.00044, 
                 "numberKeyRec": 0
@@ -1681,7 +1681,7 @@
                   0, 
                   -0.7181262
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.8, 
                 "camera tilt": 3.300441, 
                 "numberKeyRec": 0
@@ -1699,7 +1699,7 @@
                   0, 
                   -0.7153879
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.35, 
                 "camera tilt": 3.600445, 
                 "numberKeyRec": 0
@@ -1717,7 +1717,7 @@
                   0, 
                   -0.7024636
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.25, 
                 "camera tilt": 3.750449, 
                 "numberKeyRec": 0
@@ -1735,7 +1735,7 @@
                   0, 
                   -0.6893035
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.15, 
                 "camera tilt": 3.750453, 
                 "numberKeyRec": 0
@@ -1753,7 +1753,7 @@
                   0, 
                   -0.6883546
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267, 
                 "camera tilt": 3.900456, 
                 "numberKeyRec": 1, 
@@ -1778,7 +1778,7 @@
                   0, 
                   -0.6883546
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267, 
                 "camera tilt": 3.90046, 
                 "numberKeyRec": 0
@@ -1796,7 +1796,7 @@
                   0, 
                   -0.6883546
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267, 
                 "camera tilt": 3.900464, 
                 "numberKeyRec": 0
@@ -1814,7 +1814,7 @@
                   0, 
                   -0.6883546
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267, 
                 "camera tilt": 3.900467, 
                 "numberKeyRec": 0
@@ -1832,7 +1832,7 @@
                   0, 
                   -0.6893035
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.15, 
                 "camera tilt": 4.350469, 
                 "numberKeyRec": 1, 
@@ -1857,7 +1857,7 @@
                   0, 
                   -0.7043245
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.55, 
                 "camera tilt": 6.300471, 
                 "numberKeyRec": 0
@@ -1875,7 +1875,7 @@
                   0, 
                   -0.7235698
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 272.7, 
                 "camera tilt": 8.400479, 
                 "numberKeyRec": 0
@@ -1893,7 +1893,7 @@
                   0, 
                   -0.7226656
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 272.55, 
                 "camera tilt": 8.550482, 
                 "numberKeyRec": 0
@@ -1911,7 +1911,7 @@
                   0, 
                   -0.7080318
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.15, 
                 "camera tilt": 9.000484, 
                 "numberKeyRec": 1, 
@@ -1936,7 +1936,7 @@
                   0, 
                   -0.7080318
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.15, 
                 "camera tilt": 7.200488, 
                 "numberKeyRec": 0
@@ -1954,7 +1954,7 @@
                   0, 
                   -0.7071068
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270, 
                 "camera tilt": 5.700491, 
                 "numberKeyRec": 0
@@ -1972,7 +1972,7 @@
                   0, 
                   -0.7071068
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270, 
                 "camera tilt": 5.55049, 
                 "numberKeyRec": 1, 
@@ -1997,7 +1997,7 @@
                   0, 
                   -0.7071068
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270, 
                 "camera tilt": 5.55049, 
                 "numberKeyRec": 1, 
@@ -2022,7 +2022,7 @@
                   0, 
                   -0.7071068
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270, 
                 "camera tilt": 5.55049, 
                 "numberKeyRec": 0
@@ -2040,7 +2040,7 @@
                   0, 
                   -0.7071068
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270, 
                 "camera tilt": 5.55049, 
                 "numberKeyRec": 0
@@ -2058,7 +2058,7 @@
                   0, 
                   -0.6968522
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.35, 
                 "camera tilt": 5.400492, 
                 "numberKeyRec": 0
@@ -2076,7 +2076,7 @@
                   0, 
                   -0.6911978
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.45, 
                 "camera tilt": 4.800496, 
                 "numberKeyRec": 0
@@ -2094,7 +2094,7 @@
                   0, 
                   -0.6902513
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.3, 
                 "camera tilt": 4.8005, 
                 "numberKeyRec": 1, 
@@ -2119,7 +2119,7 @@
                   0, 
                   -0.6902513
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.3, 
                 "camera tilt": 4.800505, 
                 "numberKeyRec": 0
@@ -2137,7 +2137,7 @@
                   0, 
                   -0.6902513
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.3, 
                 "camera tilt": 4.800509, 
                 "numberKeyRec": 0
@@ -2155,7 +2155,7 @@
                   0, 
                   -0.6949722
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.05, 
                 "camera tilt": 4.050512, 
                 "numberKeyRec": 0
@@ -2173,7 +2173,7 @@
                   0, 
                   -0.6977904
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.5, 
                 "camera tilt": 4.050512, 
                 "numberKeyRec": 0
@@ -2191,7 +2191,7 @@
                   0, 
                   -0.6977904
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.5, 
                 "camera tilt": 4.050512, 
                 "numberKeyRec": 0
@@ -2209,7 +2209,7 @@
                   0, 
                   -0.6977904
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.5, 
                 "camera tilt": 4.050512, 
                 "numberKeyRec": 0
@@ -2227,7 +2227,7 @@
                   0, 
                   -0.6977904
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.5, 
                 "camera tilt": 4.050512, 
                 "numberKeyRec": 1, 
@@ -2252,7 +2252,7 @@
                   0, 
                   -0.6977904
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.5, 
                 "camera tilt": 2.100514, 
                 "numberKeyRec": 0
@@ -2270,7 +2270,7 @@
                   0, 
                   -0.6949722
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.05, 
                 "camera tilt": 358.3506, 
                 "numberKeyRec": 0
@@ -2288,7 +2288,7 @@
                   0, 
                   -0.6921431
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.6, 
                 "camera tilt": 356.4008, 
                 "numberKeyRec": 0
@@ -2306,7 +2306,7 @@
                   0, 
                   -0.6977904
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.5, 
                 "camera tilt": 355.501, 
                 "numberKeyRec": 0
@@ -2324,7 +2324,7 @@
                   0, 
                   -0.7052531
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.7, 
                 "camera tilt": 355.2011, 
                 "numberKeyRec": 0
@@ -2342,7 +2342,7 @@
                   0, 
                   -0.7052531
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.7, 
                 "camera tilt": 355.2011, 
                 "numberKeyRec": 0
@@ -2360,7 +2360,7 @@
                   0, 
                   -0.7107994
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.6, 
                 "camera tilt": 355.2011, 
                 "numberKeyRec": 0
@@ -2378,7 +2378,7 @@
                   0, 
                   -0.7144726
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 355.0512, 
                 "numberKeyRec": 0
@@ -2396,7 +2396,7 @@
                   0, 
                   -0.7144726
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 355.0512, 
                 "numberKeyRec": 0
@@ -2414,7 +2414,7 @@
                   0, 
                   -0.7126384
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.9, 
                 "camera tilt": 355.0512, 
                 "numberKeyRec": 0
@@ -2432,7 +2432,7 @@
                   0, 
                   -0.7126384
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.9, 
                 "camera tilt": 355.0512, 
                 "numberKeyRec": 0
@@ -2450,7 +2450,7 @@
                   0, 
                   -0.7117195
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.75, 
                 "camera tilt": 353.7013, 
                 "numberKeyRec": 0
@@ -2468,7 +2468,7 @@
                   0, 
                   -0.7043244
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.55, 
                 "camera tilt": 344.8514, 
                 "numberKeyRec": 1, 
@@ -2493,7 +2493,7 @@
                   0, 
                   -0.7033946
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.4, 
                 "camera tilt": 337.9515, 
                 "numberKeyRec": 1, 
@@ -2518,7 +2518,7 @@
                   0, 
                   -0.7033946
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.4, 
                 "camera tilt": 337.2016, 
                 "numberKeyRec": 0
@@ -2536,7 +2536,7 @@
                   0, 
                   -0.7033946
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.4, 
                 "camera tilt": 336.9017, 
                 "numberKeyRec": 0
@@ -2554,7 +2554,7 @@
                   0, 
                   -0.7089555
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.3, 
                 "camera tilt": 334.2018, 
                 "numberKeyRec": 1, 
@@ -2579,7 +2579,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2597,7 +2597,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2615,7 +2615,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2633,7 +2633,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2651,7 +2651,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2669,7 +2669,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2687,7 +2687,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2705,7 +2705,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2723,7 +2723,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2741,7 +2741,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 1, 
@@ -2766,7 +2766,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2784,7 +2784,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 1, 
@@ -2809,7 +2809,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2827,7 +2827,7 @@
                   0, 
                   -0.7107993
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.5999, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2845,7 +2845,7 @@
                   0, 
                   -0.7052531
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.7, 
                 "camera tilt": 333.1519, 
                 "numberKeyRec": 0
@@ -2863,7 +2863,7 @@
                   0, 
                   -0.6987274
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.65, 
                 "camera tilt": 333.3019, 
                 "numberKeyRec": 0
@@ -2881,7 +2881,7 @@
                   0, 
                   -0.692143
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.6, 
                 "camera tilt": 333.602, 
                 "numberKeyRec": 0
@@ -2899,7 +2899,7 @@
                   0, 
                   -0.6855006
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 266.55, 
                 "camera tilt": 334.352, 
                 "numberKeyRec": 0
@@ -2917,7 +2917,7 @@
                   0, 
                   -0.6788006
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 265.5, 
                 "camera tilt": 335.852, 
                 "numberKeyRec": 0
@@ -2935,7 +2935,7 @@
                   0, 
                   -0.6710737
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 264.3, 
                 "camera tilt": 338.7021, 
                 "numberKeyRec": 0
@@ -2953,7 +2953,7 @@
                   0, 
                   -0.6691304
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 264, 
                 "camera tilt": 342.0022, 
                 "numberKeyRec": 0
@@ -2971,7 +2971,7 @@
                   0, 
                   -0.6710737
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 264.3, 
                 "camera tilt": 346.6523, 
                 "numberKeyRec": 0
@@ -2989,7 +2989,7 @@
                   0, 
                   -0.696852
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.35, 
                 "camera tilt": 0.6024475, 
                 "numberKeyRec": 0
@@ -3007,7 +3007,7 @@
                   0, 
                   -0.7457666
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 276.45, 
                 "camera tilt": 25.50246, 
                 "numberKeyRec": 0
@@ -3025,7 +3025,7 @@
                   0, 
                   -0.7413903
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.7, 
                 "camera tilt": 36.45248, 
                 "numberKeyRec": 1, 
@@ -3050,7 +3050,7 @@
                   0, 
                   -0.7405112
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.55, 
                 "camera tilt": 37.05251, 
                 "numberKeyRec": 0
@@ -3068,7 +3068,7 @@
                   0, 
                   -0.7360969
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 274.8, 
                 "camera tilt": 37.05251, 
                 "numberKeyRec": 0
@@ -3086,7 +3086,7 @@
                   0, 
                   -0.7334331
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 274.3499, 
                 "camera tilt": 36.15252, 
                 "numberKeyRec": 0
@@ -3104,7 +3104,7 @@
                   0, 
                   -0.7325427
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 274.2, 
                 "camera tilt": 36.00252, 
                 "numberKeyRec": 1, 
@@ -3129,7 +3129,7 @@
                   0, 
                   -0.7271737
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 273.3, 
                 "camera tilt": 34.05255, 
                 "numberKeyRec": 0
@@ -3147,7 +3147,7 @@
                   0, 
                   -0.7135559
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.05, 
                 "camera tilt": 30.75256, 
                 "numberKeyRec": 0
@@ -3165,7 +3165,7 @@
                   0, 
                   -0.7107992
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.5999, 
                 "camera tilt": 29.55259, 
                 "numberKeyRec": 0
@@ -3183,7 +3183,7 @@
                   0, 
                   -0.7098779
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.45, 
                 "camera tilt": 27.75262, 
                 "numberKeyRec": 0
@@ -3201,7 +3201,7 @@
                   0, 
                   -0.7080315
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.15, 
                 "camera tilt": 26.85263, 
                 "numberKeyRec": 0
@@ -3219,7 +3219,7 @@
                   0, 
                   -0.7080315
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.15, 
                 "camera tilt": 26.70265, 
                 "numberKeyRec": 0
@@ -3237,7 +3237,7 @@
                   0, 
                   -0.7043243
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.55, 
                 "camera tilt": 26.70265, 
                 "numberKeyRec": 0
@@ -3255,7 +3255,7 @@
                   0, 
                   -0.69403
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.9, 
                 "camera tilt": 26.55266, 
                 "numberKeyRec": 0
@@ -3273,7 +3273,7 @@
                   0, 
                   -0.69403
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.9, 
                 "camera tilt": 26.55266, 
                 "numberKeyRec": 0
@@ -3291,7 +3291,7 @@
                   0, 
                   -0.69403
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.9, 
                 "camera tilt": 26.55266, 
                 "numberKeyRec": 1, 
@@ -3316,7 +3316,7 @@
                   0, 
                   -0.69403
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.9, 
                 "camera tilt": 26.55266, 
                 "numberKeyRec": 1, 
@@ -3341,7 +3341,7 @@
                   0, 
                   -0.69403
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.9, 
                 "camera tilt": 26.55266, 
                 "numberKeyRec": 0
@@ -3359,7 +3359,7 @@
                   0, 
                   -0.693087
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.75, 
                 "camera tilt": 26.55266, 
                 "numberKeyRec": 0
@@ -3377,7 +3377,7 @@
                   0, 
                   -0.6921428
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.5999, 
                 "camera tilt": 26.40266, 
                 "numberKeyRec": 0
@@ -3395,7 +3395,7 @@
                   0, 
                   -0.6893032
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.1499, 
                 "camera tilt": 25.80267, 
                 "numberKeyRec": 0
@@ -3413,7 +3413,7 @@
                   0, 
                   -0.682636
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 266.0999, 
                 "camera tilt": 24.45268, 
                 "numberKeyRec": 1, 
@@ -3438,7 +3438,7 @@
                   0, 
                   -0.6807205
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 265.7999, 
                 "camera tilt": 23.85269, 
                 "numberKeyRec": 0
@@ -3456,7 +3456,7 @@
                   0, 
                   -0.6768757
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 265.2, 
                 "camera tilt": 21.60271, 
                 "numberKeyRec": 0
@@ -3474,7 +3474,7 @@
                   0, 
                   -0.6730122
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 264.5999, 
                 "camera tilt": 19.80272, 
                 "numberKeyRec": 0
@@ -3492,7 +3492,7 @@
                   0, 
                   -0.663273
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 263.0999, 
                 "camera tilt": 17.40275, 
                 "numberKeyRec": 0
@@ -3510,7 +3510,7 @@
                   0, 
                   -0.663273
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 263.0999, 
                 "camera tilt": 16.65275, 
                 "numberKeyRec": 0
@@ -3528,7 +3528,7 @@
                   0, 
                   -0.6681569
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 263.8499, 
                 "camera tilt": 13.80276, 
                 "numberKeyRec": 0
@@ -3546,7 +3546,7 @@
                   0, 
                   -0.6768757
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 265.2, 
                 "camera tilt": 11.85277, 
                 "numberKeyRec": 0
@@ -3564,7 +3564,7 @@
                   0, 
                   -0.6807206
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 265.8, 
                 "camera tilt": 10.20278, 
                 "numberKeyRec": 0
@@ -3582,7 +3582,7 @@
                   0, 
                   -0.6959125
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.1999, 
                 "camera tilt": 6.902777, 
                 "numberKeyRec": 0
@@ -3600,7 +3600,7 @@
                   0, 
                   -0.699663
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.8, 
                 "camera tilt": 5.402782, 
                 "numberKeyRec": 1, 
@@ -3625,7 +3625,7 @@
                   0, 
                   -0.7043242
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.5499, 
                 "camera tilt": 5.102786, 
                 "numberKeyRec": 0
@@ -3643,7 +3643,7 @@
                   0, 
                   -0.7089553
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.2999, 
                 "camera tilt": 5.10279, 
                 "numberKeyRec": 0
@@ -3661,7 +3661,7 @@
                   0, 
                   -0.7089553
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.2999, 
                 "camera tilt": 5.102795, 
                 "numberKeyRec": 0
@@ -3679,7 +3679,7 @@
                   0, 
                   -0.7126382
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.8999, 
                 "camera tilt": 5.252798, 
                 "numberKeyRec": 0
@@ -3697,7 +3697,7 @@
                   0, 
                   -0.7217599
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 272.4, 
                 "camera tilt": 5.552803, 
                 "numberKeyRec": 0
@@ -3715,7 +3715,7 @@
                   0, 
                   -0.7244723
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 272.8499, 
                 "camera tilt": 5.702807, 
                 "numberKeyRec": 0
@@ -3733,7 +3733,7 @@
                   0, 
                   -0.7289683
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 273.5999, 
                 "camera tilt": 6.15281, 
                 "numberKeyRec": 0
@@ -3751,7 +3751,7 @@
                   0, 
                   -0.7298637
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 273.7499, 
                 "camera tilt": 6.302814, 
                 "numberKeyRec": 0
@@ -3769,7 +3769,7 @@
                   0, 
                   -0.7334329
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 274.3499, 
                 "camera tilt": 4.952818, 
                 "numberKeyRec": 1, 
@@ -3794,7 +3794,7 @@
                   0, 
                   -0.7413902
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.6999, 
                 "camera tilt": 0.9028194, 
                 "numberKeyRec": 1, 
@@ -3819,7 +3819,7 @@
                   0, 
                   -0.7422679
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.8499, 
                 "camera tilt": 0.75282, 
                 "numberKeyRec": 1, 
@@ -3844,7 +3844,7 @@
                   0, 
                   -0.7422679
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.8499, 
                 "camera tilt": 0.7528204, 
                 "numberKeyRec": 1, 
@@ -3869,7 +3869,7 @@
                   0, 
                   -0.7422679
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.8499, 
                 "camera tilt": 0.752821, 
                 "numberKeyRec": 0
@@ -3887,7 +3887,7 @@
                   0, 
                   -0.7422679
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.8499, 
                 "camera tilt": 2.252822, 
                 "numberKeyRec": 0
@@ -3905,7 +3905,7 @@
                   0, 
                   -0.7413901
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.6999, 
                 "camera tilt": 4.352825, 
                 "numberKeyRec": 0
@@ -3923,7 +3923,7 @@
                   0, 
                   -0.7413901
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.6999, 
                 "camera tilt": 4.652827, 
                 "numberKeyRec": 0
@@ -3941,7 +3941,7 @@
                   0, 
                   -0.7413901
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 275.6999, 
                 "camera tilt": 4.802826, 
                 "numberKeyRec": 0
@@ -3959,7 +3959,7 @@
                   0, 
                   -0.7325425
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 274.1999, 
                 "camera tilt": 4.802826, 
                 "numberKeyRec": 0
@@ -3977,7 +3977,7 @@
                   0, 
                   -0.7217598
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.3999, 
                 "camera tilt": 4.502827, 
                 "numberKeyRec": 0
@@ -3995,7 +3995,7 @@
                   0, 
                   -0.7024632
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 269.2499, 
                 "camera tilt": 4.05283, 
                 "numberKeyRec": 0
@@ -4013,7 +4013,7 @@
                   0, 
                   -0.687404
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 266.8499, 
                 "camera tilt": 3.602835, 
                 "numberKeyRec": 0
@@ -4031,7 +4031,7 @@
                   0, 
                   -0.6826359
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 266.0999, 
                 "camera tilt": 3.602842, 
                 "numberKeyRec": 0
@@ -4049,7 +4049,7 @@
                   0, 
                   -0.6691302
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 263.9999, 
                 "camera tilt": 4.952844, 
                 "numberKeyRec": 0
@@ -4067,7 +4067,7 @@
                   0, 
                   -0.6553997
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 261.8999, 
                 "camera tilt": 5.252845, 
                 "numberKeyRec": 0
@@ -4085,7 +4085,7 @@
                   0, 
                   -0.6313524
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 258.2999, 
                 "camera tilt": 5.102848, 
                 "numberKeyRec": 1, 
@@ -4110,7 +4110,7 @@
                   0, 
                   -0.6272833
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.6999, 
                 "camera tilt": 3.452851, 
                 "numberKeyRec": 1, 
@@ -4135,7 +4135,7 @@
                   0, 
                   -0.6252422
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.3999, 
                 "camera tilt": 3.002851, 
                 "numberKeyRec": 1, 
@@ -4160,7 +4160,7 @@
                   0, 
                   -0.6252422
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.3999, 
                 "camera tilt": 3.002851, 
                 "numberKeyRec": 0
@@ -4178,7 +4178,7 @@
                   0, 
                   -0.6252422
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.3999, 
                 "camera tilt": 3.002851, 
                 "numberKeyRec": 0
@@ -4196,7 +4196,7 @@
                   0, 
                   -0.6242201
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.2499, 
                 "camera tilt": 4.352855, 
                 "numberKeyRec": 0
@@ -4214,7 +4214,7 @@
                   0, 
                   -0.6242201
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.2499, 
                 "camera tilt": 6.002859, 
                 "numberKeyRec": 0
@@ -4232,7 +4232,7 @@
                   0, 
                   -0.6242201
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 257.2499, 
                 "camera tilt": 6.45286, 
                 "numberKeyRec": 0
@@ -4250,7 +4250,7 @@
                   0, 
                   -0.6303368
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 258.1499, 
                 "camera tilt": 7.052866, 
                 "numberKeyRec": 0
@@ -4268,7 +4268,7 @@
                   0, 
                   -0.6524288
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 261.45, 
                 "camera tilt": 7.802866, 
                 "numberKeyRec": 0
@@ -4286,7 +4286,7 @@
                   0, 
                   -0.6807206
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 265.8, 
                 "camera tilt": 7.952875, 
                 "numberKeyRec": 0
@@ -4304,7 +4304,7 @@
                   0, 
                   -0.7052529
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 269.7, 
                 "camera tilt": 7.802876, 
                 "numberKeyRec": 0
@@ -4322,7 +4322,7 @@
                   0, 
                   -0.7208534
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 272.25, 
                 "camera tilt": 8.102877, 
                 "numberKeyRec": 0
@@ -4340,7 +4340,7 @@
                   0, 
                   -0.72176
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 272.4, 
                 "camera tilt": 8.252879, 
                 "numberKeyRec": 0
@@ -4358,7 +4358,7 @@
                   0, 
                   -0.7262746
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 273.15, 
                 "camera tilt": 8.252879, 
                 "numberKeyRec": 1, 
@@ -4383,7 +4383,7 @@
                   0, 
                   -0.7457666
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 276.45, 
                 "camera tilt": 6.602882, 
                 "numberKeyRec": 0
@@ -4401,7 +4401,7 @@
                   0, 
                   -0.7457666
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 276.45, 
                 "camera tilt": 6.752888, 
                 "numberKeyRec": 2, 
@@ -4431,7 +4431,7 @@
                   0, 
                   -0.7457666
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 276.45, 
                 "camera tilt": 7.052891, 
                 "numberKeyRec": 0
@@ -4449,7 +4449,7 @@
                   0, 
                   -0.7457666
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 276.45, 
                 "camera tilt": 7.202899, 
                 "numberKeyRec": 1, 
@@ -4474,7 +4474,7 @@
                   0, 
                   -0.7457666
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 276.45, 
                 "camera tilt": 7.202907, 
                 "numberKeyRec": 0
@@ -4492,7 +4492,7 @@
                   0, 
                   -0.754423
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 277.95, 
                 "camera tilt": 7.052918, 
                 "numberKeyRec": 0
@@ -4510,7 +4510,7 @@
                   0, 
                   -0.7595549
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 278.8499, 
                 "camera tilt": 7.052926, 
                 "numberKeyRec": 0
@@ -4528,7 +4528,7 @@
                   0, 
                   -0.7578495
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 278.5499, 
                 "camera tilt": 6.902925, 
                 "numberKeyRec": 0
@@ -4546,7 +4546,7 @@
                   0, 
                   -0.7527019
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 277.6499, 
                 "camera tilt": 6.902925, 
                 "numberKeyRec": 0
@@ -4564,7 +4564,7 @@
                   0, 
                   -0.7527019
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.6499, 
                 "camera tilt": 6.902925, 
                 "numberKeyRec": 1, 
@@ -4589,7 +4589,7 @@
                   0, 
                   -0.7518394
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.4999, 
                 "camera tilt": 7.052928, 
                 "numberKeyRec": 0
@@ -4607,7 +4607,7 @@
                   0, 
                   -0.7518394
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.4999, 
                 "camera tilt": 7.052936, 
                 "numberKeyRec": 0
@@ -4625,7 +4625,7 @@
                   0, 
                   -0.7518394
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.4999, 
                 "camera tilt": 7.052936, 
                 "numberKeyRec": 1, 
@@ -4650,7 +4650,7 @@
                   0, 
                   -0.7518394
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.4999, 
                 "camera tilt": 7.052936, 
                 "numberKeyRec": 0
@@ -4668,7 +4668,7 @@
                   0, 
                   -0.7518394
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.4999, 
                 "camera tilt": 7.052936, 
                 "numberKeyRec": 0
@@ -4686,7 +4686,7 @@
                   0, 
                   -0.7527019
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.6499, 
                 "camera tilt": 5.702938, 
                 "numberKeyRec": 0
@@ -4704,7 +4704,7 @@
                   0, 
                   -0.7552814
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 278.0999, 
                 "camera tilt": 2.402941, 
                 "numberKeyRec": 0
@@ -4722,7 +4722,7 @@
                   0, 
                   -0.7552814
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 278.0999, 
                 "camera tilt": 0.6029425, 
                 "numberKeyRec": 0
@@ -4740,7 +4740,7 @@
                   0, 
                   -0.7518395
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 277.4999, 
                 "camera tilt": 0.4529429, 
                 "numberKeyRec": 0
@@ -4758,7 +4758,7 @@
                   0, 
                   -0.7352101
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 274.6499, 
                 "camera tilt": 359.703, 
                 "numberKeyRec": 0
@@ -4776,7 +4776,7 @@
                   0, 
                   -0.7163016
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.4999, 
                 "camera tilt": 359.403, 
                 "numberKeyRec": 1, 
@@ -4801,7 +4801,7 @@
                   0, 
                   -0.6911974
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.4499, 
                 "camera tilt": 359.853, 
                 "numberKeyRec": 0
@@ -4819,7 +4819,7 @@
                   0, 
                   -0.6583607
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 262.3499, 
                 "camera tilt": 0.00302124, 
                 "numberKeyRec": 0
@@ -4837,7 +4837,7 @@
                   0, 
                   -0.6384318
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 259.3499, 
                 "camera tilt": 0.1530214, 
                 "numberKeyRec": 0
@@ -4855,7 +4855,7 @@
                   0, 
                   -0.5972751
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 253.3499, 
                 "camera tilt": 0.3030218, 
                 "numberKeyRec": 0
@@ -4873,7 +4873,7 @@
                   0, 
                   -0.5523006
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 247.05, 
                 "camera tilt": 359.703, 
                 "numberKeyRec": 0
@@ -4891,7 +4891,7 @@
                   0, 
                   -0.5269557
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 243.6, 
                 "camera tilt": 359.703, 
                 "numberKeyRec": 0
@@ -4909,7 +4909,7 @@
                   0, 
                   -0.4863353
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 238.2, 
                 "camera tilt": 0.3030214, 
                 "numberKeyRec": 0
@@ -4927,7 +4927,7 @@
                   0, 
                   -0.4679297
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 235.8, 
                 "camera tilt": 0.4530214, 
                 "numberKeyRec": 1, 
@@ -4952,7 +4952,7 @@
                   0, 
                   -0.4644555
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 235.35, 
                 "camera tilt": 0.6030219, 
                 "numberKeyRec": 0
@@ -4970,7 +4970,7 @@
                   0, 
                   -0.4702418
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 236.1, 
                 "camera tilt": 1.053022, 
                 "numberKeyRec": 1, 
@@ -4995,7 +4995,7 @@
                   0, 
                   -0.4411142
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 232.35, 
                 "camera tilt": 1.353022, 
                 "numberKeyRec": 1, 
@@ -5020,7 +5020,7 @@
                   0, 
                   -0.4281465
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 230.7, 
                 "camera tilt": 1.803024, 
                 "numberKeyRec": 0
@@ -5038,7 +5038,7 @@
                   0, 
                   -0.4269632
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 230.55, 
                 "camera tilt": 1.803026, 
                 "numberKeyRec": 0
@@ -5056,7 +5056,7 @@
                   0, 
                   -0.4234089
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 230.1, 
                 "camera tilt": 1.503027, 
                 "numberKeyRec": 0
@@ -5074,7 +5074,7 @@
                   0, 
                   -0.4079321
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 228.15, 
                 "camera tilt": 359.2531, 
                 "numberKeyRec": 1, 
@@ -5099,7 +5099,7 @@
                   0, 
                   -0.3875155
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 225.6, 
                 "camera tilt": 354.9032, 
                 "numberKeyRec": 1, 
@@ -5124,7 +5124,7 @@
                   0, 
                   -0.3875155
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 225.6, 
                 "camera tilt": 354.9033, 
                 "numberKeyRec": 1, 
@@ -5149,7 +5149,7 @@
                   0, 
                   -0.3350405
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 219.15, 
                 "camera tilt": 357.7534, 
                 "numberKeyRec": 1, 
@@ -5174,7 +5174,7 @@
                   0, 
                   -0.2575544
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 209.85, 
                 "camera tilt": 1.653504, 
                 "numberKeyRec": 0
@@ -5192,7 +5192,7 @@
                   0, 
                   -0.196374
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 202.65, 
                 "camera tilt": 3.753507, 
                 "numberKeyRec": 0
@@ -5210,7 +5210,7 @@
                   0, 
                   -0.1188372
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 193.65, 
                 "camera tilt": 6.00351, 
                 "numberKeyRec": 0
@@ -5228,7 +5228,7 @@
                   0, 
                   -0.02355973
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 182.7, 
                 "camera tilt": 6.603515, 
                 "numberKeyRec": 0
@@ -5246,7 +5246,7 @@
                   0, 
                   0.03010242
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 176.55, 
                 "camera tilt": 6.903515, 
                 "numberKeyRec": 1, 
@@ -5271,7 +5271,7 @@
                   0, 
                   0.03402739
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 176.1, 
                 "camera tilt": 7.053516, 
                 "numberKeyRec": 0
@@ -5289,7 +5289,7 @@
                   0, 
                   0.0314108
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 176.4, 
                 "camera tilt": 7.653519, 
                 "numberKeyRec": 0
@@ -5307,7 +5307,7 @@
                   0, 
                   0.028794
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 176.7, 
                 "camera tilt": 7.653519, 
                 "numberKeyRec": 0
@@ -5325,7 +5325,7 @@
                   0, 
                   0.02225116
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 177.45, 
                 "camera tilt": 7.653519, 
                 "numberKeyRec": 0
@@ -5343,7 +5343,7 @@
                   0, 
                   0.01178075
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 178.65, 
                 "camera tilt": 7.80352, 
                 "numberKeyRec": 1, 
@@ -5368,7 +5368,7 @@
                   0, 
                   0.009162898
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 178.95, 
                 "camera tilt": 7.953521, 
                 "numberKeyRec": 0
@@ -5386,7 +5386,7 @@
                   0, 
                   0.009162898
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 178.95, 
                 "camera tilt": 7.953521, 
                 "numberKeyRec": 0
@@ -5404,7 +5404,7 @@
                   0, 
                   0.009162898
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 178.95, 
                 "camera tilt": 7.953521, 
                 "numberKeyRec": 0
@@ -5422,7 +5422,7 @@
                   0, 
                   4.761383E-08
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 180, 
                 "camera tilt": 8.553523, 
                 "numberKeyRec": 0
@@ -5440,7 +5440,7 @@
                   0, 
                   -0.007853853
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 180.9, 
                 "camera tilt": 9.453526, 
                 "numberKeyRec": 0
@@ -5458,7 +5458,7 @@
                   0, 
                   -0.01308955
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 181.5, 
                 "camera tilt": 9.153529, 
                 "numberKeyRec": 1, 
@@ -5483,7 +5483,7 @@
                   0, 
                   -0.005235915
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 180.6, 
                 "camera tilt": 6.153533, 
                 "numberKeyRec": 0
@@ -5501,7 +5501,7 @@
                   0, 
                   -0.005235915
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 180.6, 
                 "camera tilt": 6.303535, 
                 "numberKeyRec": 2, 
@@ -5531,7 +5531,7 @@
                   0, 
                   0.001309046
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 179.85, 
                 "camera tilt": 6.753536, 
                 "numberKeyRec": 1, 
@@ -5556,7 +5556,7 @@
                   0, 
                   0.01178075
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.65, 
                 "camera tilt": 8.553544, 
                 "numberKeyRec": 0
@@ -5574,7 +5574,7 @@
                   0, 
                   0.02094247
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 177.6, 
                 "camera tilt": 10.35355, 
                 "numberKeyRec": 0
@@ -5592,7 +5592,7 @@
                   0, 
                   0.02355981
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 177.3, 
                 "camera tilt": 12.15356, 
                 "numberKeyRec": 0
@@ -5610,7 +5610,7 @@
                   0, 
                   0.02225116
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 177.45, 
                 "camera tilt": 13.05356, 
                 "numberKeyRec": 0
@@ -5628,7 +5628,7 @@
                   0, 
                   0.01439852
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.35, 
                 "camera tilt": 14.10357, 
                 "numberKeyRec": 0
@@ -5646,7 +5646,7 @@
                   0, 
                   0.01178075
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.65, 
                 "camera tilt": 13.95357, 
                 "numberKeyRec": 0
@@ -5664,7 +5664,7 @@
                   0, 
                   0.005236015
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 179.4, 
                 "camera tilt": 13.80358, 
                 "numberKeyRec": 0
@@ -5682,7 +5682,7 @@
                   0, 
                   0.007853953
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 179.1, 
                 "camera tilt": 13.35359, 
                 "numberKeyRec": 0
@@ -5700,7 +5700,7 @@
                   0, 
                   0.007853953
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 179.1, 
                 "camera tilt": 13.35359, 
                 "numberKeyRec": 0
@@ -5718,7 +5718,7 @@
                   0, 
                   0.007853953
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 179.1, 
                 "camera tilt": 13.35359, 
                 "numberKeyRec": 1, 
@@ -5743,7 +5743,7 @@
                   0, 
                   0.009162902
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.95, 
                 "camera tilt": 13.35359, 
                 "numberKeyRec": 1, 
@@ -5768,7 +5768,7 @@
                   0, 
                   0.01308965
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.5, 
                 "camera tilt": 13.50359, 
                 "numberKeyRec": 0
@@ -5786,7 +5786,7 @@
                   0, 
                   0.01308965
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.5, 
                 "camera tilt": 13.50359, 
                 "numberKeyRec": 0
@@ -5804,7 +5804,7 @@
                   0, 
                   0.01570737
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 178.2, 
                 "camera tilt": 13.50359, 
                 "numberKeyRec": 0
@@ -5822,7 +5822,7 @@
                   0, 
                   0.04579892
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 174.75, 
                 "camera tilt": 13.80359, 
                 "numberKeyRec": 0
@@ -5840,7 +5840,7 @@
                   0, 
                   0.05364317
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 173.85, 
                 "camera tilt": 13.95359, 
                 "numberKeyRec": 0
@@ -5858,7 +5858,7 @@
                   0, 
                   0.04449126
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 174.9, 
                 "camera tilt": 13.50359, 
                 "numberKeyRec": 0
@@ -5876,7 +5876,7 @@
                   0, 
                   -0.05887075
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 186.75, 
                 "camera tilt": 10.8036, 
                 "numberKeyRec": 0
@@ -5894,7 +5894,7 @@
                   0, 
                   -0.291537
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 213.9, 
                 "camera tilt": 8.8536, 
                 "numberKeyRec": 1, 
@@ -5919,7 +5919,7 @@
                   0, 
                   -0.4574859
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 234.45, 
                 "camera tilt": 8.553613, 
                 "numberKeyRec": 0
@@ -5937,7 +5937,7 @@
                   0, 
                   -0.5920131
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 252.6, 
                 "camera tilt": 7.803625, 
                 "numberKeyRec": 0
@@ -5955,7 +5955,7 @@
                   0, 
                   -0.619094
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 256.5, 
                 "camera tilt": 7.803625, 
                 "numberKeyRec": 0
@@ -5973,7 +5973,7 @@
                   0, 
                   -0.638432
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 259.35, 
                 "camera tilt": 8.403631, 
                 "numberKeyRec": 0
@@ -5991,7 +5991,7 @@
                   0, 
                   -0.6524292
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 261.45, 
                 "camera tilt": 8.403646, 
                 "numberKeyRec": 1, 
@@ -6016,7 +6016,7 @@
                   0, 
                   -0.6720438
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 264.45, 
                 "camera tilt": 8.70365, 
                 "numberKeyRec": 0
@@ -6034,7 +6034,7 @@
                   0, 
                   -0.6902513
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 267.3, 
                 "camera tilt": 8.70365, 
                 "numberKeyRec": 1, 
@@ -6059,7 +6059,7 @@
                   0, 
                   -0.6949722
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 268.05, 
                 "camera tilt": 8.70365, 
                 "numberKeyRec": 0
@@ -6077,7 +6077,7 @@
                   0, 
                   -0.7316512
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 274.05, 
                 "camera tilt": 9.903654, 
                 "numberKeyRec": 1, 
@@ -6102,7 +6102,7 @@
                   0, 
                   -0.7298641
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 273.75, 
                 "camera tilt": 10.05366, 
                 "numberKeyRec": 0
@@ -6120,7 +6120,7 @@
                   0, 
                   -0.716302
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.5, 
                 "camera tilt": 10.95366, 
                 "numberKeyRec": 1, 
@@ -6145,7 +6145,7 @@
                   0, 
                   -0.7144727
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 11.10367, 
                 "numberKeyRec": 1, 
@@ -6170,7 +6170,7 @@
                   0, 
                   -0.7117196
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.75, 
                 "camera tilt": 11.70367, 
                 "numberKeyRec": 1, 
@@ -6195,7 +6195,7 @@
                   0, 
                   -0.7117196
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.75, 
                 "camera tilt": 11.70367, 
                 "numberKeyRec": 1, 
@@ -6220,7 +6220,7 @@
                   0, 
                   -0.7117196
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.75, 
                 "camera tilt": 11.70367, 
                 "numberKeyRec": 1, 
@@ -6245,7 +6245,7 @@
                   0, 
                   -0.7117196
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.75, 
                 "camera tilt": 11.70367, 
                 "numberKeyRec": 0
@@ -6263,7 +6263,7 @@
                   0, 
                   -0.7126385
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 270.9, 
                 "camera tilt": 11.70367, 
                 "numberKeyRec": 0
@@ -6281,7 +6281,7 @@
                   0, 
                   -0.7144727
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 11.70367, 
                 "numberKeyRec": 1, 
@@ -6306,7 +6306,7 @@
                   0, 
                   -0.7172148
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.65, 
                 "camera tilt": 12.00368, 
                 "numberKeyRec": 0
@@ -6324,7 +6324,7 @@
                   0, 
                   -0.7190366
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.95, 
                 "camera tilt": 12.45369, 
                 "numberKeyRec": 0
@@ -6342,7 +6342,7 @@
                   0, 
                   -0.7190366
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.95, 
                 "camera tilt": 12.75369, 
                 "numberKeyRec": 0
@@ -6360,7 +6360,7 @@
                   0, 
                   -0.7190366
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.95, 
                 "camera tilt": 12.7537, 
                 "numberKeyRec": 1, 
@@ -6385,7 +6385,7 @@
                   0, 
                   -0.7190366
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.95, 
                 "camera tilt": 11.25371, 
                 "numberKeyRec": 0
@@ -6403,7 +6403,7 @@
                   0, 
                   -0.7244728
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.85, 
                 "camera tilt": 8.553711, 
                 "numberKeyRec": 1, 
@@ -6428,7 +6428,7 @@
                   0, 
                   -0.7253744
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 273, 
                 "camera tilt": 8.253714, 
                 "numberKeyRec": 1, 
@@ -6453,7 +6453,7 @@
                   0, 
                   -0.7253744
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 273, 
                 "camera tilt": 8.253714, 
                 "numberKeyRec": 1, 
@@ -6478,7 +6478,7 @@
                   0, 
                   -0.7253744
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 273, 
                 "camera tilt": 8.403713, 
                 "numberKeyRec": 0
@@ -6496,7 +6496,7 @@
                   0, 
                   -0.7253744
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 273, 
                 "camera tilt": 9.903718, 
                 "numberKeyRec": 0
@@ -6514,7 +6514,7 @@
                   0, 
                   -0.7244728
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.85, 
                 "camera tilt": 11.55372, 
                 "numberKeyRec": 0
@@ -6532,7 +6532,7 @@
                   0, 
                   -0.7217603
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 272.4, 
                 "camera tilt": 12.45373, 
                 "numberKeyRec": 0
@@ -6550,7 +6550,7 @@
                   0, 
                   -0.7190367
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.95, 
                 "camera tilt": 12.45373, 
                 "numberKeyRec": 0
@@ -6568,7 +6568,7 @@
                   0, 
                   -0.6968524
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.35, 
                 "camera tilt": 9.753734, 
                 "numberKeyRec": 0
@@ -6586,7 +6586,7 @@
                   0, 
                   -0.6874046
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 266.85, 
                 "camera tilt": 7.353737, 
                 "numberKeyRec": 0
@@ -6604,7 +6604,7 @@
                   0, 
                   -0.6874046
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 266.85, 
                 "camera tilt": 7.353737, 
                 "numberKeyRec": 0
@@ -6622,7 +6622,7 @@
                   0, 
                   -0.6883547
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267, 
                 "camera tilt": 7.503737, 
                 "numberKeyRec": 1, 
@@ -6647,7 +6647,7 @@
                   0, 
                   -0.6940305
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 267.9, 
                 "camera tilt": 10.65375, 
                 "numberKeyRec": 0
@@ -6665,7 +6665,7 @@
                   0, 
                   -0.695913
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.2, 
                 "camera tilt": 12.75375, 
                 "numberKeyRec": 0
@@ -6683,7 +6683,7 @@
                   0, 
                   -0.6968524
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.35, 
                 "camera tilt": 15.75376, 
                 "numberKeyRec": 0
@@ -6701,7 +6701,7 @@
                   0, 
                   -0.6977906
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.5, 
                 "camera tilt": 18.15377, 
                 "numberKeyRec": 0
@@ -6719,7 +6719,7 @@
                   0, 
                   -0.6987276
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.65, 
                 "camera tilt": 19.05378, 
                 "numberKeyRec": 0
@@ -6737,7 +6737,7 @@
                   0, 
                   -0.6996635
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.8, 
                 "camera tilt": 20.25378, 
                 "numberKeyRec": 0
@@ -6755,7 +6755,7 @@
                   0, 
                   -0.6996635
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 268.8, 
                 "camera tilt": 20.25378, 
                 "numberKeyRec": 0
@@ -6773,7 +6773,7 @@
                   0, 
                   -0.708032
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.15, 
                 "camera tilt": 18.3038, 
                 "numberKeyRec": 0
@@ -6791,7 +6791,7 @@
                   0, 
                   -0.7098783
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 270.45, 
                 "camera tilt": 14.85381, 
                 "numberKeyRec": 0
@@ -6809,7 +6809,7 @@
                   0, 
                   -0.7181265
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.8, 
                 "camera tilt": 10.50382, 
                 "numberKeyRec": 0
@@ -6827,7 +6827,7 @@
                   0, 
                   -0.7181265
                   ], 
-                "inJump": 0, 
+                "inJump": 1, 
                 "y rotation": 271.8, 
                 "camera tilt": 5.10382, 
                 "numberKeyRec": 0
@@ -6845,7 +6845,7 @@
                   0, 
                   -0.7153881
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.35, 
                 "camera tilt": 359.5538, 
                 "numberKeyRec": 0
@@ -6863,7 +6863,7 @@
                   0, 
                   -0.7144729
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 359.1039, 
                 "numberKeyRec": 0
@@ -6881,7 +6881,7 @@
                   0, 
                   -0.7144729
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 359.1039, 
                 "numberKeyRec": 0
@@ -6899,7 +6899,7 @@
                   0, 
                   -0.7144729
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 359.1039, 
                 "numberKeyRec": 0
@@ -6917,7 +6917,7 @@
                   0, 
                   -0.7144729
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 271.2, 
                 "camera tilt": 359.1039, 
                 "numberKeyRec": 1, 
@@ -6942,7 +6942,7 @@
                   0, 
                   -0.7812484
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 282.75, 
                 "camera tilt": 358.9539, 
                 "numberKeyRec": 0
@@ -6960,7 +6960,7 @@
                   0, 
                   -0.9399909
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 320.1, 
                 "camera tilt": 358.954, 
                 "numberKeyRec": 0
@@ -6978,7 +6978,7 @@
                   0, 
                   -0.9996573
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 3.00003, 
                 "camera tilt": 358.654, 
                 "numberKeyRec": 0
@@ -6996,7 +6996,7 @@
                   0, 
                   -0.9248781
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 44.70004, 
                 "camera tilt": 358.804, 
                 "numberKeyRec": 0
@@ -7014,7 +7014,7 @@
                   0, 
                   -0.7820644
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 77.10002, 
                 "camera tilt": 359.704, 
                 "numberKeyRec": 0
@@ -7032,7 +7032,7 @@
                   0, 
                   -0.6710737
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.70003, 
                 "camera tilt": 359.2541, 
                 "numberKeyRec": 0
@@ -7050,7 +7050,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7068,7 +7068,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7086,7 +7086,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7104,7 +7104,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7122,7 +7122,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7140,7 +7140,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7158,7 +7158,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7176,7 +7176,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7194,7 +7194,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7212,7 +7212,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
@@ -7230,7 +7230,7 @@
                   0, 
                   -0.6701027
                   ], 
-                "inJump": 1, 
+                "inJump": 0, 
                 "y rotation": 95.85003, 
                 "camera tilt": 359.1042, 
                 "numberKeyRec": 0
