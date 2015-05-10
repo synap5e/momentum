@@ -70,19 +70,19 @@ public class Playback : MonoBehaviour {
 		transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
 
 		float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
-		bool inAir = currentSnapshot.inJump
-			&& (previousSnapshot == null || previousSnapshot.inJump)
-			&& nextSnapshot.inJump;
+		bool inAir = currentSnapshot.inJump;
 
 		if (inAir)
 		{
 			instantaneousSpeed = 0f;
 		}
 
-		Debug.Log(instantaneousSpeed * Speed);
+		// TODO: add more logic to handle free-fall vs jump
 
+		playerAnimator.SetBool(Animator.StringToHash("InJump"), inAir);
 		playerAnimator.SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, instantaneousSpeed);
 	}
+
 
 	void moveToNextSnapshot()
 	{
