@@ -48,7 +48,6 @@ public class SceneLint
         {
             Debug.LogWarning("Suggestion: " + p2);
             Debug.Log(g);
-            //UnityEditor.Selection.activeGameObject = g;
         }
     }
 
@@ -58,7 +57,6 @@ public class SceneLint
         {
             Debug.LogError("Requirement: " + p2);
             Debug.Log(g);
-       //     UnityEditor.Selection.activeGameObject = g;
             Application.Quit();
         }
     }

@@ -54,7 +54,7 @@ public class BombController : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<Renderer>().material.color = Color.green;
+        GetComponent<Renderer>().material.color = Color.white;
     }
 
     void Update()
@@ -67,14 +67,14 @@ public class BombController : MonoBehaviour
 
     internal void Select()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        GetComponent<Renderer>().material.color = Color.green;
         // TODO
     }
 
     internal void Deselect()
     {
         // TODO
-        GetComponent<Renderer>().material.color = Color.green;
+        GetComponent<Renderer>().material.color = Color.white;
     }
 
     internal void Detonate()

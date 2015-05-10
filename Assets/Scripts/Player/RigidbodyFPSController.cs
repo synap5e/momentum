@@ -111,9 +111,9 @@ public class RigidbodyFPSController : MonoBehaviour
 
             // TODO: hack to simulate explosive jump
             if (Input.GetKeyDown(KeyCode.LeftShift))
-             {
-                 GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
-             }
+            {
+                GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
+            }
 
             if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
             {
@@ -176,7 +176,6 @@ public class RigidbodyFPSController : MonoBehaviour
                 Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
-
             }
             if (hit.collider.gameObject.tag == "Low Friction Ground")
             {

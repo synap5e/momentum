@@ -22,7 +22,7 @@ public class Goal : MonoBehaviour
 
     private bool complete = false;
 
-    private bool newPlayerPerSession = false;
+    public bool newPlayerPerSession = false;
 
     private Vector3 spos;
     private Quaternion srot;
