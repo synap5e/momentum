@@ -63,6 +63,7 @@ public class BombActivator : MonoBehaviour
 
                 Vector3 forceDirection = (transform.position + Vector3.up) - selectedBomb.transform.position;
 
+
                 float force = bombController.SolveForce(forceDirection.magnitude);
                 if (force > 0)
                 {
