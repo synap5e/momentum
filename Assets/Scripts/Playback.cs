@@ -8,7 +8,7 @@ public class Playback : MonoBehaviour {
 	public float Speed;
 	public float SpeedDampening;
 
-	private int snapshotIndex;
+	private int snapshotIndex = 0;
 	private bool playback = false;
 	private bool wasPaused = false;
 
@@ -27,8 +27,8 @@ public class Playback : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		snapshotIndex = 0;
-		playerAnimator = GetComponent<Animator>();
+
+
 	}
 	
 	// Update is called once per frame
@@ -79,8 +79,8 @@ public class Playback : MonoBehaviour {
 
 		// TODO: add more logic to handle free-fall vs jump
 
-		playerAnimator.SetBool(Animator.StringToHash("InJump"), inAir);
-		playerAnimator.SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, instantaneousSpeed);
+		GetComponent<Animator>().SetBool(Animator.StringToHash("InJump"), inAir);
+		GetComponent<Animator>().SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, instantaneousSpeed);
 	}
 
 
