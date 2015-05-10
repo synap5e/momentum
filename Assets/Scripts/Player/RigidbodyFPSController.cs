@@ -166,7 +166,7 @@ public class RigidbodyFPSController : MonoBehaviour
                 Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
-
+			}
                 if (hit.collider.gameObject.tag == "Low Friction Ground")
                 {
                     surfaceFriction = lowSurfaceFriction;
@@ -180,7 +180,7 @@ public class RigidbodyFPSController : MonoBehaviour
                     surfaceFriction = defaultSurfaceFriction;
                 }
                 //Debug.Log(incomingVel);
-            }
+            
             offGroundTicks = 0;
             onGroundTicks++;
         }
