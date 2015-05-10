@@ -20,10 +20,12 @@ public class GameController : MonoBehaviour {
 	private bool inPlaybackMode = false;
 	private bool inMenuMode = false;
 
-	private Vector3 cameraOffset = new Vector3(0f, 5f, -5f);
+	private Vector3 cameraOffset = new Vector3(0f, 4f, -4f);
 
 	public float SnapshotMinDistance = 5;
 	private List<Recorder.Snapshot> replaySnapshots;
+
+    public bool FollowReplay = false;
 
     void Awake()
     {
@@ -40,10 +42,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Cursor.visible = false;
-		//Cursor.lockState = CursorLockMode.Locked;
-
-
 		if (Input.GetKeyDown(KeyCode.R))
 		{
             if (Player.GetComponent<Recorder>().IsRecording)
@@ -78,6 +76,13 @@ public class GameController : MonoBehaviour {
 		{
 			Application.Quit();
 		}
+
+        if (FollowReplay && replayGhost != null)
+        {
+            EnableFirstPersonCamera(false);
+            Playback playback = replayGhost.GetComponent<Playback>();
+            ThirdPersonCamera.GetComponent<Rigidbody>().position = replayGhost.transform.position + (replayGhost.transform.rotation * cameraOffset);
+        }
 	}
 
 	private void CreateReplayGhost()
@@ -93,6 +98,7 @@ public class GameController : MonoBehaviour {
 		replayGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = replayGhost.GetComponent<Playback>();
 		playback.Snapshots = Recorder.LoadSnapshots(ReplayFile.text);
+        playback.SetPlaybackPosition(Player.GetComponent<RespawnController>().CurrentCheckpoint.ReplaySnapshot);
 		playback.StartPlayback();
 	}
 

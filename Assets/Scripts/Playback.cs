@@ -81,7 +81,6 @@ public class Playback : MonoBehaviour {
 
 		GetComponent<Animator>().SetBool(Animator.StringToHash("InJump"), inAir);
 		GetComponent<Animator>().SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, Time.deltaTime);
-		Debug.Log(GetComponent<Animator>().GetFloat(Animator.StringToHash("Speed")));
 	}
 
 
@@ -105,6 +104,15 @@ public class Playback : MonoBehaviour {
 		snapshotIndex++;
 	}
 
+    public void SetPlaybackPosition(int snapshotIndex)
+    {
+        if (snapshotIndex < 0 || snapshotIndex >= Snapshots.Count)
+        {
+            return;
+        }
+        this.snapshotIndex = snapshotIndex;
+        moveToNextSnapshot();
+    }
 
 
 	public void StartPlayback()

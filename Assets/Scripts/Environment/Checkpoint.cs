@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Checkpoint : MonoBehaviour {
 
     public GameObject spawn;
     public bool requireLanded = true;
+
+    public int CheckpointNumber;
+    public int ReplaySnapshot;
 
     void Awake()
     {
@@ -34,8 +37,7 @@ public class Checkpoint : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && (!requireLanded || Vector3.Angle(collision.contacts[0].normal, Vector3.down) < 80)) // disallow hitting a vertical surface to count as hitting the checkpoint
         {
-            collision.gameObject.GetComponent<RespawnController>().spawnPosition = spawn;
+            collision.gameObject.GetComponent<RespawnController>().CurrentCheckpoint = this;
         }
     }
-
 }
