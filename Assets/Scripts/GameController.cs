@@ -12,27 +12,37 @@ public class GameController : MonoBehaviour {
 
 	public GameObject GhostPlayerPrefab;
 
+	public TextAsset ReplayFile;
+
 	private List<GameObject> ghostPlayers = new List<GameObject>();
+	private GameObject replayGhost;
 
 	private bool inPlaybackMode = false;
 	private bool inMenuMode = false;
-	int test = 6;
 
-	private Vector3 cameraOffset = new Vector3(0f, 5f, -5f);
-	private float cameraDistance = 2f;
+	private Vector3 cameraOffset = new Vector3(0f, 4f, -4f);
+
+	public float SnapshotMinDistance = 5;
+	private List<Recorder.Snapshot> replaySnapshots;
+
+    public bool FollowReplay = false;
+
+    void Awake()
+    {
+		if(ReplayFile != null){
+			replaySnapshots = Recorder.LoadSnapshots(ReplayFile.text);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
 		ThirdPersonCamera.SetActive(false);
         Player.GetComponent<Recorder>().StartRecording();
-
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetKeyDown(KeyCode.R))
 		{
             if (Player.GetComponent<Recorder>().IsRecording)
             {
@@ -55,7 +65,41 @@ public class GameController : MonoBehaviour {
 				StopPlayback();
 
 			}
-		}*/
+		}
+
+		if (Input.GetKeyDown(KeyCode.H))
+		{
+			CreateReplayGhost();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
+
+        if (FollowReplay && replayGhost != null)
+        {
+            EnableFirstPersonCamera(false);
+            Playback playback = replayGhost.GetComponent<Playback>();
+            ThirdPersonCamera.GetComponent<Rigidbody>().position = replayGhost.transform.position + (replayGhost.transform.rotation * cameraOffset);
+        }
+	}
+
+	private void CreateReplayGhost()
+	{
+		if (replaySnapshots == null)
+		{
+			return;
+		}
+		if (replayGhost != null)
+		{
+			Destroy(replayGhost);
+		}
+		replayGhost = Instantiate<GameObject>(GhostPlayerPrefab);
+		Playback playback = replayGhost.GetComponent<Playback>();
+		playback.Snapshots = Recorder.LoadSnapshots(ReplayFile.text);
+        playback.SetPlaybackPosition(Player.GetComponent<RespawnController>().CurrentCheckpoint.ReplaySnapshot);
+		playback.StartPlayback();
 	}
 
 	public void StartPlayback()
@@ -65,25 +109,33 @@ public class GameController : MonoBehaviour {
             Player.GetComponent<Recorder>().StopRecording();
 		}
 
+		//Setup new ghost
 		GameObject newGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = newGhost.GetComponent<Playback>();
-		playback.StopPlayback();
         playback.Snapshots = Player.GetComponent<Recorder>().snapshotList;
 		ghostPlayers.Add(newGhost);
-		Player.SetActive(false);
 
-		FirstPersonCamera.SetActive(false);
-		FirstPersonCamera.GetComponent<AudioListener>().enabled = false;
-
-		ThirdPersonCamera.SetActive(true);
-		ThirdPersonCamera.GetComponent<AudioListener>().enabled = true;
+		//Set up camera
 		ThirdPersonCamera.transform.position = playback.GetStartPosition() + (playback.GetStartRotation() * cameraOffset);
-		Vector3 focusVector = GhostPlayerPrefab.GetComponent<SkinnedMeshRenderer>().bounds.max;
-		focusVector.x = GhostPlayerPrefab.GetComponent<SkinnedMeshRenderer>().bounds.center.x;
+		Vector3 focusVector = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().bounds.max;
+		focusVector.x = newGhost.GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.x;
 		ThirdPersonCamera.transform.LookAt(playback.GetStartPosition() + focusVector);
+
+		// Set active camera
+		EnableFirstPersonCamera(false);
 
 		playback.StartPlayback();
 		inPlaybackMode = true;
+	}
+
+	public void EnableFirstPersonCamera(bool isFirstPerson)
+	{
+		Player.SetActive(isFirstPerson);
+		FirstPersonCamera.SetActive(isFirstPerson);
+		FirstPersonCamera.GetComponent<AudioListener>().enabled = isFirstPerson;
+
+		ThirdPersonCamera.SetActive(!isFirstPerson);
+		ThirdPersonCamera.GetComponent<AudioListener>().enabled = !isFirstPerson;
 	}
 
     public void StopPlayback()
@@ -99,12 +151,7 @@ public class GameController : MonoBehaviour {
 			ghostPlayers.RemoveAt(ghostPlayers.Count - 1);
 		}
 
-		Player.SetActive(true);
-
-		FirstPersonCamera.SetActive(true);
-		FirstPersonCamera.GetComponent<AudioListener>().enabled = true;
-		ThirdPersonCamera.SetActive(false);
-		ThirdPersonCamera.GetComponent<AudioListener>().enabled = false;
+		EnableFirstPersonCamera(true);
 
 		inPlaybackMode = false;
 

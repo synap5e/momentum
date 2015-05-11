@@ -68,14 +68,14 @@ public class Recorder : MonoBehaviour {
 		if (frameDuration > recordingFrameDurationMin) {
 			Vector3 position = transform.position;
             Quaternion rotation = transform.rotation;
-			bool inJump = GetComponent<RigidbodyFPSController>().onGround;
+			bool inJump = !GetComponent<RigidbodyFPSController>().onGround;
 			float duration = frameDuration;
 			float playerRotation = transform.localEulerAngles.y;
 			Camera camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 			float cameraRotation = camera.transform.localEulerAngles.x;
 			
 			//Add the snapshot to the list
-			Snapshot s = new Snapshot (position, rotation, inJump, duration, playerRotation, cameraRotation,keylist);
+			Snapshot s = new Snapshot (position, rotation, inJump, duration, playerRotation, cameraRotation, keylist);
 
 			snapshotList.Add (s);
 			
@@ -85,35 +85,34 @@ public class Recorder : MonoBehaviour {
 			//reset keylist
 			keylist = new List<KeyRecording> ();
 		} 
-		else {//Still within frame so record keys
-			if(recordKeys){
-				if (Input.GetKeyDown (KeyCode.Space)) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyDown","Space"));
-				}
-				else if(Input.GetMouseButtonDown(0)){
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyDown","MouseButton"));
-				}
-				else if (Input.anyKeyDown) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyDown",Input.inputString));
-				}
-				if (Input.GetKeyUp (KeyCode.Space)) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","Space"));
-				}
-				else if(Input.GetMouseButtonUp(0)){
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","MouseButton"));
-				}
-				else if (Input.GetKeyUp(KeyCode.W)) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","w"));
-				}
-				else if (Input.GetKeyUp(KeyCode.A)) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","a"));
-				}
-				else if (Input.GetKeyUp(KeyCode.S)) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","s"));
-				}
-				else if (Input.GetKeyUp(KeyCode.D)) {
-					keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","d"));
-				}
+		//Still within frame so record keys
+		if(recordKeys){
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyDown","Space"));
+			}
+			if(Input.GetMouseButtonDown(0)){
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyDown","MouseButton"));
+			}
+			if (Input.anyKeyDown) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyDown",Input.inputString));
+			}
+			if (Input.GetKeyUp (KeyCode.Space)) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","Space"));
+			}
+			if(Input.GetMouseButtonUp(0)){
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","MouseButton"));
+			}
+			if (Input.GetKeyUp(KeyCode.W)) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","w"));
+			}
+			if (Input.GetKeyUp(KeyCode.A)) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","a"));
+			}
+			if (Input.GetKeyUp(KeyCode.S)) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","s"));
+			}
+			if (Input.GetKeyUp(KeyCode.D)) {
+				keylist.Add (new KeyRecording(Time.deltaTime,"keyUp","d"));
 			}
 		}
 	}

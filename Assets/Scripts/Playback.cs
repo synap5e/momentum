@@ -8,13 +8,12 @@ public class Playback : MonoBehaviour {
 	public float Speed;
 	public float SpeedDampening;
 
-	private int snapshotIndex;
+	private int snapshotIndex = 0;
 	private bool playback = false;
 	private bool wasPaused = false;
 
 	private float frameDuration;
 
-	private Rigidbody playerRigidbody;
 	private Animator playerAnimator;
 
 	private Recorder.Snapshot currentSnapshot;
@@ -28,9 +27,8 @@ public class Playback : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		snapshotIndex = 0;
-		playerRigidbody = GetComponent<Rigidbody>();
-		playerAnimator = GetComponent<Animator>();
+
+
 	}
 	
 	// Update is called once per frame
@@ -56,27 +54,35 @@ public class Playback : MonoBehaviour {
 		}
 		if (frameDuration >= currentSnapshot.duration)
 		{
-			frameDuration = 0;
+			frameDuration -= currentSnapshot.duration;
 			moveToNextSnapshot();
 		}
 		if(nextSnapshot == null){
-			StopPlayback();
-			StartPlayback();
+			EndPlayback();
+			return;
 		}
+
 		float framePercentageComplete = frameDuration / currentSnapshot.duration;
-		Vector3 previousPosition = previousSnapshot == null ? currentSnapshot.position : playerRigidbody.position;
+		Vector3 previousPosition = previousSnapshot == null ? currentSnapshot.position : transform.position;
 		Vector3 nextPosition = Vector3.Lerp(currentSnapshot.position, nextSnapshot.position, framePercentageComplete);
-		playerRigidbody.position = nextPosition;
-		playerRigidbody.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
+
+		gameObject.transform.position = nextPosition;
+		gameObject.transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
 
 		float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
+		bool inAir = currentSnapshot.inJump;
 
-		if(currentSnapshot.inJump){
+		if (inAir)
+		{
 			instantaneousSpeed = 0f;
 		}
-		playerAnimator.SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed,  previousSnapshot == null ? 0 : SpeedDampening, Time.deltaTime);
 
+		// TODO: add more logic to handle free-fall vs jump
+
+		GetComponent<Animator>().SetBool(Animator.StringToHash("InJump"), inAir);
+		GetComponent<Animator>().SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, Time.deltaTime);
 	}
+
 
 	void moveToNextSnapshot()
 	{
@@ -98,6 +104,15 @@ public class Playback : MonoBehaviour {
 		snapshotIndex++;
 	}
 
+    public void SetPlaybackPosition(int snapshotIndex)
+    {
+        if (snapshotIndex < 0 || snapshotIndex >= Snapshots.Count)
+        {
+            return;
+        }
+        this.snapshotIndex = snapshotIndex;
+        moveToNextSnapshot();
+    }
 
 
 	public void StartPlayback()
@@ -107,6 +122,7 @@ public class Playback : MonoBehaviour {
 			moveToNextSnapshot();
 
 		}
+		gameObject.SetActive(true);
 		playback = true;
 	}
 
@@ -115,6 +131,12 @@ public class Playback : MonoBehaviour {
 		playback = false;
 		snapshotIndex = 0;
 		currentSnapshot = null;
+	}
+
+	public void EndPlayback()
+	{
+		StopPlayback();
+		gameObject.SetActive(false);
 	}
 
 	public void PausePlayback()

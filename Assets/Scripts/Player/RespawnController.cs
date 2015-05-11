@@ -1,21 +1,36 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class RespawnController : MonoBehaviour {
 
-    public GameObject spawnPosition
-    {
-        get;
-        set;
-    }
+    private Checkpoint _currentCheckpoint;
 
     private Vector3 initialPos;
-    private Quaternion initialRot;
+    private Vector3 initialRot;
+
+    private Checkpoint defaultCheckpoint;
+
+    public Checkpoint CurrentCheckpoint
+    {
+        set
+        {
+             _currentCheckpoint = value;
+        }
+        get
+        {
+            return _currentCheckpoint != null ? _currentCheckpoint : defaultCheckpoint;
+        }
+    }
+
 
     void Start()
     {
-        initialPos = transform.position;
-        initialRot = transform.rotation;
+        GameObject defaultSpawn = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        defaultSpawn.transform.position = transform.position;
+        defaultSpawn.transform.forward = transform.forward;
+
+        defaultCheckpoint = gameObject.AddComponent<Checkpoint>();
+        defaultCheckpoint.spawn = defaultSpawn;
 
         foreach (GameObject respawn in GameObject.FindGameObjectsWithTag("Respawn"))
         {
@@ -53,22 +68,12 @@ public class RespawnController : MonoBehaviour {
     private void Respawn()
     {
         // TODO: fancy animations etc, inform feedback, show on debug etc.
-        if (spawnPosition)
-        {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            transform.position = spawnPosition.transform.position;
-            transform.forward = spawnPosition.transform.forward;
-        }
-        else
-        {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            transform.position = initialPos;
-            transform.rotation = initialRot;
-
-        }
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.position = CurrentCheckpoint.spawn.transform.position;
+        transform.forward = CurrentCheckpoint.spawn.transform.forward;
 
         if (GetComponent<BombActivator>() != null)
             GetComponent<BombActivator>().ReactivateBombs();
     }
-	
+
 }

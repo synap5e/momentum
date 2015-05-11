@@ -96,7 +96,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Update()
     {
-
+		Screen.lockCursor = true; // Unity 5 Cursor is bugged
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
