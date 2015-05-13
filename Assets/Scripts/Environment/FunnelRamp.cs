@@ -57,35 +57,26 @@ public class FunnelRamp : MonoBehaviour
         Vector3 playerLocal = transform.InverseTransformPoint(player.transform.position);
         Vector3 exitLocal = transform.InverseTransformPoint(ExitPoint);
 
-        float along = (playerLocal.z - enterLocal.z) / (exitLocal.z - enterLocal.z);
-        Debug.Log(along);
-		Debug.Log (playerLocal.x + ", " + exitLocal.x);
 
-		playerLocal.x = Mathf.Lerp(enterLocal.x, exitLocal.x, along);
+		Debug.Log (Mathf.Abs (playerLocal.x) + " < " + transform.localScale.x);
+		if (Mathf.Abs (playerLocal.x) < 0.4) 
+{
 
-        player.transform.position = transform.TransformPoint(playerLocal);
-        //player.transform.position = transform.TransformPoint(exitLocal);
+			float along = (playerLocal.z - enterLocal.z) / (exitLocal.z - enterLocal.z);
+			Debug.Log (along);
+			//Debug.Log (playerLocal.x + ", " + Vector3.Cross (transform.up, transform.forward) * transform.localScale.x);
 
-        Debug.Log(enterLocal + " ? " + enterPoint);
+			playerLocal.x = Mathf.Lerp (enterLocal.x, exitLocal.x, along);
 
-        player.GetComponent<Rigidbody>().velocity = Vector3.Lerp(enterVelocity, transform.forward * exitVelocity, along);
-    }
+			player.transform.position = transform.TransformPoint (playerLocal);
+			//player.transform.position = transform.TransformPoint(exitLocal);
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision);
-        if (collision.gameObject.tag == "Player")
-        {
-           
-        }
-    }
+			//Debug.Log (enterLocal + " ? " + enterPoint);
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log((collision.collider.gameObject.transform.position - ExitPoint).magnitude);
-        }
+			player.GetComponent<Rigidbody> ().velocity = Vector3.Lerp (enterVelocity, transform.forward * exitVelocity, along);
+
+
+		}
     }
 
     internal void EnterRamp(GameObject player)
