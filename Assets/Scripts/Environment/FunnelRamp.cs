@@ -15,7 +15,7 @@ public class FunnelRamp : MonoBehaviour
     {
         get
         {
-            return transform.position + transform.forward * transform.localScale.z / 2;
+            return transform.position + transform.forward * transform.localScale.z / 2 + transform.up * transform.localScale.y/2;
         }
     }
 
@@ -29,11 +29,18 @@ public class FunnelRamp : MonoBehaviour
         {
             Handles.color = Color.yellow;
 
-            Debug.Log(target);
             FunnelRamp ramp = (FunnelRamp)target;
 
+			DrawArrow(ramp.transform.position, ramp.ExitPoint);
+            Handles.SphereCap(id++, ramp.ExitPoint, Quaternion.identity, 0.75f);
 
-            DrawArrow(ramp.transform.position, ramp.ExitPoint);
+			Vector3 vel = ramp.transform.forward * ramp.exitVelocity;
+			Vector3 prev = ramp.ExitPoint;
+			for (float x=0; x<300; x++) 
+			{
+				Handles.DrawLine(prev, prev = prev + vel * 0.01f);
+				vel.y -= 0.35f;
+			}
             //DrawArrow(ramp.transform.position + Vector3.Cross(ramp.transform.position, ramp.transform.up).normalized * ramp.transform.localScale.x/3, ramp.ExitPoint);
         }
 
@@ -50,22 +57,26 @@ public class FunnelRamp : MonoBehaviour
         Vector3 playerLocal = transform.InverseTransformPoint(player.transform.position);
         Vector3 exitLocal = transform.InverseTransformPoint(ExitPoint);
 
-        float along = playerLocal.z - enterLocal.z;
-       // Debug.Log(along);
+        float along = (playerLocal.z - enterLocal.z) / (exitLocal.z - enterLocal.z);
+        Debug.Log(along);
+		Debug.Log (playerLocal.x + ", " + exitLocal.x);
 
-        playerLocal.x = Mathf.Lerp(enterLocal.x, ExitPoint.x, along);
+		playerLocal.x = Mathf.Lerp(enterLocal.x, exitLocal.x, along);
 
         player.transform.position = transform.TransformPoint(playerLocal);
+        //player.transform.position = transform.TransformPoint(exitLocal);
+
+        Debug.Log(enterLocal + " ? " + enterPoint);
+
         player.GetComponent<Rigidbody>().velocity = Vector3.Lerp(enterVelocity, transform.forward * exitVelocity, along);
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision);
         if (collision.gameObject.tag == "Player")
         {
-            this.enterPoint = collision.contacts[0].point;
-            this.enterVelocity = collision.gameObject.GetComponent<Rigidbody>().velocity;
-            Debug.Log((collision.collider.gameObject.transform.position - ExitPoint).magnitude);
+           
         }
     }
 
@@ -75,5 +86,12 @@ public class FunnelRamp : MonoBehaviour
         {
             Debug.Log((collision.collider.gameObject.transform.position - ExitPoint).magnitude);
         }
+    }
+
+    internal void EnterRamp(GameObject player)
+    {
+        this.enterPoint = player.transform.position;
+        this.enterVelocity = player.GetComponent<Rigidbody>().velocity;
+        Debug.Log((player.transform.position - ExitPoint).magnitude);
     }
 }

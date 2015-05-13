@@ -71,6 +71,7 @@ public class RigidbodyFPSController : MonoBehaviour
     private Vector3 incomingVel;
 
     private float surfaceFriction;
+    private bool onRamp;
 
     public bool enableInput { get; set; }
 
@@ -191,9 +192,15 @@ public class RigidbodyFPSController : MonoBehaviour
 
             if (hit.collider.gameObject.GetComponent<FunnelRamp>() != null)
             {
+                if (!onRamp) hit.collider.GetComponent<FunnelRamp>().EnterRamp(this.gameObject);
+                onRamp = true;
                 hit.collider.GetComponent<FunnelRamp>().Accelerate(this.gameObject);
                 inAir = true;
                 onGroundTicks = 0;
+            }
+            else
+            {
+                onRamp = false;
             }
 
             offGroundTicks = 0;
