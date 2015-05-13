@@ -6,7 +6,7 @@ using System.Collections;
 [RequireComponent(typeof(AirstrafeController))]
 [RequireComponent(typeof(DebugMovement))]
 
-// adapted from http://wiki.unity3d.com/index.php?title=RigidbodyFPSWalker
+// loosely adapted from http://wiki.unity3d.com/index.php?title=RigidbodyFPSWalker
 public class RigidbodyFPSController : MonoBehaviour
 {
 
@@ -16,7 +16,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     [Header("Basic Movement")]
     public float speed = 10.0f;
-    public float jumpForce = 10.0f;
+    public float jumpForce = 7.0f;
+    public int freeJumpTicks = 10;
 
     [Header("Air Movement")]
     public float aircontrolForce = 0.1f;
@@ -46,6 +47,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     // number of ticks the player has been off the ground
     private int offGroundTicks;
+
+    private bool inJump = false;
 
     internal bool usingGroundedPhysics
     {
@@ -97,7 +100,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Update()
     {
-		Screen.lockCursor = true; // Unity 5 Cursor is bugged
+        Screen.lockCursor = true; // Unity 5 Cursor is bugged
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -141,7 +144,11 @@ public class RigidbodyFPSController : MonoBehaviour
         {
             if (!inAir)
             {
-                if (!PerformJump())
+                if (PerformJump())
+                {
+                    inJump = true;
+                }
+                else
                 {
                     // if we are not jumping then accellerate to our target velocity
                     AccellerateToDesired();
@@ -157,7 +164,11 @@ public class RigidbodyFPSController : MonoBehaviour
         }
 
         // We apply gravity manually for more tuning control
-        GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
+        
+        // x = v(0)t + 1/2 a t^2
+
+        if (!inJump || offGroundTicks > freeJumpTicks)
+            GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
 
     }
 
@@ -170,6 +181,7 @@ public class RigidbodyFPSController : MonoBehaviour
         if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
             inAir = false;
+            inJump = false;
             if (onGroundTicks == 0)
             {
                 // first frame of being on the ground
@@ -212,7 +224,7 @@ public class RigidbodyFPSController : MonoBehaviour
             if (offGroundTicks == 0)
             {
                 // first frame of actually being in the air
-                
+
             }
             offGroundTicks++;
             onGroundTicks = 0;
