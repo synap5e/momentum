@@ -71,6 +71,7 @@ public class RigidbodyFPSController : MonoBehaviour
     private Vector3 incomingVel;
 
     private float surfaceFriction;
+    private bool onRamp;
 
     public bool enableInput { get; set; }
 
@@ -168,11 +169,10 @@ public class RigidbodyFPSController : MonoBehaviour
         //float height;
         if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
+            inAir = false;
             if (onGroundTicks == 0)
             {
                 // first frame of being on the ground
-                inAir = false;
-
                 Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
@@ -189,17 +189,30 @@ public class RigidbodyFPSController : MonoBehaviour
             {
                 surfaceFriction = defaultSurfaceFriction;
             }
-            //Debug.Log(incomingVel);
+
+            if (hit.collider.gameObject.GetComponent<FunnelRamp>() != null)
+            {
+                if (!onRamp) hit.collider.GetComponent<FunnelRamp>().EnterRamp(this.gameObject);
+                onRamp = true;
+                hit.collider.GetComponent<FunnelRamp>().Accelerate(this.gameObject);
+                inAir = true;
+                onGroundTicks = 0;
+            }
+            else
+            {
+                onRamp = false;
+            }
 
             offGroundTicks = 0;
             onGroundTicks++;
         }
         else
         {
+            inAir = true;
             if (offGroundTicks == 0)
             {
                 // first frame of actually being in the air
-                inAir = true;
+                
             }
             offGroundTicks++;
             onGroundTicks = 0;
