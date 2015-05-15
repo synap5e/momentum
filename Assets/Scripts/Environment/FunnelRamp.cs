@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class FunnelRamp : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class FunnelRamp : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     [CustomEditor(typeof(FunnelRamp))]
     public class FunnelRampInspector : Editor
     {
@@ -49,7 +51,7 @@ public class FunnelRamp : MonoBehaviour
             Handles.ArrowCap(id++, start, Quaternion.LookRotation(end - start), (end - start).magnitude - 1);
         }
     }
-
+    #endif
 
     internal void Accelerate(GameObject player)
     {
