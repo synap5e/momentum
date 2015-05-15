@@ -75,7 +75,7 @@ public class FunnelRamp : MonoBehaviour
 
 			//Debug.Log (enterLocal + " ? " + enterPoint);
 
-			player.GetComponent<Rigidbody> ().velocity = Vector3.Lerp (enterVelocity, transform.forward * exitVelocity, along);
+			player.GetComponent<Rigidbody> ().velocity = Vector3.Lerp (enterVelocity, transform.forward * exitVelocity, Mathf.Max(0.1f, along));
 
 
 		}
