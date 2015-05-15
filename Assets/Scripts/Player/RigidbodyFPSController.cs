@@ -114,7 +114,7 @@ public class RigidbodyFPSController : MonoBehaviour
             ApplyTiltClamped(cameraTilt, 90, 270);
 
             // TODO: hack to simulate explosive jump
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.T))
             {
                 GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
             }
