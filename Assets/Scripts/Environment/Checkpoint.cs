@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour {
     public int CheckpointNumber;
     public int ReplaySnapshot;
 
-    void Awake()
+    void Start()
     {
         if (spawn == null)
         {
@@ -27,10 +27,9 @@ public class Checkpoint : MonoBehaviour {
                 }
             }
         }
-        else
-        {
-            spawn.GetComponent<Renderer>().enabled = false;
-        }
+     
+        spawn.GetComponent<Renderer>().enabled = false;
+        spawn.GetComponent<Collider>().enabled = false;
     }
 
     void OnCollisionEnter(Collision collision)
