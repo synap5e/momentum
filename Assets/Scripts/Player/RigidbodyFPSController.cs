@@ -28,6 +28,7 @@ public class RigidbodyFPSController : MonoBehaviour
              "This allows the player 1/2 that time before hitting the ground and 1/2 after. " +
              "If they jump within this time they will not lose any velocity to friction.")]
     public float bunnyhopWindow = 0.2f;
+    public float rejumpTime = 0.5f;
     public bool autoBunnyhop = false;
 
 
@@ -119,11 +120,24 @@ public class RigidbodyFPSController : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
             }
 
-            if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
+            if (Input.GetButtonDown("Jump"))
             {
-                doJump = true;
-                jumpQueuedTime = Time.time;
-                prematureJump = inAir;
+                if (doJump)
+                {
+                    if (Time.time - jumpQueuedTime > rejumpTime)
+                    {
+                        // jump was rejumpTime ago, allow a rejump
+                        jumpQueuedTime = Time.time;
+                        prematureJump = inAir;
+                    }
+                }
+                else
+                {
+                    // queue jump
+                    doJump = true;
+                    jumpQueuedTime = Time.time;
+                    prematureJump = inAir;
+                }
             }
         }
     }
@@ -163,10 +177,7 @@ public class RigidbodyFPSController : MonoBehaviour
             }
         }
 
-        // We apply gravity manually for more tuning control
-        
-        // x = v(0)t + 1/2 a t^2
-
+        // We apply gravity manually
         if (!inJump || offGroundTicks > freeJumpTicks)
             GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
 
@@ -269,9 +280,6 @@ public class RigidbodyFPSController : MonoBehaviour
 
     bool PerformJump()
     {
-        if (!doJump) return false;
-
-        doJump = false;
         if (autoBunnyhop)
         {
             if (!Input.GetButton("Jump")) return false;
@@ -279,8 +287,10 @@ public class RigidbodyFPSController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             return true;
         }
-        else
+        if (doJump)
         {
+            doJump = false;
+        
             float timeAgo = Time.time - jumpQueuedTime;
 
             Vector3 newvel = GetComponent<Rigidbody>().velocity;
@@ -328,14 +338,9 @@ public class RigidbodyFPSController : MonoBehaviour
                     GetComponent<Rigidbody>().velocity = newvel;
                     return true;
                 }
-
             }
-            /* Debug.Log("jump");
-             Vector3 newvel = GetComponent<Rigidbody>().velocity;
-             newvel.y = jumpForce;
-             GetComponent<Rigidbody>().velocity = newvel;// .AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-             return true;*/
         }
+        return false;
     }
 
     void ApplyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)
