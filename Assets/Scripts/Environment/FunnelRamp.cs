@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using UnityEditor;
+//using UnityEditor;
 
 public class FunnelRamp : MonoBehaviour
 {
@@ -19,36 +19,7 @@ public class FunnelRamp : MonoBehaviour
         }
     }
 
-    [CustomEditor(typeof(FunnelRamp))]
-    public class FunnelRampInspector : Editor
-    {
-
-        private int id = 0;
-
-        private void OnSceneGUI()
-        {
-            Handles.color = Color.yellow;
-
-            FunnelRamp ramp = (FunnelRamp)target;
-
-			DrawArrow(ramp.transform.position, ramp.ExitPoint);
-            Handles.SphereCap(id++, ramp.ExitPoint, Quaternion.identity, 0.75f);
-
-			Vector3 vel = ramp.transform.forward * ramp.exitVelocity;
-			Vector3 prev = ramp.ExitPoint;
-			for (float x=0; x<300; x++) 
-			{
-				Handles.DrawLine(prev, prev = prev + vel * 0.01f);
-				vel.y -= 0.35f;
-			}
-            //DrawArrow(ramp.transform.position + Vector3.Cross(ramp.transform.position, ramp.transform.up).normalized * ramp.transform.localScale.x/3, ramp.ExitPoint);
-        }
-
-        private void DrawArrow(Vector3 start, Vector3 end)
-        {
-            Handles.ArrowCap(id++, start, Quaternion.LookRotation(end - start), (end - start).magnitude - 1);
-        }
-    }
+  
 
 
     internal void Accelerate(GameObject player)
