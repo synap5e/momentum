@@ -18,7 +18,6 @@ public class GameController : MonoBehaviour {
 	private GameObject replayGhost;
 
 	private bool inPlaybackMode = false;
-	private bool inMenuMode = false;
 
 	private Vector3 cameraOffset = new Vector3(0f, 4f, -4f);
 
@@ -29,15 +28,65 @@ public class GameController : MonoBehaviour {
 
     void Awake()
     {
-		if(ReplayFile != null){
-			replaySnapshots = Recorder.LoadSnapshots(ReplayFile.text);
-		}
+
 	}
+
+    private void InitialiseCheckpointsIntoReplay()
+    {
+        // SUPER EXPENSIVE!! THIS SHOULD BE BAKED DURING BUILDING, NOT RAN EVERY PLAY :(
+        if (replaySnapshots == null)
+        {
+            return;
+        }
+
+        int index = 0;
+        List<Checkpoint> checkpoints = GameObject.FindObjectsOfType<Checkpoint>().ToList();
+        float minSqrDistance = float.PositiveInfinity;
+        for (int i = 0; i != replaySnapshots.Count; i++ )
+        {
+            Recorder.Snapshot snapshot = replaySnapshots[i];
+            float currentMinSqrDistance = float.PositiveInfinity;
+            Checkpoint nearestCheckpoint = null;
+            foreach (Checkpoint checkpoint in checkpoints)
+            {
+                float sqrDistance = (checkpoint.spawn.transform.position - snapshot.position).sqrMagnitude;
+                if (sqrDistance < currentMinSqrDistance)
+                {
+                    nearestCheckpoint = checkpoint;
+                    currentMinSqrDistance = sqrDistance;
+                }
+            }
+            if (currentMinSqrDistance > minSqrDistance)
+            {
+                nearestCheckpoint.Index = index;
+                nearestCheckpoint.SnapshotIndex = i;
+                index++;
+                checkpoints.Remove(nearestCheckpoint);
+                minSqrDistance = float.PositiveInfinity;
+            }
+            else
+            {
+                minSqrDistance = currentMinSqrDistance;
+            }
+            if (!checkpoints.Any())
+            {
+                break;
+            }
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
 		ThirdPersonCamera.SetActive(false);
+        if (ReplayFile != null)
+        {
+            replaySnapshots = Recorder.LoadSnapshots(ReplayFile.text);
+            InitialiseCheckpointsIntoReplay();
+        }
+
         Player.GetComponent<Recorder>().StartRecording();
+        CreateReplayGhost();
+
 	}
 	
 	// Update is called once per frame
@@ -67,14 +116,14 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            CreateReplayGhost();
+        }
+
 		if (Input.GetKeyDown(KeyCode.I))
 		{
 			Player.GetComponent<Recorder>().Save("tutorial");
-		}
-
-		if (Input.GetKeyDown(KeyCode.H))
-		{
-			CreateReplayGhost();
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -103,7 +152,8 @@ public class GameController : MonoBehaviour {
 		replayGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = replayGhost.GetComponent<Playback>();
 		playback.Snapshots = Recorder.LoadSnapshots(ReplayFile.text);
-        playback.SetPlaybackPosition(Player.GetComponent<RespawnController>().CurrentCheckpoint.ReplaySnapshot);
+        var test = Player.GetComponent<RespawnController>();
+        playback.SetPlaybackPosition(Player.GetComponent<RespawnController>().CurrentCheckpoint.SnapshotIndex);
 		playback.StartPlayback();
 	}
 
