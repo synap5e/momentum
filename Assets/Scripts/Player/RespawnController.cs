@@ -43,6 +43,7 @@ public class RespawnController : MonoBehaviour {
 
         defaultCheckpoint = gameObject.AddComponent<Checkpoint>();
         defaultCheckpoint.spawn = defaultSpawn;
+        defaultCheckpoint.Index = defaultCheckpoint.SnapshotIndex = 0;
 
         foreach (GameObject respawn in GameObject.FindGameObjectsWithTag("Respawn"))
         {
@@ -50,7 +51,7 @@ public class RespawnController : MonoBehaviour {
         }
 
         deathOverlay = GameObject.Find("Death Overlay");
-        deathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, 0f, true);
+        //deathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, 0f, true);
         //deathOverlay.SetActive(false);
     }
 
@@ -62,7 +63,7 @@ public class RespawnController : MonoBehaviour {
             Respawn();
         }
 
-        Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
+        //Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
         if (respawning)
         {
             respawnTravelDuration += Time.deltaTime;
