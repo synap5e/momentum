@@ -11,6 +11,7 @@ public class RespawnController : MonoBehaviour {
     public float respawnTravelVelocity = 2;
     public float minRespawnTime = 0.3f;
 
+    public float deathOverlayCrossfadeTime = 0.5f;
 
     private float respawnTravelDuration = 0;
     private Vector3 deathPosition;
@@ -18,6 +19,8 @@ public class RespawnController : MonoBehaviour {
     private Checkpoint defaultCheckpoint;
     private bool respawning;
     private Quaternion deathLook;
+    private GameObject deathOverlay;
+   
 
     public Checkpoint CurrentCheckpoint
     {
@@ -45,6 +48,10 @@ public class RespawnController : MonoBehaviour {
         {
             respawn.GetComponent<Renderer>().enabled = false;
         }
+
+        deathOverlay = GameObject.Find("Death Overlay");
+        deathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, 0f, true);
+        //deathOverlay.SetActive(false);
     }
 
     void Update()
@@ -79,6 +86,11 @@ public class RespawnController : MonoBehaviour {
             else
             {
                 respawning = false;
+//                deathOverlay.SetActive(false);
+                deathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, deathOverlayCrossfadeTime, false);
+
+
+                GetComponent<Collider>().enabled = true;
                 GetComponent<RigidbodyFPSController>().enableInput = true;
                 transform.position = CurrentCheckpoint.spawn.transform.position;
                 transform.forward = CurrentCheckpoint.spawn.transform.forward;
@@ -116,7 +128,10 @@ public class RespawnController : MonoBehaviour {
         deathLook = Quaternion.Euler(new Vector3(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x, transform.rotation.eulerAngles.y, 0));
         respawning = true;
         GetComponent<RigidbodyFPSController>().enableInput = false;
-        
+        GetComponent<Collider>().enabled = false;
+
+//        deathOverlay.SetActive(true);
+        deathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(1f, deathOverlayCrossfadeTime, false);
 
         if (GetComponent<BombActivator>() != null)
             GetComponent<BombActivator>().ReactivateBombs();
