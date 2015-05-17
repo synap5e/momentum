@@ -91,4 +91,8 @@ public class BombActivator : MonoBehaviour
             b.Respawn();
         }
     }
+
+	public bool nearBomb(){
+		return selectedBomb != null;
+	}
 }
