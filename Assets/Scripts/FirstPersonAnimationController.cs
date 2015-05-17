@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FirstPersonAnimationController : MonoBehaviour {
 
+	public GameObject player;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -17,6 +19,10 @@ public class FirstPersonAnimationController : MonoBehaviour {
 			anim.SetFloat ("Velocity", 0);
 		}
 
-		 
+		if (!player.GetComponent<RigidbodyFPSController> ().onGround) {
+			anim.SetBool ("Jumping", true);
+		} else {
+			anim.SetBool ("Jumping", false);
+		}		 
 	}
 }

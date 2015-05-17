@@ -155,7 +155,7 @@ ModelImporter:
     7400012: Jump_R
     7400014: Jump_L
     7400016: Prefalling
-    7400018: Fallin
+    7400018: Falling
     7400020: PreStationary_Jump
     7400022: NearBomb_Idle
     7400024: BombClick
@@ -1619,7 +1619,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Fallin
+      name: Falling
       takeName: Take 001
       firstFrame: 367
       lastFrame: 402
