@@ -28,8 +28,10 @@ public class Checkpoint : MonoBehaviour {
             }
         }
      
-        spawn.GetComponent<Renderer>().enabled = false;
-        spawn.GetComponent<Collider>().enabled = false;
+        if (spawn.GetComponent<Renderer>() != null)
+            spawn.GetComponent<Renderer>().enabled = false;
+        if (spawn.GetComponent<Collider>() != null)
+            spawn.GetComponent<Collider>().enabled = false;
     }
 
     void OnCollisionEnter(Collision collision)
