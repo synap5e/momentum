@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -60,12 +60,12 @@ public class FunnelRamp : MonoBehaviour
         Vector3 exitLocal = transform.InverseTransformPoint(ExitPoint);
 
 
-		Debug.Log (Mathf.Abs (playerLocal.x) + " < " + transform.localScale.x);
+		//Debug.Log (Mathf.Abs (playerLocal.x) + " < " + transform.localScale.x);
 		if (Mathf.Abs (playerLocal.x) < 0.4) 
-{
+        {
 
 			float along = (playerLocal.z - enterLocal.z) / (exitLocal.z - enterLocal.z);
-			Debug.Log (along);
+			//Debug.Log (along);
 			//Debug.Log (playerLocal.x + ", " + Vector3.Cross (transform.up, transform.forward) * transform.localScale.x);
 
 			playerLocal.x = Mathf.Lerp (enterLocal.x, exitLocal.x, along);
@@ -85,6 +85,6 @@ public class FunnelRamp : MonoBehaviour
     {
         this.enterPoint = player.transform.position;
         this.enterVelocity = player.GetComponent<Rigidbody>().velocity;
-        Debug.Log((player.transform.position - ExitPoint).magnitude);
+        //Debug.Log((player.transform.position - ExitPoint).magnitude);
     }
 }

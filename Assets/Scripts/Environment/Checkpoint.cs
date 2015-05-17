@@ -5,9 +5,8 @@ public class Checkpoint : MonoBehaviour {
 
     public GameObject spawn;
     public bool requireLanded = true;
-
-    public int CheckpointNumber;
-    public int ReplaySnapshot;
+    public int Index { get; set; }
+    public int SnapshotIndex { get; set; }
 
     void Start()
     {
@@ -27,11 +26,15 @@ public class Checkpoint : MonoBehaviour {
                 }
             }
         }
-     
+
         if (spawn.GetComponent<Renderer>() != null)
+        {
             spawn.GetComponent<Renderer>().enabled = false;
+        }
         if (spawn.GetComponent<Collider>() != null)
+        {
             spawn.GetComponent<Collider>().enabled = false;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
