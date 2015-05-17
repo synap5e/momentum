@@ -67,6 +67,11 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
+		if (Input.GetKeyDown(KeyCode.I))
+		{
+			Player.GetComponent<Recorder>().Save("tutorial");
+		}
+
 		if (Input.GetKeyDown(KeyCode.H))
 		{
 			CreateReplayGhost();
