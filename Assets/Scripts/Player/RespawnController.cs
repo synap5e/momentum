@@ -8,7 +8,16 @@ public class RespawnController : MonoBehaviour {
     private Vector3 initialPos;
     private Vector3 initialRot;
 
+    public float respawnTravelVelocity = 2;
+    public float minRespawnTime = 0.3f;
+
+
+    private float respawnTravelDuration = 0;
+    private Vector3 deathPosition;
+
     private Checkpoint defaultCheckpoint;
+    private bool respawning;
+    private Quaternion deathLook;
 
     public Checkpoint CurrentCheckpoint
     {
@@ -45,6 +54,37 @@ public class RespawnController : MonoBehaviour {
         {
             Respawn();
         }
+
+        Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
+        if (respawning)
+        {
+            respawnTravelDuration += Time.deltaTime;
+            if (Input.GetMouseButton(1))
+            {
+                // 5x faster animation is M2 held
+                respawnTravelDuration += Time.deltaTime * 4;
+            }
+            float respawnDistance = (CurrentCheckpoint.spawn.transform.position - deathPosition).magnitude;
+            float respawnTime = Mathf.Max(respawnDistance / respawnTravelVelocity, minRespawnTime);
+            if (respawnTravelDuration < respawnTime)
+            {
+                float t = respawnTravelDuration / respawnTime;
+                transform.position = Vector3.Lerp(deathPosition, CurrentCheckpoint.spawn.transform.position, t);
+                Quaternion spawnLook = Quaternion.Euler(new Vector3(0, CurrentCheckpoint.spawn.transform.localEulerAngles.y, 0));
+                Quaternion look = Quaternion.Slerp(deathLook, spawnLook, t * 2 - 1);
+
+                transform.localEulerAngles = new Vector3(0, look.eulerAngles.y, 0);
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles = new Vector3(look.eulerAngles.x, 0, 0);
+            } 
+            else
+            {
+                respawning = false;
+                GetComponent<RigidbodyFPSController>().enableInput = true;
+                transform.position = CurrentCheckpoint.spawn.transform.position;
+                transform.forward = CurrentCheckpoint.spawn.transform.forward;
+            }
+        }
+       
     }
 
     void OnCollisionEnter(Collision collision)
@@ -69,8 +109,14 @@ public class RespawnController : MonoBehaviour {
     {
         // TODO: fancy animations etc, inform feedback, show on debug etc.
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = CurrentCheckpoint.spawn.transform.position;
-        transform.forward = CurrentCheckpoint.spawn.transform.forward;
+  //      
+
+        respawnTravelDuration = 0;
+        deathPosition = transform.position;
+        deathLook = Quaternion.Euler(new Vector3(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x, transform.rotation.eulerAngles.y, 0));
+        respawning = true;
+        GetComponent<RigidbodyFPSController>().enableInput = false;
+        
 
         if (GetComponent<BombActivator>() != null)
             GetComponent<BombActivator>().ReactivateBombs();

@@ -6,7 +6,7 @@ using System.Collections;
 [RequireComponent(typeof(AirstrafeController))]
 [RequireComponent(typeof(DebugMovement))]
 
-// adapted from http://wiki.unity3d.com/index.php?title=RigidbodyFPSWalker
+// loosely adapted from http://wiki.unity3d.com/index.php?title=RigidbodyFPSWalker
 public class RigidbodyFPSController : MonoBehaviour
 {
 
@@ -16,7 +16,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     [Header("Basic Movement")]
     public float speed = 10.0f;
-    public float jumpForce = 10.0f;
+    public float jumpForce = 7.0f;
+    public int freeJumpTicks = 10;
 
     [Header("Air Movement")]
     public float aircontrolForce = 0.1f;
@@ -27,6 +28,7 @@ public class RigidbodyFPSController : MonoBehaviour
              "This allows the player 1/2 that time before hitting the ground and 1/2 after. " +
              "If they jump within this time they will not lose any velocity to friction.")]
     public float bunnyhopWindow = 0.2f;
+    public float rejumpTime = 0.5f;
     public bool autoBunnyhop = false;
 
 
@@ -46,6 +48,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     // number of ticks the player has been off the ground
     private int offGroundTicks;
+
+    private bool inJump = false;
 
     internal bool usingGroundedPhysics
     {
@@ -71,6 +75,7 @@ public class RigidbodyFPSController : MonoBehaviour
     private Vector3 incomingVel;
 
     private float surfaceFriction;
+    private bool onRamp;
 
     public bool enableInput { get; set; }
 
@@ -96,7 +101,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Update()
     {
-		Screen.lockCursor = true; // Unity 5 Cursor is bugged
+        Screen.lockCursor = true; // Unity 5 Cursor is bugged
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -115,11 +120,24 @@ public class RigidbodyFPSController : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(transform.TransformVector(new Vector3(0, 1200, 2000)));
             }
 
-            if (!doJump && (Input.GetButtonDown("Jump") || Input.GetButton("Jump") && autoBunnyhop))
+            if (Input.GetButtonDown("Jump"))
             {
-                doJump = true;
-                jumpQueuedTime = Time.time;
-                prematureJump = inAir;
+                if (doJump)
+                {
+                    if (Time.time - jumpQueuedTime > rejumpTime)
+                    {
+                        // jump was rejumpTime ago, allow a rejump
+                        jumpQueuedTime = Time.time;
+                        prematureJump = inAir;
+                    }
+                }
+                else
+                {
+                    // queue jump
+                    doJump = true;
+                    jumpQueuedTime = Time.time;
+                    prematureJump = inAir;
+                }
             }
         }
     }
@@ -140,7 +158,11 @@ public class RigidbodyFPSController : MonoBehaviour
         {
             if (!inAir)
             {
-                if (!PerformJump())
+                if (PerformJump())
+                {
+                    inJump = true;
+                }
+                else
                 {
                     // if we are not jumping then accellerate to our target velocity
                     AccellerateToDesired();
@@ -155,8 +177,9 @@ public class RigidbodyFPSController : MonoBehaviour
             }
         }
 
-        // We apply gravity manually for more tuning control
-        GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
+        // We apply gravity manually
+        if (!inJump || offGroundTicks > freeJumpTicks)
+            GetComponent<Rigidbody>().AddForce(Physics.gravity * 3.0f * GetComponent<Rigidbody>().mass);
 
     }
 
@@ -168,11 +191,11 @@ public class RigidbodyFPSController : MonoBehaviour
         //float height;
         if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
+            inAir = false;
+            inJump = false;
             if (onGroundTicks == 0)
             {
                 // first frame of being on the ground
-                inAir = false;
-
                 Vector3 incomingVelocity = GetComponent<Rigidbody>().velocity;
                 incomingVelocity.y = 0;
                 incomingVel = incomingVelocity;
@@ -189,17 +212,30 @@ public class RigidbodyFPSController : MonoBehaviour
             {
                 surfaceFriction = defaultSurfaceFriction;
             }
-            //Debug.Log(incomingVel);
+
+            if (hit.collider.gameObject.GetComponent<FunnelRamp>() != null)
+            {
+                if (!onRamp) hit.collider.GetComponent<FunnelRamp>().EnterRamp(this.gameObject);
+                onRamp = true;
+                hit.collider.GetComponent<FunnelRamp>().Accelerate(this.gameObject);
+                inAir = true;
+                onGroundTicks = 0;
+            }
+            else
+            {
+                onRamp = false;
+            }
 
             offGroundTicks = 0;
             onGroundTicks++;
         }
         else
         {
+            inAir = true;
             if (offGroundTicks == 0)
             {
                 // first frame of actually being in the air
-                inAir = true;
+
             }
             offGroundTicks++;
             onGroundTicks = 0;
@@ -244,9 +280,6 @@ public class RigidbodyFPSController : MonoBehaviour
 
     bool PerformJump()
     {
-        if (!doJump) return false;
-
-        doJump = false;
         if (autoBunnyhop)
         {
             if (!Input.GetButton("Jump")) return false;
@@ -254,8 +287,10 @@ public class RigidbodyFPSController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             return true;
         }
-        else
+        if (doJump)
         {
+            doJump = false;
+        
             float timeAgo = Time.time - jumpQueuedTime;
 
             Vector3 newvel = GetComponent<Rigidbody>().velocity;
@@ -303,14 +338,9 @@ public class RigidbodyFPSController : MonoBehaviour
                     GetComponent<Rigidbody>().velocity = newvel;
                     return true;
                 }
-
             }
-            /* Debug.Log("jump");
-             Vector3 newvel = GetComponent<Rigidbody>().velocity;
-             newvel.y = jumpForce;
-             GetComponent<Rigidbody>().velocity = newvel;// .AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-             return true;*/
         }
+        return false;
     }
 
     void ApplyTiltClamped(float cameraTilt, float lowerLimit, float upperLimit)

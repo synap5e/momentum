@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if UNITY_EDITOR
+using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using System.Net;
@@ -51,7 +52,7 @@ public class ShowRun : EditorWindow
 
     public void Callback(object obj)
     {
-        string url = "http://uint8.me:8196/run/" + obj;
+        string url = "http://uint8.me:443/run/" + obj;
         using (WebClient client = new WebClient())
         {
             string data = client.DownloadString(url);
@@ -112,7 +113,7 @@ public class ShowRun : EditorWindow
             disp = false;
             GenericMenu menu = new GenericMenu();
 
-            string url = "http://uint8.me:8196/runs/" + LevelHash();
+            string url = "http://uint8.me:443/runs/" + LevelHash();
             using (WebClient client = new WebClient())
             {
                 string s = client.DownloadString(url);
@@ -191,3 +192,4 @@ public class ShowRun : EditorWindow
         }*/
 }
 
+#endif
