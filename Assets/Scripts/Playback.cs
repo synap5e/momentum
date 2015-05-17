@@ -14,8 +14,6 @@ public class Playback : MonoBehaviour {
 
 	private float frameDuration;
 
-	private Animator playerAnimator;
-
 	private Recorder.Snapshot currentSnapshot;
 	private Recorder.Snapshot previousSnapshot;
 	private Recorder.Snapshot nextSnapshot;
@@ -25,6 +23,8 @@ public class Playback : MonoBehaviour {
 
 	public List<Recorder.Snapshot> Snapshots { get; set; }
 
+    private Checkpoint currentCheckpoint;
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,56 +32,67 @@ public class Playback : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Snapshots == null)
-		{
-			GameObject.FindObjectOfType<GameController>().RemoveGhost(gameObject);
-			return;
-		}
-		if (!playback)
-		{
-			return;
-		}
-		if (Snapshots == null || snapshotIndex > Snapshots.Count)
-		{
-			StopPlayback();
-			return;
-		}
-		if(wasPaused){
-			wasPaused = false;
-		} else {
-			frameDuration += Time.deltaTime;
-		}
-		if (frameDuration >= currentSnapshot.duration)
-		{
-			frameDuration -= currentSnapshot.duration;
-			moveToNextSnapshot();
-		}
-		if(nextSnapshot == null){
-			EndPlayback();
-			return;
-		}
+    void Update()
+    {
+        if (Snapshots == null)
+        {
+            GameObject.FindObjectOfType<GameController>().RemoveGhost(gameObject);
+            return;
+        }
+        if (!playback)
+        {
+            return;
+        }
+        if (Snapshots == null || snapshotIndex > Snapshots.Count)
+        {
+            StopPlayback();
+            return;
+        }
 
-		float framePercentageComplete = frameDuration / currentSnapshot.duration;
-		Vector3 previousPosition = previousSnapshot == null ? currentSnapshot.position : transform.position;
-		Vector3 nextPosition = Vector3.Lerp(currentSnapshot.position, nextSnapshot.position, framePercentageComplete);
+        bool pauseOnFrame = false;
+        Checkpoint playerCheckpoint = GameObject.FindObjectOfType<RespawnController>().CurrentCheckpoint;
+        if (currentCheckpoint != null && currentCheckpoint.Index > playerCheckpoint.Index && !currentSnapshot.inJump && Vector3.Dot(currentCheckpoint.spawn.transform.position - gameObject.transform.position, gameObject.transform.forward) < -1)
+        {
+            Debug.Log(string.Format("{0} vs {1}", currentCheckpoint.Index, playerCheckpoint.Index));
+            pauseOnFrame = true;
+        }
 
-		gameObject.transform.position = nextPosition;
-		gameObject.transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
+        if (wasPaused)
+        {
+            wasPaused = false;
+            pauseOnFrame = true;
 
-		float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
-		bool inAir = currentSnapshot.inJump;
+        }
+        if (!pauseOnFrame)
+        {
+            frameDuration += Time.deltaTime;
+        }
 
-		if (inAir)
-		{
-			instantaneousSpeed = 0f;
-		}
+        if (frameDuration >= currentSnapshot.duration)
+        {
+            frameDuration -= currentSnapshot.duration;
+            moveToNextSnapshot();
+        }
+        if (nextSnapshot == null)
+        {
+            EndPlayback();
+            return;
+        }
 
-		// TODO: add more logic to handle free-fall vs jump
+        float framePercentageComplete = frameDuration / currentSnapshot.duration;
+        Vector3 previousPosition = previousSnapshot == null ? currentSnapshot.position : transform.position;
+        Vector3 nextPosition = Vector3.Lerp(currentSnapshot.position, nextSnapshot.position, framePercentageComplete);
 
-		GetComponent<Animator>().SetBool(Animator.StringToHash("InJump"), inAir);
-		GetComponent<Animator>().SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, Time.deltaTime);
-	}
+        gameObject.transform.position = nextPosition;
+        gameObject.transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
+
+        float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
+        bool inAir = currentSnapshot.inJump;
+
+        // TODO: add more logic to handle free-fall vs jump
+        GetComponent<Animator>().SetBool(Animator.StringToHash("InJump"), inAir);
+        GetComponent<Animator>().SetFloat(Animator.StringToHash("Speed"), instantaneousSpeed * Speed, 0, Time.deltaTime);
+    }
 
 
 	void moveToNextSnapshot()
@@ -154,4 +165,12 @@ public class Playback : MonoBehaviour {
 	{
 		return Snapshots.First().rotation;
 	}
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ground" && other.gameObject.GetComponent<Checkpoint>() != null)
+        {
+            currentCheckpoint = other.gameObject.GetComponent<Checkpoint>();
+        }
+    }
 }
