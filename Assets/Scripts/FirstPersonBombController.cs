@@ -16,11 +16,12 @@ public class FirstPersonBombController : MonoBehaviour {
 		Animator anim = GetComponent<Animator>();
 		if (bombAc.nearBomb ()) {
 			anim.SetBool ("Near Bomb", true);
+			if (Input.GetMouseButtonDown (0))
+				anim.SetTrigger ("Click");
 		}
 		else anim.SetBool ("Near Bomb", false);
 
-		if (Input.GetMouseButtonDown (0))
-			anim.SetTrigger ("Click");
+	
 	
 	}
 }
