@@ -13,6 +13,7 @@ public class BombController : MonoBehaviour
     [Range(0, 10)]
     public float falloffDistance = 2;
 
+    public GameObject explosionPrefab;
 
     public float ExpandedMultiplier = 10f;
 
@@ -74,11 +75,13 @@ public class BombController : MonoBehaviour
     {
         if (detonated)
         {
-            float scaleTimePercent = (Time.time - detonatedTime) / animationScaleTime;
-            gameObject.transform.localScale = Vector3.Lerp(originalScale, explodedScale, scaleTimePercent);
-            Color currentColor = Color.red;
-            currentColor.a = Mathf.Lerp(1f, 0f, scaleTimePercent);
-            GetComponent<Renderer>().material.color = currentColor;
+          //  float scaleTimePercent = (Time.time - detonatedTime) / animationScaleTime;
+          //  gameObject.transform.localScale = Vector3.Lerp(originalScale, explodedScale, scaleTimePercent);
+          //  Color currentColor = Color.red;
+           // currentColor.a = Mathf.Lerp(1f, 0f, scaleTimePercent);
+          //  GetComponent<Renderer>().material.color = currentColor;
+
+           // GetComponent<Renderer>().enabled = true;
 
             if (Time.time > detonatedTime + respawnTime)
             {
@@ -106,7 +109,9 @@ public class BombController : MonoBehaviour
         detonatedTime = Time.time;
         originalColor = GetComponent<Renderer>().material.color;
 
-        //GetComponent<Renderer>().enabled = false;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        GetComponent<Renderer>().enabled = false;
     }
 
     internal void Respawn()
