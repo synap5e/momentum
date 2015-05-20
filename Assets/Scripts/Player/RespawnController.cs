@@ -62,7 +62,7 @@ public class RespawnController : MonoBehaviour {
             Respawn();
         }
 
-        Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
+ //       Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent< Camera>().transform.localEulerAngles.x);
         if (respawning)
         {
             respawnTravelDuration += Time.deltaTime;
