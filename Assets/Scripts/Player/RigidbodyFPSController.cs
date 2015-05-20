@@ -189,7 +189,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
         RaycastHit hit;
         //float height;
-        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
+        if (GetComponent<Rigidbody>().velocity.y < 0.1 && Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
             inAir = false;
             inJump = false;
