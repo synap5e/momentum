@@ -76,6 +76,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
     private float surfaceFriction;
     private bool onRamp;
+	private bool forceOffGround = false;
 
     public bool enableInput { get; set; }
 
@@ -189,7 +190,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
         RaycastHit hit;
         //float height;
-        if (Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
+		if (!forceOffGround && Physics.SphereCast(transform.position + Vector3.up, collider.radius, Vector3.down, out hit, 10, 1 << LayerMask.NameToLayer("Ground")) && (/*height = */transform.position.y - hit.point.y) < 0.1)
         {
             inAir = false;
             inJump = false;
@@ -240,6 +241,7 @@ public class RigidbodyFPSController : MonoBehaviour
             offGroundTicks++;
             onGroundTicks = 0;
         }
+		forceOffGround = false;
     }
 
     private void AirControl()
@@ -303,8 +305,10 @@ public class RigidbodyFPSController : MonoBehaviour
                     // although premature, jump was within the bhop window, so we allow it as a bhop
                     GetComponent<ActionFeedback>().EarlyBHop((int)Mathf.Round(timeAgo / Time.fixedDeltaTime));
 
-                    newvel.y = jumpForce;
+					forceOffGround = true;
+					newvel.y = jumpForce;
                     GetComponent<Rigidbody>().velocity = newvel;
+					//Debug.LogWarning("<color=blue>Bhop Velocity added back on (early bhop)</color>");
                     return true;
                 }
                 else
@@ -327,6 +331,7 @@ public class RigidbodyFPSController : MonoBehaviour
                     newvel = incomingVel;
                     newvel.y = jumpForce;
                     GetComponent<Rigidbody>().velocity = newvel;
+					//Debug.LogWarning("<color=blue>Bhop Velocity added back on (late bhop)</color>");
                     //GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                     return true;
                 }
