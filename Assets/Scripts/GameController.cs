@@ -77,10 +77,10 @@ public class GameController : MonoBehaviour {
 			CreateReplayGhost();
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.Quit();
-		}
+//		if (Input.GetKeyDown(KeyCode.Escape))
+//		{
+//			Application.Quit();
+//		}
 
         if (FollowReplay && replayGhost != null)
         {
