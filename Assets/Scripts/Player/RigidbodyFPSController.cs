@@ -298,7 +298,7 @@ public class RigidbodyFPSController : MonoBehaviour
             float timeAgo = Time.time - jumpQueuedTime;
 
             Vector3 newvel = GetComponent<Rigidbody>().velocity;
-            Debug.Log(bunnyhopWindow / Time.fixedDeltaTime);
+//            Debug.Log(bunnyhopWindow / Time.fixedDeltaTime);
             if (prematureJump)
             {
                 // jump was premature (fired while still airbourne)
