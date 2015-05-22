@@ -4,11 +4,11 @@ using System.Collections;
 public class ActionFeedback : MonoBehaviour {
     internal void EarlyBHop(int t)
     {
-        Debug.Log("early by " + t);
+//        Debug.Log("early by " + t);
     }
     internal void LateBHop(int t)
     {
-        Debug.Log("late by " + t);
+//        Debug.Log("late by " + t);
     }
 
     internal void FailedBHop()

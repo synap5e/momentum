@@ -20,6 +20,7 @@ public class RespawnController : MonoBehaviour {
     private bool respawning;
     private Quaternion deathLook;
     private GameObject deathOverlay;
+
    
 
     public Checkpoint CurrentCheckpoint
@@ -62,7 +63,7 @@ public class RespawnController : MonoBehaviour {
             Respawn();
         }
 
-        Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
+//        Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
         if (respawning)
         {
             respawnTravelDuration += Time.deltaTime;
@@ -136,5 +137,10 @@ public class RespawnController : MonoBehaviour {
         if (GetComponent<BombActivator>() != null)
             GetComponent<BombActivator>().ReactivateBombs();
     }
+
+	public void Restart(){
+		CurrentCheckpoint = defaultCheckpoint;
+		Respawn ();
+	}
 
 }
