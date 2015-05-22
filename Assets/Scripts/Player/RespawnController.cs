@@ -57,7 +57,7 @@ public class RespawnController : MonoBehaviour {
     void Update()
     {
         // check out of bounds - TODO: look into using world AABB or distance from closest object
-        if (transform.position.y < -500)
+        if (transform.position.y < -800)
         {
             Respawn();
         }
