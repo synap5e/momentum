@@ -6,18 +6,28 @@ public class Pause : MonoBehaviour {
 	public GameObject pauseMenu;
 	public GameObject quitMenu;
 	public GameObject settingsMenu;
+
 	public GameObject pauseMenuBG;
 	public GameObject quitMenuBG;
 	public GameObject settingsMenuBG;
+
 	public GameObject player;
 	public GameObject gameController;
+
+	public GameObject hands;
+	public GameObject feet;
+
 	public bool isPause;
+	private bool inQuitMenu = false;
+	private bool inSettingsMenu = false;
 
 
 	void Start () {
 		pauseMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
 		quitMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
+		settingsMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
 		isPause = false;
+		settingsMenu.SetActive (false);
 		pauseMenu.SetActive(false);
 		quitMenu.SetActive (false);
 	}
@@ -25,10 +35,18 @@ public class Pause : MonoBehaviour {
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{
-			isPause = !isPause;
-			if(isPause){
+
+			if(!isPause){
 				PausePlay();
+				isPause = !isPause;
 			}
+			else if(inQuitMenu){
+				QuitGameNo();
+			}
+			else if(inSettingsMenu){
+				SettingsReturn();
+			}
+
 			else{
 				ResumePlay();
 			}
@@ -62,15 +80,18 @@ public class Pause : MonoBehaviour {
 	public void SettingsMenu(){
 		pauseMenu.SetActive (false);
 		settingsMenu.SetActive (true);
+		inSettingsMenu = true;
 	}
 	public void SettingsReturn(){
 		pauseMenu.SetActive (true);
 		settingsMenu.SetActive (false);
+		inSettingsMenu = false;
 	}
 
 	public void QuitMenu(){
 		pauseMenu.SetActive (false);
 		quitMenu.SetActive (true);
+		inQuitMenu = true;
 	}
 
 	public void QuitGameYes(){
@@ -81,6 +102,12 @@ public class Pause : MonoBehaviour {
 	public void QuitGameNo(){
 		pauseMenu.SetActive (true);
 		quitMenu.SetActive (false);
+		inQuitMenu = false;
+	}
+
+	public void showViewModel(bool show){
+		hands.SetActive (show);
+		feet.SetActive (show);
 	}
 
 }

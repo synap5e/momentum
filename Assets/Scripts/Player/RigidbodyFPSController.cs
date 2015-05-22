@@ -12,7 +12,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     [Header("Input")]
     [Range(0.01f, 20f)]
-    public float mouseSensitivity = 5F;
+    public float mouseSensitivity = 5F;	
+	public UnityEngine.UI.Text sensitivityText;
 
     [Header("Basic Movement")]
     public float speed = 10.0f;
@@ -367,5 +368,10 @@ public class RigidbodyFPSController : MonoBehaviour
         }
         viewCamera.transform.localEulerAngles = new Vector3(newTilt, 0, 0);
     }
+
+	public void changeSensitivity(float sens){
+		mouseSensitivity = sens;
+		sensitivityText.text =sens.ToString("#.#");
+	}
 
 }
