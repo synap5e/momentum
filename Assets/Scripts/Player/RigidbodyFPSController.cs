@@ -51,6 +51,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     private bool inJump = false;
 
+	public bool disableMouse = true;
+
     internal bool usingGroundedPhysics
     {
         get
@@ -101,9 +103,11 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Update()
     {
-        Screen.lockCursor = true; // Unity 5 Cursor is bugged
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+		if (disableMouse) {
+			Screen.lockCursor = true; // Unity 5 Cursor is bugged
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
 
         if (enableInput)
         {
