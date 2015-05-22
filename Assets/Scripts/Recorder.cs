@@ -10,9 +10,13 @@ public class Recorder : MonoBehaviour {
 	public float recordingFrameDurationMin;
 	public List<Snapshot> snapshotList {get; set;}
 	public List<KeyRecording> keylist {get; set;}
-	private bool recording = false;
 	public bool recordKeys = true;
+	public UnityEngine.UI.Text timeText;
+
+	private bool recording = false;
 	private float frameDuration;
+	private float time;
+	private float startTime;
 
 	public bool IsRecording
 	{
@@ -22,9 +26,14 @@ public class Recorder : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		startTime = Time.time;
+	}
+
 	public Recorder(){
 		keylist = new List<KeyRecording>();
 		snapshotList = new List<Snapshot> ();
+
 	}
 
 	public class Snapshot{
@@ -59,11 +68,15 @@ public class Recorder : MonoBehaviour {
 	}
     
 	void Update(){
-		if (recording) 
+		if (recording)
 			RecordSnapshot();
+
 	}
 
 	public void RecordSnapshot(){
+		time = Time.time - startTime;
+		timeText.text = time.ToString ("#.##");
+
 		frameDuration += Time.deltaTime;
 		if (frameDuration > recordingFrameDurationMin) {
 			Vector3 position = transform.position;
@@ -128,6 +141,8 @@ public class Recorder : MonoBehaviour {
 	public void ResetRecording(){
 		snapshotList = new List<Snapshot> ();
 		recording = true;
+		startTime = Time.time;
+		time = 0f;
 	}
 
 	public void StartLoggingKeys(){
