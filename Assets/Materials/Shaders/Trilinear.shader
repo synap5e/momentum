@@ -17,11 +17,13 @@ Shader "Tri-Planar World" {
 			"RenderType"="Opaque"
 		}
  
+		LOD 200
 		Cull Back
 		ZWrite On
 		
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf Standard fullforwardshadows
+		#pragma target 3.0
 		#pragma exclude_renderers flash
  
 		sampler2D _Side, _Top, _Bottom;
@@ -33,7 +35,7 @@ Shader "Tri-Planar World" {
 			float3 worldNormal;
 		};
 			
-		void surf (Input IN, inout SurfaceOutput o) {
+		void surf (Input IN, inout SurfaceOutputStandard o) {
 			float3 projNormal = saturate(pow(IN.worldNormal * 1.4, 4));
 			
 			// SIDE X
