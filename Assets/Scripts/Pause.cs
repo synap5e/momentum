@@ -59,6 +59,7 @@ public class Pause : MonoBehaviour {
 		player.GetComponent<RigidbodyFPSController> ().disableMouse = false;
 		player.GetComponent<RigidbodyFPSController> ().enableInput = false;
 		player.GetComponent<Recorder> ().StopRecording ();
+		player.GetComponent<AudioController> ().PauseAudio ();
 		Screen.lockCursor = false; // Unity 5 Cursor is bugged
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.Confined;
@@ -70,6 +71,7 @@ public class Pause : MonoBehaviour {
 		player.GetComponent<RigidbodyFPSController> ().disableMouse = true;
 		player.GetComponent<RigidbodyFPSController> ().enableInput = true;
 		player.GetComponent<Recorder> ().StartRecording ();
+		player.GetComponent<AudioController> ().PlayAudio ();
 		isPause = false;
 	}
 
