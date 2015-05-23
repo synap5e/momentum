@@ -12,7 +12,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
     [Header("Input")]
     [Range(0.01f, 20f)]
-    public float mouseSensitivity = 5F;
+    public float mouseSensitivity = 5F;	
+	public UnityEngine.UI.Text sensitivityText;
 
     [Header("Basic Movement")]
     public float speed = 10.0f;
@@ -50,6 +51,8 @@ public class RigidbodyFPSController : MonoBehaviour
     private int offGroundTicks;
 
     private bool inJump = false;
+
+	public bool disableMouse = true;
 
     internal bool usingGroundedPhysics
     {
@@ -101,9 +104,11 @@ public class RigidbodyFPSController : MonoBehaviour
 
     void Update()
     {
-        Screen.lockCursor = true; // Unity 5 Cursor is bugged
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+		if (disableMouse) {
+			Screen.lockCursor = true; // Unity 5 Cursor is bugged
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
 
         if (enableInput)
         {
@@ -294,7 +299,7 @@ public class RigidbodyFPSController : MonoBehaviour
             float timeAgo = Time.time - jumpQueuedTime;
 
             Vector3 newvel = GetComponent<Rigidbody>().velocity;
-            Debug.Log(bunnyhopWindow / Time.fixedDeltaTime);
+//            Debug.Log(bunnyhopWindow / Time.fixedDeltaTime);
             if (prematureJump)
             {
                 // jump was premature (fired while still airbourne)
@@ -363,5 +368,10 @@ public class RigidbodyFPSController : MonoBehaviour
         }
         viewCamera.transform.localEulerAngles = new Vector3(newTilt, 0, 0);
     }
+
+	public void changeSensitivity(float sens){
+		mouseSensitivity = sens;
+		sensitivityText.text =sens.ToString("#.#");
+	}
 
 }

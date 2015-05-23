@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
 	private GameObject replayGhost;
 
 	private bool inPlaybackMode = false;
+	private bool inMenuMode = false;
 
 	private Vector3 cameraOffset = new Vector3(0f, 4f, -4f);
 
@@ -126,10 +127,10 @@ public class GameController : MonoBehaviour {
 			Player.GetComponent<Recorder>().Save("tutorial");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.Quit();
-		}
+//		if (Input.GetKeyDown(KeyCode.Escape))
+//		{
+//			Application.Quit();
+//		}
 
         if (FollowReplay && replayGhost != null)
         {

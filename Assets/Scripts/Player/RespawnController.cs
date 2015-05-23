@@ -20,6 +20,7 @@ public class RespawnController : MonoBehaviour {
     private bool respawning;
     private Quaternion deathLook;
     private GameObject deathOverlay;
+
    
 
     public Checkpoint CurrentCheckpoint
@@ -137,5 +138,10 @@ public class RespawnController : MonoBehaviour {
         if (GetComponent<BombActivator>() != null)
             GetComponent<BombActivator>().ReactivateBombs();
     }
+
+	public void Restart(){
+		CurrentCheckpoint = defaultCheckpoint;
+		Respawn ();
+	}
 
 }
