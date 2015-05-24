@@ -58,12 +58,14 @@ public class RespawnController : MonoBehaviour {
     void Update()
     {
         // check out of bounds - TODO: look into using world AABB or distance from closest object
-        if (transform.position.y < -100)
+        if (transform.position.y < -800)
         {
             Respawn();
         }
 
-//        Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
+
+        //Debug.Log(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().transform.localEulerAngles.x);
+
         if (respawning)
         {
             respawnTravelDuration += Time.deltaTime;
