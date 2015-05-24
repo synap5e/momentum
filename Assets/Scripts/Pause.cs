@@ -34,8 +34,7 @@ public class Pause : MonoBehaviour {
 	
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Escape))
-		{
-			
+		{			
 			if(!isPause){
 				PausePlay();
 				isPause = !isPause;
@@ -60,6 +59,7 @@ public class Pause : MonoBehaviour {
 		player.GetComponent<RigidbodyFPSController> ().enableInput = false;
 		player.GetComponent<Recorder> ().StopRecording ();
 		player.GetComponent<AudioController> ().PauseAudio ();
+		Goal.paused = true;
 		Screen.lockCursor = false; // Unity 5 Cursor is bugged
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.Confined;
@@ -72,6 +72,7 @@ public class Pause : MonoBehaviour {
 		player.GetComponent<RigidbodyFPSController> ().enableInput = true;
 		player.GetComponent<Recorder> ().StartRecording ();
 		player.GetComponent<AudioController> ().PlayAudio ();
+		Goal.paused = false;
 		isPause = false;
 	}
 	
@@ -115,6 +116,7 @@ public class Pause : MonoBehaviour {
 	public void MainMenu(){
 		Time.timeScale = 1;
 		Application.LoadLevel ("Main Menu");
+		Goal.paused = false;
 	}
 	
 	
