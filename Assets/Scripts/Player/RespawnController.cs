@@ -36,7 +36,7 @@ public class RespawnController : MonoBehaviour {
     }
 
 
-    void Start()
+    void Awake()
     {
         GameObject defaultSpawn = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         defaultSpawn.transform.position = transform.position;
@@ -45,6 +45,11 @@ public class RespawnController : MonoBehaviour {
         defaultCheckpoint = gameObject.AddComponent<Checkpoint>();
         defaultCheckpoint.spawn = defaultSpawn;
         defaultCheckpoint.Index = defaultCheckpoint.SnapshotIndex = 0;
+    }
+
+    void Start()
+    {
+
 
         foreach (GameObject respawn in GameObject.FindGameObjectsWithTag("Respawn"))
         {

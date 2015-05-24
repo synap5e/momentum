@@ -153,7 +153,6 @@ public class GameController : MonoBehaviour {
 		replayGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = replayGhost.GetComponent<Playback>();
 		playback.Snapshots = Recorder.LoadSnapshots(ReplayFile.text);
-        var test = Player.GetComponent<RespawnController>();
         playback.SetPlaybackPosition(Player.GetComponent<RespawnController>().CurrentCheckpoint.SnapshotIndex);
 		playback.StartPlayback();
 	}
