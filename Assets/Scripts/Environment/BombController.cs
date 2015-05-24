@@ -66,7 +66,7 @@ public class BombController : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<Renderer>().material.color = originalColor = Color.white;
+        //GetComponent<Renderer>().material.color = originalColor = Color.white;
         originalScale = gameObject.transform.localScale;
         explodedScale = originalScale * ExpandedMultiplier;
     }
@@ -92,14 +92,14 @@ public class BombController : MonoBehaviour
 
     internal void Select()
     {
-        GetComponent<Renderer>().material.color = Color.green;
+        //GetComponent<Renderer>().material.color = Color.green;
         // TODO
     }
 
     internal void Deselect()
     {
         // TODO
-        GetComponent<Renderer>().material.color = Color.white;
+        //GetComponent<Renderer>().material.color = Color.white;
     }
 
     internal void Detonate()
@@ -107,19 +107,19 @@ public class BombController : MonoBehaviour
         // TODO: animations and stuffs
         detonated = true;
         detonatedTime = Time.time;
-        originalColor = GetComponent<Renderer>().material.color;
+        //originalColor = GetComponent<Renderer>().material.color;
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-        GetComponent<Renderer>().enabled = false;
+        GetComponentInChildren<Renderer>().enabled = false;
     }
 
     internal void Respawn()
     {
         detonated = false;
-        GetComponent<Renderer>().enabled = true;
+        GetComponentInChildren<Renderer>().enabled = true;
         gameObject.transform.localScale = originalScale;
-        GetComponent<Renderer>().material.color = originalColor;
+        //GetComponent<Renderer>().material.color = originalColor;
     }
 
     public bool detonatable

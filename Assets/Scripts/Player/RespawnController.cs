@@ -139,7 +139,7 @@ public class RespawnController : MonoBehaviour {
         GetComponent<RigidbodyFPSController>().enableInput = false;
         GetComponent<Collider>().enabled = false;
 
-//        deathOverlay.SetActive(true);
+        DeathOverlay.SetActive(true);
         DeathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(1f, deathOverlayCrossfadeTime, false);
 
         if (GetComponent<BombActivator>() != null)
