@@ -110,4 +110,9 @@ public class Pause : MonoBehaviour {
 		feet.SetActive (show);
 	}
 
+	public void MainMenu(){
+		Application.LoadLevel ("Main Menu");
+	}
+
+
 }
