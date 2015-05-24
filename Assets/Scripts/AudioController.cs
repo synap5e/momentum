@@ -68,9 +68,12 @@ public class AudioController : MonoBehaviour {
 				landingSource.Play();
 				inJump = false;
 			}
-			else if (moving && !inJump && !runningSource.isPlaying){
+			else if (moving && !inJump && !jumping && !runningSource.isPlaying ){
 				pantingSource.Stop ();
 				runningSource.Play ();
+			}
+			else if (moving && !inJump && jumping){
+				runningSource.Stop ();
 			}
 			else if(!moving && !pantingSource.isPlaying){
 				runningSource.Stop ();
