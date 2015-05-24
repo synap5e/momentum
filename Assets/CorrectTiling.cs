@@ -3,22 +3,26 @@ using System.Collections;
 
 [ExecuteInEditMode]
 public class CorrectTiling : MonoBehaviour {
-    public Material material;
+    public Material Material;
+    public bool ApplyRotation = false;
+    public bool ApplyPosition = false;
 
 	// Use this for initialization
 	void Start () {
-        GetComponent<Renderer>().material = new Material(material);
+        GetComponent<Renderer>().material = new Material(Material);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-        if (transform.localScale.x == 1)
+        if (ApplyRotation)
+        {
+            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
+        }
+        if (ApplyPosition)
         {
             transform.Translate(new Vector3(0, 0, 1) * Time.deltaTime, Space.World);
         }
         Matrix4x4 m = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-        Debug.Log(m);
         GetComponent<Renderer>().material.SetMatrix("_Transform", m);
 	}
 }

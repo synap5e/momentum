@@ -2,15 +2,17 @@ Shader "Tri-Planar World" {
   Properties {
 		_MainTex("Texture", 2D) = "white" {}
 		_Scale("Scale", Float) = 2
-		_BumpMap("Bumpmap", 2D) = "white" {}
+		_BumpMap("Bumpmap", 2D) = "bump" {}
 		_BumpScale("Bumpmap Scale", Float) = 2
 		_Color ("Color", Color) = (1,1,1,1)
+
+		_RimColor ("Rim Color", Color) = (0.26,0.19,0.16,0.0)
+		_RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
+
 	}
 	
 	SubShader {
 		Tags {
-			"Queue"="Geometry"
-			"IgnoreProjector"="False"
 			"RenderType"="Opaque"
 		}
  
@@ -18,30 +20,36 @@ Shader "Tri-Planar World" {
 		ZWrite On
 		
 		CGPROGRAM
-		#pragma surface surf Standard fullforwardshadows
 		#pragma target 3.0
+		#pragma multi_compile_builtin
+
+		#pragma surface surf Standard fullforwardshadows vertex:vert
 		#pragma exclude_renderers flash
  
 		sampler2D _MainTex, _BumpMap;
-		float _Scale, _BumpScale;
-		fixed4 _Color;
+		float _Scale, _BumpScale, _RimPower;
+		fixed4 _Color, _RimColor;
 		float4x4 _Transform;
 		
 		struct Input {
+			float2 uv_MainTex;
+			float2 uv_BumpMap;
+			float3 viewDir;
+			float3 normalW;
 			float3 worldPos;
 			float3 worldNormal; INTERNAL_DATA
 		};
 			
+		void vert (inout appdata_full v, out Input o){
+			UNITY_INITIALIZE_OUTPUT(Input, o);
+			o.normalW = mul((float3x3)_Object2World, v.normal);
+		}
+
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 				
-			//float3 projNormal = saturate(abs(IN.worldNormal));
-			//float3 projNormal = saturate(IN.worldNormal);
-			//float3 localPos = mul(float4(IN.worldPos.x, IN.worldPos.y, IN.worldPos.z, 0), _Transform);
-			float3 projNormal = saturate(abs(mul(IN.worldNormal, (float3x3) _Transform)));
+			float3 projNormal = saturate(abs(mul(IN.normalW, (float3x3) _Transform)));
 
 			float3 localPos = mul(IN.worldPos - float3(_Transform[0][3], _Transform[1][3], _Transform[2][3]), (float3x3) _Transform);
-			//float3 localPos = mul(IN.worldPos, (float3x3) _Transform);
-			//float3 projNormal = saturate(abs(mul(IN.worldNormal, (float3x3) _Transform)));
 
 			// X sides
 			float3 main_x = tex2D(_MainTex, frac(localPos.zy * _Scale));
@@ -58,18 +66,10 @@ Shader "Tri-Planar World" {
 			o.Albedo = lerp(main_z, main_x, projNormal.x);
 			o.Albedo = lerp(o.Albedo, main_y, projNormal.y);
 			o.Albedo = o.Albedo * _Color;
-			//o.Albedo =  _Color;
 
-			
-			//if(projNormal.x >=0.9f){
-			//	o.Albedo = _Color;
-			//}
+			o.Normal = lerp(bump_z, bump_x, projNormal.x);
+			o.Normal = lerp(o.Normal, bump_y, projNormal.y);
 
-			if(projNormal.x >=0.9f){
-				//o.Normal = bump_x;
-			}
-			//o.Normal = lerp(bump_z, bump_x, projNormal.x);
-			//o.Normal = lerp(o.Normal, bump_y, projNormal.y);
 		}  
 		ENDCG
 	}
