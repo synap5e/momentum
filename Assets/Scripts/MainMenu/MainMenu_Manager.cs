@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class MainMenu_Controller : MonoBehaviour {
+public class MainMenu_Manager : MonoBehaviour {
 
 
 	public GameObject fader;
@@ -35,9 +35,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		}
 
 	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 
 
@@ -65,7 +63,9 @@ public class MainMenu_Controller : MonoBehaviour {
 		mainMenu.SetActive(true);
 	}
 
-
+	public void ChangeScene (int sceneToChangeTo) {
+		Application.LoadLevel (sceneToChangeTo);	
+	}
 
 
 	public void ModeMenu(){
