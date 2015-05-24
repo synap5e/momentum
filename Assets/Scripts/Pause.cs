@@ -109,12 +109,11 @@ public class Pause : MonoBehaviour {
 		hands.SetActive (show);
 		feet.SetActive (show);
 	}
-
-<<<<<<< HEAD
+	
 	public void MainMenu(){
 		Application.LoadLevel ("Main Menu");
+		Debug.Log ("Main menu");
 	}
+	
+	
 }
-=======
-}
->>>>>>> origin/main-menu-regan

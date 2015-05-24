@@ -9,22 +9,17 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject canvas;
 	public GameObject momentumTitle;
 	public float fadeSpeed = 5f;
-
 	
 	public GameObject mainMenu;
-	public GameObject modeMenu;
-		
-
-	private bool inModeMenu = false;
-
-<<<<<<< HEAD
+	public GameObject modeMenu;	
+	public GameObject levelSelectMenu;
+	
 	//	private bool inModeMenu = false;
 	private bool fadedIn = false;
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
-=======
->>>>>>> origin/main-menu-regan
-
+	
+	
 	// Use this for initialization
 	void Awake () {
 		canvas.gameObject.active = true;
@@ -32,31 +27,19 @@ public class MainMenu_Controller : MonoBehaviour {
 		
 		mainMenu.SetActive(false); //set to true for testing.
 		modeMenu.SetActive (false);
-
-
+		levelSelectMenu.SetActive (false);
+		
 		fader = GameObject.Find("ScreenFader");
-<<<<<<< HEAD
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
-//		DontDestroyOnLoad (this);
+		DontDestroyOnLoad (this);
 	}
-
-	void TitleOff () {
-=======
-	fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
-
-		}
-
+	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
-
-
-
-
-	 void TitleOff () {
->>>>>>> origin/main-menu-regan
+	
+	void TitleOff () {
 		momentumTitle.gameObject.active = false;
 	}
 	
@@ -73,57 +56,48 @@ public class MainMenu_Controller : MonoBehaviour {
 	}
 	
 	void TextFadeIn () {
-		mainMenu.SetActive(true);
+		if (!fadedIn) {
+			mainMenu.SetActive (true);
+			fadedIn = true;
+		}
 	}
-
-
-
-
+	
 	public void ModeMenu(){
-		mainMenu.SetActive (false);
 		modeMenu.SetActive (true);
-		inModeMenu = true;
-	}
-	public void ModeReturn(){
-		mainMenu.SetActive (true);
-		modeMenu.SetActive (false);
-<<<<<<< HEAD
+		mainMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
 	}
-
+	
+	public void MainMenu(){
+		mainMenu.SetActive (true);
+		modeMenu.SetActive (false);
+		levelSelectMenu.SetActive (false);
+	}
+	
 	public void LevelSelect(){
 		levelSelectMenu.SetActive (true);
 		mainMenu.SetActive (false);
 		modeMenu.SetActive (false);
 	}
-
+	
 	public void setMode(int mode){
 		currentMode = mode;
 		if (currentLevel ==0) Application.LoadLevel ("Eliot Tutorial");
 		else if (currentLevel ==1) Application.LoadLevel ("Eliot 2");
 		else if (currentLevel ==2) Application.LoadLevel ("Eliot 3");
 		else Application.LoadLevel ("Eliot-hard");
-=======
-		inModeMenu = false;
->>>>>>> origin/main-menu-regan
 	}
 	
 	public void QuitGameYes(){
 		Application.Quit();
 		Debug.Log ("Quit");
 	}
-
-<<<<<<< HEAD
+	
 	public void setLevel(int levelNumber){
 		currentLevel = levelNumber;
 		ModeMenu ();
 	}
 }
-=======
-
-}
 
 
 
-
->>>>>>> origin/main-menu-regan
