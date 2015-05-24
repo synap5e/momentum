@@ -6,7 +6,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	
 	public GameObject fader;
-	public GameObject canvas;
+//	public GameObject canvas;
 	public GameObject momentumTitle;
 	public float fadeSpeed = 5f;
 	
@@ -22,7 +22,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	// Use this for initialization
 	void Awake () {
-		canvas.gameObject.active = true;
+//		canvas.gameObject.active = true;
 		fader.gameObject.active = true;
 		
 		mainMenu.SetActive(false); //set to true for testing.

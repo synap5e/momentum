@@ -112,7 +112,6 @@ public class Pause : MonoBehaviour {
 	
 	public void MainMenu(){
 		Application.LoadLevel ("Main Menu");
-		Debug.Log ("Main menu");
 	}
 	
 	
