@@ -31,7 +31,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		
 		fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
-		DontDestroyOnLoad (this);
+//		DontDestroyOnLoad (this);
 	}
 	
 	// Update is called once per frame
