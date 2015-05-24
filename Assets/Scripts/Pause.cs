@@ -110,7 +110,11 @@ public class Pause : MonoBehaviour {
 		feet.SetActive (show);
 	}
 
+<<<<<<< HEAD
 	public void MainMenu(){
 		Application.LoadLevel ("Main Menu");
 	}
 }
+=======
+}
+>>>>>>> origin/main-menu-regan
