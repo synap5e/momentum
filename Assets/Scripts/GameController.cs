@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GameController : MonoBehaviour {
-
-
 	public GameObject Player;
-	public GameObject FirstPersonCamera;
+    public GameObject FirstPersonCameraPrefab;
 	public GameObject ThirdPersonCamera;
 
 	public GameObject GhostPlayerPrefab;
@@ -27,9 +25,12 @@ public class GameController : MonoBehaviour {
 
     public bool FollowReplay = false;
 
+    private GameObject FirstPersonCamera;
+
     void Awake()
     {
-
+        FirstPersonCamera = Instantiate(FirstPersonCameraPrefab);
+        FirstPersonCamera.transform.SetParent(Player.transform);
 	}
 
     private void InitialiseCheckpointsIntoReplay()

@@ -87,8 +87,6 @@ public class RigidbodyFPSController : MonoBehaviour
     {
         SceneLint.Lint();
 
-        viewCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
         GetComponent<Rigidbody>().freezeRotation = true;
         GetComponent<Rigidbody>().useGravity = false;
 
@@ -101,6 +99,12 @@ public class RigidbodyFPSController : MonoBehaviour
         surfaceFriction = defaultSurfaceFriction;
 
         enableInput = true;
+    }
+
+    void Start()
+    {
+
+        viewCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Update()
