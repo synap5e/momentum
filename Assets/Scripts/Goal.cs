@@ -17,6 +17,8 @@ public class Goal : MonoBehaviour
 
     public GameObject ghostPrefab;
 
+	static public bool paused = false;
+
     private float countdownRemaining;
     private float time;
 
@@ -41,6 +43,16 @@ public class Goal : MonoBehaviour
     {
         this.spos = playerController.transform.position;
         this.srot = playerController.transform.rotation;
+		if (MainMenu_Controller.currentMode == 0) {
+			Debug.Log ("Playing Normal Mode");
+			playMode = Mode.Normal;
+		} else {
+			Debug.Log ("Playing Speedrun Mode");
+			playMode = Mode.Speedrun;
+		}
+
+
+
 
         if (playMode == Mode.Speedrun)
         {
@@ -83,58 +95,49 @@ public class Goal : MonoBehaviour
 
     void Update()
     {
-        if (playMode == Mode.Speedrun)
-        {
-            if (Input.GetButtonDown("Restart Level"))
-            {
-                RestartSpeedrun();
-            }
-            if (playerController.enableInput)
-            {
-                if (!complete)
-                {
-                    time += Time.deltaTime;
-                }
-            }
-            else
-            {
-                countdownRemaining -= Time.deltaTime;
-                if (countdownRemaining <= 0)
-                {
-                    playerController.enableInput = true;
-                }
+		if (!paused) {
+			if (playMode == Mode.Speedrun) {
+				if (Input.GetButtonDown ("Restart Level")) {
+					RestartSpeedrun ();
+				}
+				if (playerController.enableInput) {
+					if (!complete) {
+						time += Time.deltaTime;
+					}
+				} else {
+					countdownRemaining -= Time.deltaTime;
+					if (countdownRemaining <= 0) {
+						playerController.enableInput = true;
+					}
 
-            }
-        }
+				}
+			}
 
-        if (Input.GetKeyDown(KeyCode.Home))
-        {
-            playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            playerController.transform.position = spos;
-            playerController.transform.rotation = srot;
+			if (Input.GetKeyDown (KeyCode.Home)) {
+				playerController.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+				playerController.transform.position = spos;
+				playerController.transform.rotation = srot;
 
-            playerController.GetComponent<Recorder>().StopRecording();
+				playerController.GetComponent<Recorder> ().StopRecording ();
 
-            string run = playerController.GetComponent<Recorder>().SaveToString();
-            StartCoroutine(PostRun(run));
+				string run = playerController.GetComponent<Recorder> ().SaveToString ();
+				StartCoroutine (PostRun (run));
 
-            playerController.GetComponent<Recorder>().ResetRecording();
-        }
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-            playerController.GetComponent<Recorder>().StopRecording();
+				playerController.GetComponent<Recorder> ().ResetRecording ();
+			}
+			if (Input.GetKeyDown (KeyCode.End)) {
+				playerController.GetComponent<Recorder> ().StopRecording ();
 
-            string run = playerController.GetComponent<Recorder>().SaveToString();
-            StartCoroutine(PostRun(run));
+				string run = playerController.GetComponent<Recorder> ().SaveToString ();
+				StartCoroutine (PostRun (run));
 
-            playerController.GetComponent<Recorder>().ResetRecording();
-        }
+				playerController.GetComponent<Recorder> ().ResetRecording ();
+			}
 
-        if (Input.GetKeyDown(KeyCode.PageUp) || Input.GetKeyDown(KeyCode.PageDown))
-        {
-            playerIndex++;
-        }
-
+			if (Input.GetKeyDown (KeyCode.PageUp) || Input.GetKeyDown (KeyCode.PageDown)) {
+				playerIndex++;
+			}
+		}
     }
 
     private void RestartSpeedrun()
