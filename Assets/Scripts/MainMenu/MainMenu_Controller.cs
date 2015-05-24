@@ -13,6 +13,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject mainMenu;
 	public GameObject modeMenu;	
 	public GameObject levelSelectMenu;
+	public GameObject creditsMenu;
 	
 	//	private bool inModeMenu = false;
 	private bool fadedIn = false;
@@ -27,6 +28,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		mainMenu.SetActive(false); //set to true for testing.
 		modeMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
+		creditsMenu.SetActive (false);
 		
 		fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
@@ -65,16 +67,26 @@ public class MainMenu_Controller : MonoBehaviour {
 		modeMenu.SetActive (true);
 		mainMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
+		creditsMenu.SetActive (false);
 	}
 	
 	public void MainMenu(){
 		mainMenu.SetActive (true);
 		modeMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
+		creditsMenu.SetActive (false);
 	}
 	
 	public void LevelSelect(){
 		levelSelectMenu.SetActive (true);
+		mainMenu.SetActive (false);
+		modeMenu.SetActive (false);
+		creditsMenu.SetActive (false);
+	}
+
+	public void Credits(){
+		creditsMenu.SetActive (true);
+		levelSelectMenu.SetActive (false);
 		mainMenu.SetActive (false);
 		modeMenu.SetActive (false);
 	}
