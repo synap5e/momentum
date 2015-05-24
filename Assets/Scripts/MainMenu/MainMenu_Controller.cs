@@ -19,7 +19,6 @@ public class MainMenu_Controller : MonoBehaviour {
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
 	
-	
 	// Use this for initialization
 	void Awake () {
 //		canvas.gameObject.active = true;
@@ -97,6 +96,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		currentLevel = levelNumber;
 		ModeMenu ();
 	}
+
 }
 
 

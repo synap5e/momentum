@@ -111,6 +111,7 @@ public class Pause : MonoBehaviour {
 	}
 	
 	public void MainMenu(){
+		Time.timeScale = 1;
 		Application.LoadLevel ("Main Menu");
 	}
 	
