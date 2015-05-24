@@ -41,16 +41,6 @@ public class Goal : MonoBehaviour
     {
         this.spos = playerController.transform.position;
         this.srot = playerController.transform.rotation;
-		if (MainMenu_Controller.currentMode == 0) {
-			Debug.Log ("Playing Normal Mode");
-			playMode = Mode.Normal;
-		} else {
-			Debug.Log ("Playing Speedrun Mode");
-			playMode = Mode.Speedrun;
-		}
-
-
-
 
         if (playMode == Mode.Speedrun)
         {
