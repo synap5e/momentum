@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -64,11 +67,18 @@ public class BombController : MonoBehaviour
     private bool detonated = false;
     private float detonatedTime;
 
+    private List<Renderer> renderers; 
+
     void Awake()
     {
         //GetComponent<Renderer>().material.color = originalColor = Color.white;
         originalScale = gameObject.transform.localScale;
         explodedScale = originalScale * ExpandedMultiplier;
+    }
+
+    void Start()
+    {
+        renderers = GetComponentsInChildren<Renderer>().ToList();
     }
 
     void Update()
@@ -92,34 +102,31 @@ public class BombController : MonoBehaviour
 
     internal void Select()
     {
-        //GetComponent<Renderer>().material.color = Color.green;
-        // TODO
+        GetComponentInChildren<Animator>().SetBool(Animator.StringToHash("Armed"), true);
     }
 
     internal void Deselect()
     {
-        // TODO
-        //GetComponent<Renderer>().material.color = Color.white;
+        GetComponentInChildren<Animator>().SetBool(Animator.StringToHash("Armed"), false);
     }
 
     internal void Detonate()
     {
-        // TODO: animations and stuffs
+
         detonated = true;
         detonatedTime = Time.time;
-        //originalColor = GetComponent<Renderer>().material.color;
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-        GetComponentInChildren<Renderer>().enabled = false;
+        renderers.ForEach(q => q.enabled = false);
     }
 
     internal void Respawn()
     {
         detonated = false;
-        GetComponentInChildren<Renderer>().enabled = true;
         gameObject.transform.localScale = originalScale;
-        //GetComponent<Renderer>().material.color = originalColor;
+        renderers.ForEach(q => q.enabled = true);
+        GetComponentInChildren<Animator>().SetBool(Animator.StringToHash("Armed"), false);
     }
 
     public bool detonatable

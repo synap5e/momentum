@@ -64,6 +64,8 @@ ModelImporter:
     4300008: pasted__pasted__pasted__polySurface1
     7400000: Unarmed
     7400002: Armed
+    7400004: ExplodeIn
+    7400006: ExplodeOut
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -85,7 +87,7 @@ ModelImporter:
       name: Unarmed
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -152,8 +154,144 @@ ModelImporter:
     - serializedVersion: 16
       name: Armed
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 50
+      firstFrame: 5
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bottom
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__polySurface1
+        weight: 1
+      - path: group5
+        weight: 1
+      - path: group5/pasted__group4
+        weight: 1
+      - path: group6
+        weight: 1
+      - path: group6/pasted__group4 1
+        weight: 1
+      - path: group6/pasted__group4 1/pasted__pasted__polySurface1
+        weight: 1
+      - path: group7
+        weight: 1
+      - path: group7/pasted__group6
+        weight: 1
+      - path: group7/pasted__group6/pasted__pasted__group4
+        weight: 1
+      - path: group7/pasted__group6/pasted__pasted__group4/pasted__pasted__pasted__polySurface1
+        weight: 1
+      - path: group8
+        weight: 1
+      - path: group8/pasted__group7
+        weight: 1
+      - path: group8/pasted__group7/pasted__pasted__group6
+        weight: 1
+      - path: group8/pasted__group7/pasted__pasted__group6/pasted__pasted__pasted__group4
+        weight: 1
+      - path: left
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ExplodeIn
+      takeName: Take 001
+      firstFrame: 32
+      lastFrame: 34
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bottom
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__polySurface1
+        weight: 1
+      - path: group5
+        weight: 1
+      - path: group5/pasted__group4
+        weight: 1
+      - path: group6
+        weight: 1
+      - path: group6/pasted__group4 1
+        weight: 1
+      - path: group6/pasted__group4 1/pasted__pasted__polySurface1
+        weight: 1
+      - path: group7
+        weight: 1
+      - path: group7/pasted__group6
+        weight: 1
+      - path: group7/pasted__group6/pasted__pasted__group4
+        weight: 1
+      - path: group7/pasted__group6/pasted__pasted__group4/pasted__pasted__pasted__polySurface1
+        weight: 1
+      - path: group8
+        weight: 1
+      - path: group8/pasted__group7
+        weight: 1
+      - path: group8/pasted__group7/pasted__pasted__group6
+        weight: 1
+      - path: group8/pasted__group7/pasted__pasted__group6/pasted__pasted__pasted__group4
+        weight: 1
+      - path: left
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ExplodeOut
+      takeName: Take 001
+      firstFrame: 35
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
