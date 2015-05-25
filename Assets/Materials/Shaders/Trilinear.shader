@@ -46,8 +46,8 @@ Shader "Tri-Planar World" {
 		}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-				
-			float3 projNormal = saturate(abs(mul(IN.normalW, (float3x3) _Transform)));
+			float3 localNormal = mul(IN.normalW, (float3x3) _Transform);
+			float3 projNormal = saturate(abs(localNormal));
 
 			float3 localPos = mul(IN.worldPos - float3(_Transform[0][3], _Transform[1][3], _Transform[2][3]), (float3x3) _Transform);
 
