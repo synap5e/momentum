@@ -14,21 +14,27 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject modeMenu;	
 	public GameObject levelSelectMenu;
 	public GameObject creditsMenu;
+	public GameObject settingsMenu;
+	public GameObject skipMenu;
 	
 	//	private bool inModeMenu = false;
 	private bool fadedIn = false;
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
-	
+	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu};
+
+
 	// Use this for initialization
 	void Awake () {
 //		canvas.gameObject.active = true;
-		fader.gameObject.active = true;
+		fader.gameObject.SetActive (true);
 		
 		mainMenu.SetActive(false); //set to true for testing.
 		modeMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
 		creditsMenu.SetActive (false);
+		settingsMenu.SetActive (false);
+		skipMenu.SetActive (true);
 		
 		fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
@@ -37,15 +43,42 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if( Input.GetKeyDown(KeyCode.Escape))
+		{			
+
+			if(settingsMenu.activeSelf){
+				MainMenu();
+			}
+			else if(creditsMenu.activeSelf){
+				MainMenu();
+			}
+			else if(levelSelectMenu.activeSelf){
+				MainMenu();
+			}
+			else if(modeMenu.activeSelf){
+				LevelSelect();
+			}
+			else if(mainMenu.activeSelf){
+				//mainmenu so do nothing
+			}
+			
+			else{
+				Debug.Log("Missing menu in escape listener in MainMenu_Controller");
+			}
+		}
+		if(!fadedIn && Input.GetKeyDown(KeyCode.Space)){
+			TitleOff();
+			TextFadeIn();
+		}
 	}
 	
 	void TitleOff () {
-		momentumTitle.gameObject.active = false;
+		momentumTitle.gameObject.SetActive(false);
+		skipMenu.SetActive(false);
 	}
 	
 	void TitleOn () {
-		momentumTitle.gameObject.active = true;
+		momentumTitle.gameObject.SetActive(true);
 	}
 	
 	void FadeIn () {
@@ -64,31 +97,56 @@ public class MainMenu_Controller : MonoBehaviour {
 	}
 	
 	public void ModeMenu(){
-		modeMenu.SetActive (true);
-		mainMenu.SetActive (false);
-		levelSelectMenu.SetActive (false);
-		creditsMenu.SetActive (false);
+		setMenuActive (menuNames.ModeMenu);
 	}
 	
 	public void MainMenu(){
-		mainMenu.SetActive (true);
-		modeMenu.SetActive (false);
-		levelSelectMenu.SetActive (false);
-		creditsMenu.SetActive (false);
+		setMenuActive (menuNames.MainMenu);
 	}
 	
 	public void LevelSelect(){
-		levelSelectMenu.SetActive (true);
-		mainMenu.SetActive (false);
-		modeMenu.SetActive (false);
-		creditsMenu.SetActive (false);
+		setMenuActive (menuNames.LevelSelectMenu);
 	}
 
 	public void Credits(){
-		creditsMenu.SetActive (true);
+		setMenuActive (menuNames.CreditsMenu);
+	}
+
+	public void Settings(){
+		setMenuActive (menuNames.SettingsMenu);
+	}
+
+	public void setMenuActive(menuNames currentMenu){
+
+		//set all menus to false
+		creditsMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
 		mainMenu.SetActive (false);
 		modeMenu.SetActive (false);
+		settingsMenu.SetActive (false);
+
+		switch(currentMenu)
+		{
+		case menuNames.CreditsMenu:
+			creditsMenu.SetActive (true);
+			break;
+		case menuNames.LevelSelectMenu:
+			levelSelectMenu.SetActive(true);
+			break;
+		case menuNames.MainMenu:
+			mainMenu.SetActive(true);
+			break;
+		case menuNames.ModeMenu:
+			modeMenu.SetActive(true);
+			break;
+		case menuNames.SettingsMenu:
+			settingsMenu.SetActive(true);
+			break;
+		default:
+			Debug.Log("missing menu in MainMenu_Controller");
+			break;
+		}
+
 	}
 	
 	public void setMode(int mode){
