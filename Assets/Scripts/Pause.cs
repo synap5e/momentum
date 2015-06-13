@@ -13,8 +13,7 @@ public class Pause : MonoBehaviour {
 	
 	public GameObject player;
 	public GameObject gameController;
-	
-	public GameObject hands;
+
 	public GameObject feet;
 	
 	public bool isPause;
@@ -109,7 +108,7 @@ public class Pause : MonoBehaviour {
 	}
 	
 	public void showViewModel(bool show){
-		hands.SetActive (show);
+		GameObject.FindGameObjectWithTag ("Hands").SetActive (show);
 		feet.SetActive (show);
 	}
 	
@@ -117,6 +116,10 @@ public class Pause : MonoBehaviour {
 		Time.timeScale = 1;
 		Application.LoadLevel ("Main Menu");
 		Goal.paused = false;
+	}
+
+	public void ChangeFov(float fov){
+		GameObject.FindObjectOfType <Camera>().GetComponent<Camera> ().fieldOfView = fov;
 	}
 	
 	
