@@ -152,7 +152,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	public void setMode(int mode){
 		currentMode = mode;
 		if (currentLevel ==0) Application.LoadLevel ("Eliot Tutorial");
-		else if (currentLevel ==1) Application.LoadLevel ("Eliot 2");
+		else if (currentLevel ==1) Application.LoadLevel ("Eliot Easy");
 		else if (currentLevel ==2) Application.LoadLevel ("Eliot 3");
 		else Application.LoadLevel ("Eliot Hard");
 	}
