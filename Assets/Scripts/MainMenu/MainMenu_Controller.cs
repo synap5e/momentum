@@ -28,7 +28,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	void Awake () {
 //		canvas.gameObject.active = true;
 		fader.gameObject.SetActive (true);
-		
+	
 		mainMenu.SetActive(false); //set to true for testing.
 		modeMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
@@ -43,6 +43,8 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Animator anim = GetComponent<Animator>();
+
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{			
 
@@ -69,6 +71,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		if(!fadedIn && Input.GetKeyDown(KeyCode.Space)){
 			TitleOff();
 			TextFadeIn();
+			anim.SetTrigger ("TitleSkipped");
 		}
 	}
 	
