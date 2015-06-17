@@ -151,10 +151,14 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	public void setMode(int mode){
 		currentMode = mode;
-		if (currentLevel ==0) Application.LoadLevel ("Eliot Tutorial");
-		else if (currentLevel ==1) Application.LoadLevel ("Eliot 2");
-		else if (currentLevel ==2) Application.LoadLevel ("Eliot 3");
-		else Application.LoadLevel ("Eliot Hard");
+		if (currentLevel == 1)
+			Application.LoadLevel ("Eliot Easy");
+		else if (currentLevel == 2)
+			Application.LoadLevel ("Eliot Medium");
+		else if (currentLevel == 3)
+			Application.LoadLevel ("Eliot Hard");
+		else 
+			Debug.Log ("Missing level in MainMenu_Controller");
 	}
 	
 	public void QuitGameYes(){
@@ -164,7 +168,12 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	public void setLevel(int levelNumber){
 		currentLevel = levelNumber;
-		ModeMenu ();
+		if (levelNumber == 0) {
+			setMode (0); // Normal
+			Application.LoadLevel ("Eliot Tutorial");
+		}
+		else
+			ModeMenu ();
 	}
 
 }
