@@ -17,7 +17,8 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject modeMenu;	
 	public GameObject levelSelectMenu;
 	public GameObject creditsMenu;
-	public GameObject settingsMenu;
+	public GameObject settingsMenu;	
+	public GameObject audioMenu;
 	public GameObject skipMenu;
 
 	public UnityEngine.UI.Text sensitivityText;
@@ -25,30 +26,43 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject fovSlider;
 	public GameObject sensSlider;
 	public GameObject viewmodelToggle;
+
+	public GameObject masterSlider;
+	public GameObject musicSlider;
+	public GameObject soundEffectSlider;
 	
 	private string filename = "settings.json";
 
 	private float fov = 60;
 	private float sensitivity = 2;
 	private bool viewModelOn = true;
+
+	private float masterVolume = 10f;
+	private float musicVolume = 10f;
+	private float soundEffectsVolume = 10f;
+
+	private AudioSource mainmenuSource;
 	
 	//	private bool inModeMenu = false;
 	private bool fadedIn = false;
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
-	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu};
+	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu};
 
 
 	// Use this for initialization
 	void Awake () {
 		fader.gameObject.SetActive (true);
 		
-		mainMenu.SetActive(false); //set to true for testing.
+		mainMenu.SetActive(false);
 		modeMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
 		creditsMenu.SetActive (false);
 		settingsMenu.SetActive (false);
+		audioMenu.SetActive(false);
 		skipMenu.SetActive (true);
+		
+		mainmenuSource = GetComponent<AudioSource> ();
 		
 		fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
@@ -59,10 +73,9 @@ public class MainMenu_Controller : MonoBehaviour {
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{			
-
-			if(settingsMenu.activeSelf){				
-				SettingsRevert();
+			if(settingsMenu.activeSelf){
 				MainMenu();
+				SettingsRevert();
 			}
 			else if(creditsMenu.activeSelf){
 				MainMenu();
@@ -70,13 +83,15 @@ public class MainMenu_Controller : MonoBehaviour {
 			else if(levelSelectMenu.activeSelf){
 				MainMenu();
 			}
+			else if(audioMenu.activeSelf){
+				MainMenu();
+			}
 			else if(modeMenu.activeSelf){
 				LevelSelect();
 			}
 			else if(mainMenu.activeSelf){
 				//mainmenu so do nothing
-			}
-			
+			}			
 			else{
 				Debug.Log("Missing menu in escape listener in MainMenu_Controller");
 			}
@@ -131,6 +146,10 @@ public class MainMenu_Controller : MonoBehaviour {
 		setMenuActive (menuNames.SettingsMenu);
 	}
 
+	public void AudioMenu(){
+		setMenuActive (menuNames.AudioMenu);
+	}
+
 	public void setMenuActive(menuNames currentMenu){
 
 		//set all menus to false
@@ -139,6 +158,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		mainMenu.SetActive (false);
 		modeMenu.SetActive (false);
 		settingsMenu.SetActive (false);
+		audioMenu.SetActive(false);
 
 		switch(currentMenu)
 		{
@@ -153,6 +173,9 @@ public class MainMenu_Controller : MonoBehaviour {
 			break;
 		case menuNames.ModeMenu:
 			modeMenu.SetActive(true);
+			break;
+		case menuNames.AudioMenu:
+			audioMenu.SetActive(true);
 			break;
 		case menuNames.SettingsMenu:
 			settingsMenu.SetActive(true);
@@ -176,7 +199,6 @@ public class MainMenu_Controller : MonoBehaviour {
 			Debug.Log ("Missing level in MainMenu_Controller");
 	}
 
-	
 	public void QuitGameYes(){
 		Application.Quit();
 		Debug.Log ("Quit");
@@ -201,7 +223,6 @@ public class MainMenu_Controller : MonoBehaviour {
 		Load (filename);
 	}
 
-
 	public void Save(String filename){
 		File.WriteAllText(filename, SaveToString());
 	}
@@ -215,6 +236,11 @@ public class MainMenu_Controller : MonoBehaviour {
 		fovSlider.GetComponent<UnityEngine.UI.Slider> ().value = fov;
 		sensSlider.GetComponent<UnityEngine.UI.Slider> ().value = sensitivity;
 		viewmodelToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = viewModelOn;
+		masterSlider.GetComponent<UnityEngine.UI.Slider> ().value = masterVolume;
+		musicSlider.GetComponent<UnityEngine.UI.Slider> ().value = musicVolume;
+		soundEffectSlider.GetComponent<UnityEngine.UI.Slider> ().value = soundEffectsVolume;
+		changeVolume ();
+
 	}
 	
 	public string SaveToString()
@@ -223,6 +249,10 @@ public class MainMenu_Controller : MonoBehaviour {
 		N["settings"]["fov"].AsFloat = fov;
 		N["settings"]["sensitivity"].AsFloat = sensitivity;
 		N["settings"]["viewmodel"].AsFloat = viewModelOn ? 1 : 0;
+
+		N["audio"]["master"].AsFloat = masterVolume;
+		N["audio"]["music"].AsFloat = musicVolume;
+		N["audio"]["sound effects"].AsFloat = soundEffectsVolume;
 		return N.ToJSON(4);
 	}
 	
@@ -233,6 +263,10 @@ public class MainMenu_Controller : MonoBehaviour {
 		sensitivity = N["settings"]["sensitivity"].AsFloat;
 		viewModelOn = false;
 		if (N["settings"]["viewmodel"].AsFloat == 1) viewModelOn = true;
+		
+		masterVolume = N["audio"]["master"].AsFloat;
+		musicVolume = N["audio"]["music"].AsFloat;
+		soundEffectsVolume = N["audio"]["sound effects"].AsFloat;
 	}
 
 	public void changeFOV(float newFov){
@@ -248,6 +282,21 @@ public class MainMenu_Controller : MonoBehaviour {
 		viewModelOn = isOn;
 	}
 
+	public void changeMaster(float newMaster){
+		masterVolume = newMaster;
+	}
+
+	public void changeMusic(float newMusic){
+		musicVolume = newMusic;
+	}
+
+	public void changeSoundEffects(float newSound){
+		soundEffectsVolume = newSound;
+	}
+
+	public void changeVolume(){
+		mainmenuSource.volume = masterVolume / 10f * musicVolume / 10f;
+	}
 }
 
 
