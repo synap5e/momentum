@@ -15,6 +15,7 @@ public class Pause : MonoBehaviour {
 	public GameObject gameController;
 
 	public GameObject feet;
+	private GameObject hands;
 	
 	public bool isPause;
 	private bool inQuitMenu = false;
@@ -29,6 +30,7 @@ public class Pause : MonoBehaviour {
 		settingsMenu.SetActive (false);
 		pauseMenu.SetActive(false);
 		quitMenu.SetActive (false);
+		hands = GameObject.FindGameObjectWithTag ("Hands");
 	}
 	
 	void Update () {
@@ -108,7 +110,7 @@ public class Pause : MonoBehaviour {
 	}
 	
 	public void showViewModel(bool show){
-		GameObject.FindGameObjectWithTag ("Hands").SetActive (show);
+		hands.SetActive (show);
 		feet.SetActive (show);
 	}
 	
