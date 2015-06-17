@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
+using System.IO;
+using SimpleJSON;
 
 public class MainMenu_Controller : MonoBehaviour {
 	
@@ -16,6 +19,18 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject creditsMenu;
 	public GameObject settingsMenu;
 	public GameObject skipMenu;
+
+	public UnityEngine.UI.Text sensitivityText;
+
+	public GameObject fovSlider;
+	public GameObject sensSlider;
+	public GameObject viewmodelToggle;
+	
+	private string filename = "settings.json";
+
+	private float fov = 60;
+	private float sensitivity = 2;
+	private bool viewModelOn = true;
 	
 	//	private bool inModeMenu = false;
 	private bool fadedIn = false;
@@ -26,7 +41,6 @@ public class MainMenu_Controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-//		canvas.gameObject.active = true;
 		fader.gameObject.SetActive (true);
 		
 		mainMenu.SetActive(false); //set to true for testing.
@@ -38,7 +52,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		
 		fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
-//		DontDestroyOnLoad (this);
+		Load (filename);
 	}
 	
 	// Update is called once per frame
@@ -46,7 +60,8 @@ public class MainMenu_Controller : MonoBehaviour {
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{			
 
-			if(settingsMenu.activeSelf){
+			if(settingsMenu.activeSelf){				
+				SettingsRevert();
 				MainMenu();
 			}
 			else if(creditsMenu.activeSelf){
@@ -160,6 +175,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		else 
 			Debug.Log ("Missing level in MainMenu_Controller");
 	}
+
 	
 	public void QuitGameYes(){
 		Application.Quit();
@@ -174,6 +190,62 @@ public class MainMenu_Controller : MonoBehaviour {
 		}
 		else
 			ModeMenu ();
+	}
+
+	public void SettingsApply(){
+		Save (filename);
+		MainMenu ();
+	}
+	
+	public void SettingsRevert(){
+		Load (filename);
+	}
+
+
+	public void Save(String filename){
+		File.WriteAllText(filename, SaveToString());
+	}
+	
+	public void Load(String filename){
+		if (!File.Exists (filename)) {
+			Save (filename);
+		}
+		string text = File.ReadAllText(filename);
+		LoadString(text);
+		fovSlider.GetComponent<UnityEngine.UI.Slider> ().value = fov;
+		sensSlider.GetComponent<UnityEngine.UI.Slider> ().value = sensitivity;
+		viewmodelToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = viewModelOn;
+	}
+	
+	public string SaveToString()
+	{
+		JSONNode N = new JSONClass(); // Start with JSONArray or JSONClass
+		N["settings"]["fov"].AsFloat = fov;
+		N["settings"]["sensitivity"].AsFloat = sensitivity;
+		N["settings"]["viewmodel"].AsFloat = viewModelOn ? 1 : 0;
+		return N.ToJSON(4);
+	}
+	
+	public void LoadString(String text)
+	{
+		JSONNode N = JSON.Parse(text);
+		fov = N["settings"]["fov"].AsFloat;
+		sensitivity = N["settings"]["sensitivity"].AsFloat;
+		viewModelOn = false;
+		if (N["settings"]["viewmodel"].AsFloat == 1) viewModelOn = true;
+	}
+
+	public void changeFOV(float newFov){
+		fov = newFov;
+	}
+
+	public void changeSensitivity(float newSens){
+		sensitivity = newSens;		
+		sensitivityText.text =newSens.ToString("#.#");
+	}
+
+	public void toggleViewModel(bool isOn){
+		viewModelOn = isOn;
 	}
 
 }

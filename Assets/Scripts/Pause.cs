@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.IO;
+using SimpleJSON;
 
 public class Pause : MonoBehaviour {
 	
@@ -16,10 +19,21 @@ public class Pause : MonoBehaviour {
 
 	public GameObject feet;
 	private GameObject hands;
+
+	private Camera camera;
 	
 	public bool isPause;
 	private bool inQuitMenu = false;
 	private bool inSettingsMenu = false;
+	private bool viewmodelOn = true;
+
+	public GameObject fovSlider;
+	public GameObject sensSlider;
+	public GameObject viewmodelToggle;
+		
+	public UnityEngine.UI.Text sensitivityText;
+
+	private string filename = "settings.json";
 	
 	
 	void Start () {
@@ -31,6 +45,8 @@ public class Pause : MonoBehaviour {
 		pauseMenu.SetActive(false);
 		quitMenu.SetActive (false);
 		hands = GameObject.FindGameObjectWithTag ("Hands");
+		camera = GameObject.FindObjectOfType <Camera> ().GetComponent<Camera> ();
+		Load (filename);
 	}
 	
 	void Update () {
@@ -44,6 +60,7 @@ public class Pause : MonoBehaviour {
 				QuitGameNo();
 			}
 			else if(inSettingsMenu){
+				SettingsRevert();
 				SettingsReturn();
 			}
 			
@@ -91,6 +108,15 @@ public class Pause : MonoBehaviour {
 		settingsMenu.SetActive (false);
 		inSettingsMenu = false;
 	}
+
+	public void SettingsApply(){
+		Save (filename);
+		SettingsReturn ();
+	}
+
+	public void SettingsRevert(){
+		Load (filename);
+	}
 	
 	public void QuitMenu(){
 		pauseMenu.SetActive (false);
@@ -108,12 +134,7 @@ public class Pause : MonoBehaviour {
 		quitMenu.SetActive (false);
 		inQuitMenu = false;
 	}
-	
-	public void showViewModel(bool show){
-		hands.SetActive (show);
-		feet.SetActive (show);
-	}
-	
+
 	public void MainMenu(){
 		Time.timeScale = 1;
 		Application.LoadLevel ("Main Menu");
@@ -121,8 +142,52 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void ChangeFov(float fov){
-		GameObject.FindObjectOfType <Camera>().GetComponent<Camera> ().fieldOfView = fov;
+		camera.fieldOfView = fov;
 	}
-	
+
+	public void showViewModel(bool show){
+		viewmodelOn = show;
+		hands.SetActive (show);
+		feet.SetActive (show);
+	}
+
+	public void ChangeSensitivity(float sens){
+		player.GetComponent<RigidbodyFPSController> ().changeSensitivity (sens);		
+		sensitivityText.text =sens.ToString("#.#");
+	}
+
+	public void Save(String filename){
+		File.WriteAllText(filename, SaveToString());
+	}
+
+	public void Load(String filename){
+		if (!File.Exists (filename)) {
+			Save (filename);
+		}
+		string text = File.ReadAllText(filename);
+		LoadString(text);
+		fovSlider.GetComponent<UnityEngine.UI.Slider> ().value = camera.fieldOfView;
+		sensSlider.GetComponent<UnityEngine.UI.Slider> ().value = player.GetComponent<RigidbodyFPSController> ().mouseSensitivity;
+		viewmodelToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = viewmodelOn;
+	}
+
+	public string SaveToString()
+	{
+		JSONNode N = new JSONClass(); // Start with JSONArray or JSONClass
+		N["settings"]["fov"].AsFloat = camera.fieldOfView;
+		N["settings"]["sensitivity"].AsFloat = player.GetComponent<RigidbodyFPSController> ().mouseSensitivity;
+		N["settings"]["viewmodel"].AsFloat = viewmodelOn ? 1 : 0;
+		return N.ToJSON(4);
+	}
+
+	public void LoadString(String text)
+	{
+		JSONNode N = JSON.Parse(text);
+		ChangeFov (N ["settings"] ["fov"].AsFloat); 
+		ChangeSensitivity(N["settings"]["sensitivity"].AsFloat);
+		viewmodelOn = false;
+		if (N["settings"]["viewmodel"].AsFloat == 1) viewmodelOn = true;
+		showViewModel(viewmodelOn);
+	}
 	
 }
