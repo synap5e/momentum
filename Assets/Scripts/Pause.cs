@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.IO;
 using SimpleJSON;
+using UnityStandardAssets.ImageEffects;
 
 public class Pause : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class Pause : MonoBehaviour {
 	public GameObject quitMenu;
 	public GameObject settingsMenu;
 	public GameObject audioMenu;
+	public GameObject videoMenu;
 	public GameObject controlMenu;
 
 	[Header("Menu BG")]
@@ -21,11 +23,13 @@ public class Pause : MonoBehaviour {
 	public GameObject gameController;
 	public GameObject feet;
 
+	private GameObject camera;
+
 	private GameObject hands;
 	
 	private bool isPause;
 
-	public enum menuNames {PauseMenu, QuitMenu,SettingsMenu,AudioMenu,ControlMenu};
+	public enum menuNames {PauseMenu, QuitMenu,SettingsMenu,AudioMenu,ControlMenu,VideoMenu};
 	
 	void Start () {
 		//Sets the BG to black with opacity of 90%
@@ -37,9 +41,12 @@ public class Pause : MonoBehaviour {
 		quitMenu.SetActive (false);
 		controlMenu.SetActive (false);
 		audioMenu.SetActive (false);
+		videoMenu.SetActive (false);
 		background.SetActive (false);
 
 		hands = GameObject.FindGameObjectWithTag ("Hands");
+		camera = GameObject.FindGameObjectWithTag ("MainCamera");
+
 
 		//Load Settings from file
 		GetComponent<SettingsController>().Load ();
@@ -49,14 +56,11 @@ public class Pause : MonoBehaviour {
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{		
-			if(quitMenu.activeSelf){
+			if(quitMenu.activeSelf || controlMenu.activeSelf){
 				PauseMenu();
 			}
-			else if(audioMenu.activeSelf || settingsMenu.activeSelf){
+			else if(audioMenu.activeSelf || settingsMenu.activeSelf || videoMenu.activeSelf){
 				SettingsRevert();
-				PauseMenu();
-			}
-			else if(controlMenu.activeSelf){
 				PauseMenu();
 			}
 			else if(pauseMenu.activeSelf){
@@ -108,12 +112,22 @@ public class Pause : MonoBehaviour {
 		setMenuActive (menuNames.AudioMenu);
 	}
 
+	public void VideoMenu(){
+		setMenuActive (menuNames.VideoMenu);
+	}
+
 	public void ControlMenu(){
 		setMenuActive (menuNames.ControlMenu);
 	}
 
 	public void PauseMenu(){
 		setMenuActive (menuNames.PauseMenu);
+	}
+
+	public void MainMenu(){
+		Time.timeScale = 1;
+		Application.LoadLevel ("Main Menu");
+		Goal.paused = false;
 	}
 
 	public void SettingsApply(){
@@ -133,8 +147,13 @@ public class Pause : MonoBehaviour {
 		hands.SetActive (GetComponent<SettingsController>().viewModelOn);
 		feet.SetActive (GetComponent<SettingsController>().viewModelOn);
 		player.GetComponent<RigidbodyFPSController> ().changeSensitivity (GetComponent<SettingsController>().sensitivity);	
+	
+		camera.GetComponent<ScreenSpaceAmbientOcclusion>().enabled = GetComponent<SettingsController>().ambientOcclusion;
+		camera.GetComponent<VignetteAndChromaticAberration> ().enabled = GetComponent<SettingsController>().vignetteAberration;
+		camera.GetComponent<EdgeDetection> ().enabled = GetComponent<SettingsController>().edgeDetection;
+		camera.GetComponent<CameraMotionBlur> ().enabled = GetComponent<SettingsController>().motionBlur;
+		camera.GetComponent<Bloom> ().enabled = GetComponent<SettingsController>().bloom;
 	}
-
 	
 	public void QuitMenu(){
 		setMenuActive (menuNames.QuitMenu);
@@ -153,6 +172,7 @@ public class Pause : MonoBehaviour {
 		quitMenu.SetActive (false);
 		settingsMenu.SetActive (false);
 		audioMenu.SetActive(false);
+		videoMenu.SetActive (false);
 		controlMenu.SetActive(false);
 		
 		switch(currentMenu)
@@ -169,6 +189,9 @@ public class Pause : MonoBehaviour {
 		case menuNames.AudioMenu:
 			audioMenu.SetActive(true);
 			break;
+		case menuNames.VideoMenu:
+			videoMenu.SetActive(true);
+			break;
 		case menuNames.SettingsMenu:
 			settingsMenu.SetActive(true);
 			break;
@@ -177,11 +200,4 @@ public class Pause : MonoBehaviour {
 			break;
 		}
 	}
-
-	public void MainMenu(){
-		Time.timeScale = 1;
-		Application.LoadLevel ("Main Menu");
-		Goal.paused = false;
-	}
-			
 }
