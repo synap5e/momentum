@@ -13,10 +13,6 @@ public class AudioController : MonoBehaviour {
 	public AudioClip panting;
 	public AudioClip runnning;
 
-	public float masterVolume = 10f;
-	public float musicVolume = 10f;
-	public float soundEffectsVolume = 10f;
-
 	private bool playAudio = true;
 	private bool inJump = false;
 	private float startTime;
@@ -60,7 +56,7 @@ public class AudioController : MonoBehaviour {
 		explosionsource.clip = explosion;
 		audiosourceDic.Add (explosionsource,1f);
 
-
+		GetComponent<SettingsController>().Load ();
 	}
 	
 	void FixedUpdate () {
@@ -119,7 +115,9 @@ public class AudioController : MonoBehaviour {
 
 	public void changeVolume(){
 		foreach (AudioSource a in audiosourceDic.Keys) {
-			a.volume = masterVolume/10f * soundEffectsVolume/10f * audiosourceDic[a];
+			float masterVolume = GetComponent<SettingsController>().masterVolume/10f;
+			float soundEffectsVolume = GetComponent<SettingsController>().soundEffectsVolume/10f;
+			a.volume = masterVolume * soundEffectsVolume * audiosourceDic[a];
 		}
 	}
 

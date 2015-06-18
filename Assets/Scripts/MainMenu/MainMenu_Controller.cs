@@ -6,13 +6,13 @@ using System.IO;
 using SimpleJSON;
 
 public class MainMenu_Controller : MonoBehaviour {
-	
-	
+
+	[Header("Title")]
 	public GameObject fader;
-//	public GameObject canvas;
 	public GameObject momentumTitle;
 	public float fadeSpeed = 5f;
-	
+
+	[Header("Menu")]
 	public GameObject mainMenu;
 	public GameObject modeMenu;	
 	public GameObject levelSelectMenu;
@@ -21,39 +21,19 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject audioMenu;
 	public GameObject skipMenu;
 
-	public UnityEngine.UI.Text sensitivityText;
-
-	public GameObject fovSlider;
-	public GameObject sensSlider;
-	public GameObject viewmodelToggle;
-
-	public GameObject masterSlider;
-	public GameObject musicSlider;
-	public GameObject soundEffectSlider;
-	
-	private string filename = "settings.json";
-
-	private float fov = 60;
-	private float sensitivity = 2;
-	private bool viewModelOn = true;
-
-	private float masterVolume = 10f;
-	private float musicVolume = 10f;
-	private float soundEffectsVolume = 10f;
-
+	//Music
 	private AudioSource mainmenuSource;
-	
-	//	private bool inModeMenu = false;
+
 	private bool fadedIn = false;
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
 	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu};
 
-
 	// Use this for initialization
 	void Awake () {
 		fader.gameObject.SetActive (true);
-		
+
+		// set menus to false except skipMenu
 		mainMenu.SetActive(false);
 		modeMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
@@ -64,13 +44,18 @@ public class MainMenu_Controller : MonoBehaviour {
 		
 		mainmenuSource = GetComponent<AudioSource> ();
 		
-		fader = GameObject.Find("ScreenFader");
+		//fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
-		Load (filename);
+
+		//Load Settings from file
+		GetComponent<SettingsController>().Load ();
+		updateSettings ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		//Returns to previous menu
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{			
 			if(settingsMenu.activeSelf){
@@ -96,6 +81,8 @@ public class MainMenu_Controller : MonoBehaviour {
 				Debug.Log("Missing menu in escape listener in MainMenu_Controller");
 			}
 		}
+
+		//Skip title
 		if(!fadedIn && Input.GetKeyDown(KeyCode.Space)){
 			TitleOff();
 			TextFadeIn();
@@ -150,6 +137,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		setMenuActive (menuNames.AudioMenu);
 	}
 
+	//Sets all menus to false except the currentMenu
 	public void setMenuActive(menuNames currentMenu){
 
 		//set all menus to false
@@ -184,9 +172,9 @@ public class MainMenu_Controller : MonoBehaviour {
 			Debug.Log("missing menu in MainMenu_Controller");
 			break;
 		}
-
 	}
-	
+
+	//Sets what mode and starts the level
 	public void setMode(int mode){
 		currentMode = mode;
 		if (currentLevel == 1)
@@ -203,9 +191,11 @@ public class MainMenu_Controller : MonoBehaviour {
 		Application.Quit();
 		Debug.Log ("Quit");
 	}
-	
+
+	//Sets the current level
 	public void setLevel(int levelNumber){
 		currentLevel = levelNumber;
+		//If tutorial start in Normal mode
 		if (levelNumber == 0) {
 			setMode (0); // Normal
 			Application.LoadLevel ("Eliot Tutorial");
@@ -215,88 +205,19 @@ public class MainMenu_Controller : MonoBehaviour {
 	}
 
 	public void SettingsApply(){
-		Save (filename);
+		GetComponent<SettingsController>().Save ();
+		updateSettings ();
 		MainMenu ();
 	}
 	
 	public void SettingsRevert(){
-		Load (filename);
+		GetComponent<SettingsController>().Load ();
 	}
 
-	public void Save(String filename){
-		File.WriteAllText(filename, SaveToString());
-	}
-	
-	public void Load(String filename){
-		if (!File.Exists (filename)) {
-			Save (filename);
-		}
-		string text = File.ReadAllText(filename);
-		LoadString(text);
-		fovSlider.GetComponent<UnityEngine.UI.Slider> ().value = fov;
-		sensSlider.GetComponent<UnityEngine.UI.Slider> ().value = sensitivity;
-		viewmodelToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = viewModelOn;
-		masterSlider.GetComponent<UnityEngine.UI.Slider> ().value = masterVolume;
-		musicSlider.GetComponent<UnityEngine.UI.Slider> ().value = musicVolume;
-		soundEffectSlider.GetComponent<UnityEngine.UI.Slider> ().value = soundEffectsVolume;
-		changeVolume ();
-
-	}
-	
-	public string SaveToString()
-	{
-		JSONNode N = new JSONClass(); // Start with JSONArray or JSONClass
-		N["settings"]["fov"].AsFloat = fov;
-		N["settings"]["sensitivity"].AsFloat = sensitivity;
-		N["settings"]["viewmodel"].AsFloat = viewModelOn ? 1 : 0;
-
-		N["audio"]["master"].AsFloat = masterVolume;
-		N["audio"]["music"].AsFloat = musicVolume;
-		N["audio"]["sound effects"].AsFloat = soundEffectsVolume;
-		return N.ToJSON(4);
-	}
-	
-	public void LoadString(String text)
-	{
-		JSONNode N = JSON.Parse(text);
-		fov = N["settings"]["fov"].AsFloat;
-		sensitivity = N["settings"]["sensitivity"].AsFloat;
-		viewModelOn = false;
-		if (N["settings"]["viewmodel"].AsFloat == 1) viewModelOn = true;
-		
-		masterVolume = N["audio"]["master"].AsFloat;
-		musicVolume = N["audio"]["music"].AsFloat;
-		soundEffectsVolume = N["audio"]["sound effects"].AsFloat;
+	public void updateSettings(){
+		mainmenuSource.volume = GetComponent<SettingsController>().masterVolume / 10f * GetComponent<SettingsController>().musicVolume / 10f;
 	}
 
-	public void changeFOV(float newFov){
-		fov = newFov;
-	}
-
-	public void changeSensitivity(float newSens){
-		sensitivity = newSens;		
-		sensitivityText.text =newSens.ToString("#.#");
-	}
-
-	public void toggleViewModel(bool isOn){
-		viewModelOn = isOn;
-	}
-
-	public void changeMaster(float newMaster){
-		masterVolume = newMaster;
-	}
-
-	public void changeMusic(float newMusic){
-		musicVolume = newMusic;
-	}
-
-	public void changeSoundEffects(float newSound){
-		soundEffectsVolume = newSound;
-	}
-
-	public void changeVolume(){
-		mainmenuSource.volume = masterVolume / 10f * musicVolume / 10f;
-	}
 }
 
 

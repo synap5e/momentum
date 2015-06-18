@@ -5,44 +5,33 @@ using System.IO;
 using SimpleJSON;
 
 public class Pause : MonoBehaviour {
-	
+
+	[Header("Menu")]
 	public GameObject pauseMenu;
 	public GameObject quitMenu;
 	public GameObject settingsMenu;
 	public GameObject audioMenu;
-	
+
+	[Header("Menu BG")]
 	public GameObject pauseMenuBG;
 	public GameObject quitMenuBG;
 	public GameObject settingsMenuBG;
 	public GameObject audioMenuBG;
-	
+
+	[Header("GameObjects")]
 	public GameObject player;
 	public GameObject gameController;
-
 	public GameObject feet;
-	private GameObject hands;
 
-	private Camera camera;
+	private GameObject hands;
 	
-	public bool isPause;
+	private bool isPause;
 	private bool inQuitMenu = false;
 	private bool inSettingsMenu = false;
-	private bool viewmodelOn = true;
-
-	public GameObject fovSlider;
-	public GameObject sensSlider;
-	public GameObject viewmodelToggle;
-	
-	public GameObject masterSlider;
-	public GameObject musicSlider;
-	public GameObject soundEffectSlider;
-		
-	public UnityEngine.UI.Text sensitivityText;
-
-	private string filename = "settings.json";
 	
 	
 	void Start () {
+		//Sets the BG to black with opacity of 90%
 		pauseMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
 		quitMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
 		settingsMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
@@ -50,15 +39,17 @@ public class Pause : MonoBehaviour {
 
 		isPause = false;
 
+		//Set menus for false
 		settingsMenu.SetActive (false);
 		pauseMenu.SetActive(false);
 		quitMenu.SetActive (false);
 		audioMenu.SetActive (false);
 
 		hands = GameObject.FindGameObjectWithTag ("Hands");
-		camera = GameObject.FindObjectOfType <Camera> ();
 
-		Load (filename);
+		//Load Settings from file
+		GetComponent<SettingsController>().Load ();
+		updateSettings ();
 	}
 	
 	void Update () {
@@ -90,7 +81,7 @@ public class Pause : MonoBehaviour {
 		player.GetComponent<Recorder> ().StopRecording ();
 		player.GetComponent<AudioController> ().PauseAudio ();
 		Goal.paused = true;
-		Screen.lockCursor = false; // Unity 5 Cursor is bugged
+//		Screen.lockCursor = false; // Unity 5 Cursor is bugged
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.Confined;
 	}
@@ -130,14 +121,24 @@ public class Pause : MonoBehaviour {
 	}
 
 	public void SettingsApply(){
-		Save (filename);
+		GetComponent<SettingsController>().Save ();		
+		updateSettings ();
 		SettingsReturn ();
-		changeVolume ();
 	}
 
 	public void SettingsRevert(){
-		Load (filename);
+		GetComponent<SettingsController>().Load ();
 	}
+
+	public void updateSettings(){
+		GetComponent<AudioController> ().changeVolume ();
+
+		GameObject.FindObjectOfType <Camera> ().fieldOfView = GetComponent<SettingsController>().fov;
+		hands.SetActive (GetComponent<SettingsController>().viewModelOn);
+		feet.SetActive (GetComponent<SettingsController>().viewModelOn);
+		player.GetComponent<RigidbodyFPSController> ().changeSensitivity (GetComponent<SettingsController>().sensitivity);	
+	}
+
 	
 	public void QuitMenu(){
 		pauseMenu.SetActive (false);
@@ -161,82 +162,5 @@ public class Pause : MonoBehaviour {
 		Application.LoadLevel ("Main Menu");
 		Goal.paused = false;
 	}
-
-	public void ChangeFov(float fov){
-		camera.fieldOfView = fov;
-	}
-
-	public void showViewModel(bool show){
-		viewmodelOn = show;
-		hands.SetActive (show);
-		feet.SetActive (show);
-	}
-
-	public void ChangeSensitivity(float sens){
-		player.GetComponent<RigidbodyFPSController> ().changeSensitivity (sens);		
-		sensitivityText.text =sens.ToString("#.#");
-	}
-
-	public void changeMaster(float newMaster){
-		GetComponent<AudioController>().masterVolume = newMaster;
-	}
-	
-	public void changeMusic(float newMusic){
-		GetComponent<AudioController>().musicVolume = newMusic;
-	}
-	
-	public void changeSoundEffects(float newSound){
-		GetComponent<AudioController>().soundEffectsVolume = newSound;
-	}
-	
-	public void changeVolume(){
-		GetComponent<AudioController> ().changeVolume ();
-	}
-
-	public void Save(String filename){
-		File.WriteAllText(filename, SaveToString());
-	}
-
-	public void Load(String filename){
-		if (!File.Exists (filename)) {
-			Save (filename);
-		}
-		string text = File.ReadAllText(filename);
-		LoadString(text);
-		fovSlider.GetComponent<UnityEngine.UI.Slider> ().value = camera.GetComponent<Camera> ().fieldOfView;
-		sensSlider.GetComponent<UnityEngine.UI.Slider> ().value = player.GetComponent<RigidbodyFPSController> ().mouseSensitivity;
-		viewmodelToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = viewmodelOn;
-		masterSlider.GetComponent<UnityEngine.UI.Slider> ().value = GetComponent<AudioController>().masterVolume;
-		musicSlider.GetComponent<UnityEngine.UI.Slider> ().value = GetComponent<AudioController>().musicVolume;
-		soundEffectSlider.GetComponent<UnityEngine.UI.Slider> ().value = GetComponent<AudioController>().soundEffectsVolume;
-		changeVolume ();
-	}
-
-	public string SaveToString()
-	{
-		JSONNode N = new JSONClass(); // Start with JSONArray or JSONClass
-		N["settings"]["fov"].AsFloat = camera.GetComponent<Camera> ().fieldOfView;
-		N["settings"]["sensitivity"].AsFloat = player.GetComponent<RigidbodyFPSController> ().mouseSensitivity;
-		N["settings"]["viewmodel"].AsFloat = viewmodelOn ? 1 : 0;
-
-		N["audio"]["master"].AsFloat = GetComponent<AudioController>().masterVolume;
-		N["audio"]["music"].AsFloat = GetComponent<AudioController>().musicVolume;
-		N["audio"]["sound effects"].AsFloat = GetComponent<AudioController>().soundEffectsVolume;
-		return N.ToJSON(4);
-	}
-
-	public void LoadString(String text)
-	{
-		JSONNode N = JSON.Parse(text);
-		ChangeFov (N ["settings"] ["fov"].AsFloat); 
-		ChangeSensitivity(N["settings"]["sensitivity"].AsFloat);
-		viewmodelOn = false;
-		if (N["settings"]["viewmodel"].AsFloat == 1) viewmodelOn = true;
-		showViewModel(viewmodelOn);
-
-		GetComponent<AudioController>().masterVolume = N["audio"]["master"].AsFloat;
-		GetComponent<AudioController>().musicVolume = N["audio"]["music"].AsFloat;
-		GetComponent<AudioController>().soundEffectsVolume = N["audio"]["sound effects"].AsFloat;
-	}
-	
+			
 }
