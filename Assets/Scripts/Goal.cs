@@ -31,6 +31,8 @@ public class Goal : MonoBehaviour
 
     private int playerIndex = 0;
 
+	private GameObject gui;
+
     RigidbodyFPSController playerController
     {
         get
@@ -52,16 +54,19 @@ public class Goal : MonoBehaviour
 		}
 
 
+		gui = GameObject.FindGameObjectWithTag ("GUI");
 
 
         if (playMode == Mode.Speedrun)
         {
             playerController.enableInput = false;
             RestartSpeedrun();
+			gui.SetActive(true);
         }
         else
         {
             playerController.GetComponent<Recorder>().StartRecording();
+			gui.SetActive(false);
         }
         playerController.GetComponent<Recorder>().StartLoggingKeys();
 
@@ -71,27 +76,27 @@ public class Goal : MonoBehaviour
         }
     }
 
-    void OnGUI()
-    {
-        // copy the "label" style from the current skin
-        Rect s = new Rect(0, 0, Screen.width, Screen.height);
-
-        if (playMode == Mode.Speedrun)
-        {
-            if (complete)
-            {
-                GUI.Label(s, time.ToString("#.###") + "s", announceText);
-            }
-            else if (playerController.enableInput)
-            {
-                GUI.Label(s, time.ToString("#.##") + "s", timeText);
-            }
-            else
-            {
-                GUI.Label(s, countdownRemaining.ToString("#.##") + "s", announceText);
-            }
-        }
-    }
+//    void OnGUI()
+//    {
+//        // copy the "label" style from the current skin
+//        Rect s = new Rect(0, 0, Screen.width, Screen.height);
+//
+//        if (playMode == Mode.Speedrun)
+//        {
+//            if (complete)
+//            {
+//                GUI.Label(s, time.ToString("#.###") + "s", announceText);
+//            }
+//            else if (playerController.enableInput)
+//            {
+//                GUI.Label(s, time.ToString("#.##") + "s", timeText);
+//            }
+//            else
+//            {
+//                GUI.Label(s, countdownRemaining.ToString("#.##") + "s", announceText);
+//            }
+//        }
+//    }
 
     void Update()
     {

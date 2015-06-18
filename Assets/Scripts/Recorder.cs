@@ -70,12 +70,14 @@ public class Recorder : MonoBehaviour {
 	void Update(){
 		if (recording)
 			RecordSnapshot();
-
+		
+		time = Time.time - startTime;
+		string minutes = Mathf.Floor(time / 60).ToString("00");
+		string seconds = (time % 60).ToString("00");
+		timeText.text = minutes + ":" + seconds;
 	}
 
 	public void RecordSnapshot(){
-		time = Time.time - startTime;
-		timeText.text = time.ToString ("#.##");
 
 		frameDuration += Time.deltaTime;
 		if (frameDuration > recordingFrameDurationMin) {
