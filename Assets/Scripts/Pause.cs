@@ -11,12 +11,10 @@ public class Pause : MonoBehaviour {
 	public GameObject quitMenu;
 	public GameObject settingsMenu;
 	public GameObject audioMenu;
+	public GameObject controlMenu;
 
 	[Header("Menu BG")]
-	public GameObject pauseMenuBG;
-	public GameObject quitMenuBG;
-	public GameObject settingsMenuBG;
-	public GameObject audioMenuBG;
+	public GameObject background;
 
 	[Header("GameObjects")]
 	public GameObject player;
@@ -26,24 +24,20 @@ public class Pause : MonoBehaviour {
 	private GameObject hands;
 	
 	private bool isPause;
-	private bool inQuitMenu = false;
-	private bool inSettingsMenu = false;
-	
+
+	public enum menuNames {PauseMenu, QuitMenu,SettingsMenu,AudioMenu,ControlMenu};
 	
 	void Start () {
 		//Sets the BG to black with opacity of 90%
-		pauseMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
-		quitMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
-		settingsMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
-		audioMenuBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
-
-		isPause = false;
+		background.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.90f);
 
 		//Set menus for false
-		settingsMenu.SetActive (false);
 		pauseMenu.SetActive(false);
+		settingsMenu.SetActive (false);
 		quitMenu.SetActive (false);
+		controlMenu.SetActive (false);
 		audioMenu.SetActive (false);
+		background.SetActive (false);
 
 		hands = GameObject.FindGameObjectWithTag ("Hands");
 
@@ -54,28 +48,32 @@ public class Pause : MonoBehaviour {
 	
 	void Update () {
 		if( Input.GetKeyDown(KeyCode.Escape))
-		{			
-			if(!isPause){
-				PausePlay();
-				isPause = !isPause;
+		{		
+			if(quitMenu.activeSelf){
+				PauseMenu();
 			}
-			else if(inQuitMenu){
-				QuitGameNo();
-			}
-			else if(inSettingsMenu){
+			else if(audioMenu.activeSelf || settingsMenu.activeSelf){
 				SettingsRevert();
-				SettingsReturn();
+				PauseMenu();
 			}
-			
-			else{
+			else if(controlMenu.activeSelf){
+				PauseMenu();
+			}
+			else if(pauseMenu.activeSelf){
 				ResumePlay();
 			}
+			else {
+				PausePlay();
+				isPause = !isPause;
+			}			
+
 		}
 	}
 	
 	public void PausePlay(){
 		Time.timeScale = 0;
-		pauseMenu.SetActive (true);
+		PauseMenu ();
+		background.SetActive (true);
 		player.GetComponent<RigidbodyFPSController> ().disableMouse = false;
 		player.GetComponent<RigidbodyFPSController> ().enableInput = false;
 		player.GetComponent<Recorder> ().StopRecording ();
@@ -89,6 +87,7 @@ public class Pause : MonoBehaviour {
 	public void ResumePlay(){
 		Time.timeScale = 1;
 		pauseMenu.SetActive(false);
+		background.SetActive (false);
 		player.GetComponent<RigidbodyFPSController> ().disableMouse = true;
 		player.GetComponent<RigidbodyFPSController> ().enableInput = true;
 		player.GetComponent<Recorder> ().StartRecording ();
@@ -102,28 +101,25 @@ public class Pause : MonoBehaviour {
 	}
 	
 	public void SettingsMenu(){
-		pauseMenu.SetActive (false);
-		settingsMenu.SetActive (true);
-		inSettingsMenu = true;
+		setMenuActive (menuNames.SettingsMenu);
 	}
 
 	public void AudioMenu(){
-		pauseMenu.SetActive (false);
-		audioMenu.SetActive (true);
-		inSettingsMenu = true;
+		setMenuActive (menuNames.AudioMenu);
 	}
 
-	public void SettingsReturn(){
-		pauseMenu.SetActive (true);
-		settingsMenu.SetActive (false);
-		audioMenu.SetActive (false);
-		inSettingsMenu = false;
+	public void ControlMenu(){
+		setMenuActive (menuNames.ControlMenu);
+	}
+
+	public void PauseMenu(){
+		setMenuActive (menuNames.PauseMenu);
 	}
 
 	public void SettingsApply(){
 		GetComponent<SettingsController>().Save ();		
 		updateSettings ();
-		SettingsReturn ();
+		PauseMenu ();
 	}
 
 	public void SettingsRevert(){
@@ -141,20 +137,45 @@ public class Pause : MonoBehaviour {
 
 	
 	public void QuitMenu(){
-		pauseMenu.SetActive (false);
-		quitMenu.SetActive (true);
-		inQuitMenu = true;
+		setMenuActive (menuNames.QuitMenu);
 	}
 	
 	public void QuitGameYes(){
 		Application.Quit();
 		Debug.Log ("Quit");
 	}
-	
-	public void QuitGameNo(){
-		pauseMenu.SetActive (true);
+
+	//Sets all menus to false except the currentMenu
+	public void setMenuActive(menuNames currentMenu){
+		
+		//set all menus to false
+		pauseMenu.SetActive (false);
 		quitMenu.SetActive (false);
-		inQuitMenu = false;
+		settingsMenu.SetActive (false);
+		audioMenu.SetActive(false);
+		controlMenu.SetActive(false);
+		
+		switch(currentMenu)
+		{
+		case menuNames.PauseMenu:
+			pauseMenu.SetActive (true);
+			break;
+		case menuNames.ControlMenu:
+			controlMenu.SetActive (true);
+			break;
+		case menuNames.QuitMenu:
+			quitMenu.SetActive(true);
+			break;
+		case menuNames.AudioMenu:
+			audioMenu.SetActive(true);
+			break;
+		case menuNames.SettingsMenu:
+			settingsMenu.SetActive(true);
+			break;
+		default:
+			Debug.Log("missing menu in Pause");
+			break;
+		}
 	}
 
 	public void MainMenu(){

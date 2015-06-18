@@ -62,8 +62,8 @@ public class MainMenu_Controller : MonoBehaviour {
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{			
 			if(settingsMenu.activeSelf){
-				MainMenu();
 				SettingsRevert();
+				MainMenu();
 			}
 			else if(creditsMenu.activeSelf){
 				MainMenu();
@@ -75,6 +75,7 @@ public class MainMenu_Controller : MonoBehaviour {
 				MainMenu();
 			}
 			else if(audioMenu.activeSelf){
+				SettingsRevert();
 				MainMenu();
 			}
 			else if(modeMenu.activeSelf){
