@@ -20,6 +20,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject controlMenu;
 	public GameObject settingsMenu;	
 	public GameObject audioMenu;
+	public GameObject videoMenu;
 	public GameObject skipMenu;
 
 	//Music
@@ -28,7 +29,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	private bool fadedIn = false;
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
-	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu,ControlMenu};
+	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu,ControlMenu,VideoMenu};
 
 	// Use this for initialization
 	void Awake () {
@@ -42,8 +43,8 @@ public class MainMenu_Controller : MonoBehaviour {
 		settingsMenu.SetActive (false);
 		controlMenu.SetActive (false);
 		audioMenu.SetActive(false);
-		skipMenu.SetActive (true);
-	
+		videoMenu.SetActive(false);
+		skipMenu.SetActive (true);	
 		
 		mainmenuSource = GetComponent<AudioSource> ();
 		
@@ -60,21 +61,11 @@ public class MainMenu_Controller : MonoBehaviour {
 
 		//Returns to previous menu
 		if( Input.GetKeyDown(KeyCode.Escape))
-		{			
-			if(settingsMenu.activeSelf){
-				SettingsRevert();
+		{		
+			if(creditsMenu.activeSelf || controlMenu.activeSelf || levelSelectMenu.activeSelf){
 				MainMenu();
 			}
-			else if(creditsMenu.activeSelf){
-				MainMenu();
-			}
-			else if(controlMenu.activeSelf){
-				MainMenu();
-			}
-			else if(levelSelectMenu.activeSelf){
-				MainMenu();
-			}
-			else if(audioMenu.activeSelf){
+			else if(audioMenu.activeSelf || settingsMenu.activeSelf || videoMenu.activeSelf){
 				SettingsRevert();
 				MainMenu();
 			}
@@ -148,6 +139,10 @@ public class MainMenu_Controller : MonoBehaviour {
 		setMenuActive (menuNames.AudioMenu);
 	}
 
+	public void VideoMenu(){
+		setMenuActive (menuNames.VideoMenu);
+	}
+
 	//Sets all menus to false except the currentMenu
 	public void setMenuActive(menuNames currentMenu){
 
@@ -158,6 +153,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		modeMenu.SetActive (false);
 		settingsMenu.SetActive (false);
 		audioMenu.SetActive(false);
+		videoMenu.SetActive(false);
 		controlMenu.SetActive(false);
 
 		switch(currentMenu)
@@ -182,6 +178,9 @@ public class MainMenu_Controller : MonoBehaviour {
 			break;
 		case menuNames.SettingsMenu:
 			settingsMenu.SetActive(true);
+			break;
+		case menuNames.VideoMenu:
+			videoMenu.SetActive(true);
 			break;
 		default:
 			Debug.Log("missing menu in MainMenu_Controller");
