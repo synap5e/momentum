@@ -56,6 +56,7 @@ public class AudioController : MonoBehaviour {
 		audiosourceDic.Add (explosionsource,1f);
 
 		GetComponent<SettingsController>().Load ();
+		changeVolume ();
 	}
 
 	public AudioController(){		

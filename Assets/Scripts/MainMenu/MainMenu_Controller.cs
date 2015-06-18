@@ -199,7 +199,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	}
 
 	public void Tutorial(){
-		setMode (0); // Normal
+		currentMode = 0;
 		Application.LoadLevel ("Eliot Tutorial");
 	}
 
