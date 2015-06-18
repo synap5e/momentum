@@ -17,6 +17,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject modeMenu;	
 	public GameObject levelSelectMenu;
 	public GameObject creditsMenu;
+	public GameObject controlMenu;
 	public GameObject settingsMenu;	
 	public GameObject audioMenu;
 	public GameObject skipMenu;
@@ -27,7 +28,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	private bool fadedIn = false;
 	private int currentLevel = 0;
 	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
-	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu};
+	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu,ControlMenu};
 
 	// Use this for initialization
 	void Awake () {
@@ -39,8 +40,10 @@ public class MainMenu_Controller : MonoBehaviour {
 		levelSelectMenu.SetActive (false);
 		creditsMenu.SetActive (false);
 		settingsMenu.SetActive (false);
+		controlMenu.SetActive (false);
 		audioMenu.SetActive(false);
 		skipMenu.SetActive (true);
+	
 		
 		mainmenuSource = GetComponent<AudioSource> ();
 		
@@ -59,16 +62,20 @@ public class MainMenu_Controller : MonoBehaviour {
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{			
 			if(settingsMenu.activeSelf){
-				MainMenu();
 				SettingsRevert();
+				MainMenu();
 			}
 			else if(creditsMenu.activeSelf){
+				MainMenu();
+			}
+			else if(controlMenu.activeSelf){
 				MainMenu();
 			}
 			else if(levelSelectMenu.activeSelf){
 				MainMenu();
 			}
 			else if(audioMenu.activeSelf){
+				SettingsRevert();
 				MainMenu();
 			}
 			else if(modeMenu.activeSelf){
@@ -129,6 +136,10 @@ public class MainMenu_Controller : MonoBehaviour {
 		setMenuActive (menuNames.CreditsMenu);
 	}
 
+	public void Controls(){
+		setMenuActive (menuNames.ControlMenu);
+	}
+
 	public void Settings(){
 		setMenuActive (menuNames.SettingsMenu);
 	}
@@ -147,11 +158,15 @@ public class MainMenu_Controller : MonoBehaviour {
 		modeMenu.SetActive (false);
 		settingsMenu.SetActive (false);
 		audioMenu.SetActive(false);
+		controlMenu.SetActive(false);
 
 		switch(currentMenu)
 		{
 		case menuNames.CreditsMenu:
 			creditsMenu.SetActive (true);
+			break;
+		case menuNames.ControlMenu:
+			controlMenu.SetActive (true);
 			break;
 		case menuNames.LevelSelectMenu:
 			levelSelectMenu.SetActive(true);
