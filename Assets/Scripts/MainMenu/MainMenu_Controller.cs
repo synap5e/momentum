@@ -195,13 +195,12 @@ public class MainMenu_Controller : MonoBehaviour {
 	//Sets the current level
 	public void setLevel(int levelNumber){
 		currentLevel = levelNumber;
-		//If tutorial start in Normal mode
-		if (levelNumber == 0) {
-			setMode (0); // Normal
-			Application.LoadLevel ("Eliot Tutorial");
-		}
-		else
-			ModeMenu ();
+		ModeMenu ();
+	}
+
+	public void Tutorial(){
+		currentMode = 0;
+		Application.LoadLevel ("Eliot Tutorial");
 	}
 
 	public void SettingsApply(){

@@ -28,7 +28,6 @@ public class AudioController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		audiosourceDic = new Dictionary <AudioSource,float>  ();
 
 		jumpingSource = player.AddComponent<AudioSource>();
 		jumpingSource.clip = jumping;
@@ -57,6 +56,11 @@ public class AudioController : MonoBehaviour {
 		audiosourceDic.Add (explosionsource,1f);
 
 		GetComponent<SettingsController>().Load ();
+		changeVolume ();
+	}
+
+	public AudioController(){		
+		audiosourceDic = new Dictionary <AudioSource,float> ();
 	}
 	
 	void FixedUpdate () {

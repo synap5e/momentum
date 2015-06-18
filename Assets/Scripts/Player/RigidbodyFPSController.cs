@@ -39,7 +39,8 @@ public class RigidbodyFPSController : MonoBehaviour
     public float highSurfaceFriction = 0.9f;
     [Range(0, 1)]
     public float lowSurfaceFriction = 0.05f;
-
+	
+	public UnityEngine.UI.Text speedText;
 
     private Camera viewCamera;
 
@@ -149,15 +150,20 @@ public class RigidbodyFPSController : MonoBehaviour
                 }
             }
         }
+
+		Vector3 horvel = GetComponent<Rigidbody>().velocity;
+		horvel.y = 0;
+		int currentSpeed = (int) (Mathf.Round (horvel.magnitude * 10000) / 10000F);
+		speedText.text = currentSpeed.ToString ("000");
     }
 
-    void OnGUI()
-    {
-        Vector3 horvel = GetComponent<Rigidbody>().velocity;
-        horvel.y = 0;
-
-        GUI.Label(new Rect(0, 20, 500, 500), Mathf.Round(horvel.magnitude * 10000) / 10000F + " / " + Mathf.Round(incomingVel.magnitude * 10000) / 10000F + "");
-    }
+//    void OnGUI()
+//    {
+//        Vector3 horvel = GetComponent<Rigidbody>().velocity;
+//        horvel.y = 0;
+//
+//        GUI.Label(new Rect(0, 20, 500, 500), Mathf.Round(horvel.magnitude * 10000) / 10000F + " / " + Mathf.Round(incomingVel.magnitude * 10000) / 10000F + "");
+//    }
 
     void FixedUpdate()
     {
