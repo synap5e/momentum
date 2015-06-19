@@ -72,9 +72,13 @@ public class Recorder : MonoBehaviour {
 			RecordSnapshot();
 		
 		time = Time.time - startTime;
+		timeText.text = getTimeString ();
+	}
+
+	public string getTimeString(){
 		string minutes = Mathf.Floor(time / 60).ToString("00");
 		string seconds = (time % 60).ToString("00");
-		timeText.text = minutes + ":" + seconds;
+		return minutes + ":" + seconds;
 	}
 
 	public void RecordSnapshot(){

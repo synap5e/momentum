@@ -27,8 +27,8 @@ public class MainMenu_Controller : MonoBehaviour {
 	private AudioSource mainmenuSource;
 
 	private bool fadedIn = false;
-	private int currentLevel = 0;
-	static public int currentMode = 0; // 0 = Normal and 1 = SpeedRun
+	static public int currentLevel = 0;
+	static public int currentMode = 1; // 0 = Normal and 1 = SpeedRun
 	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu,ControlMenu,VideoMenu};
 
 	// Use this for initialization
