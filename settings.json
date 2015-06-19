@@ -1,18 +1,18 @@
 { 
           "settings": { 
             "fov": 75, 
-            "sensitivity": 1.103806, 
+            "sensitivity": 2.319999, 
             "viewmodel": 1
             }, 
           "audio": { 
-            "master": 1.258927, 
-            "music": 1, 
-            "sound effects": 6.839228
+            "master": 4.160775, 
+            "music": 5.192262, 
+            "sound effects": 5.341991
             }, 
           "video": { 
             "ambientOcclusion": 0, 
             "bloom": 0, 
-            "edgeDetection": 1, 
+            "edgeDetection": 0, 
             "motionBlur": 0, 
             "vignetteAberration": 0
             }

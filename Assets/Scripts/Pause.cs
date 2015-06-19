@@ -14,6 +14,10 @@ public class Pause : MonoBehaviour {
 	public GameObject audioMenu;
 	public GameObject videoMenu;
 	public GameObject controlMenu;
+	public GameObject endLevelMenu;
+	public GameObject nextLevelMenu;
+	
+	public UnityEngine.UI.Text timeText;
 
 	[Header("Menu BG")]
 	public GameObject background;
@@ -29,7 +33,7 @@ public class Pause : MonoBehaviour {
 	
 	private bool isPause;
 
-	public enum menuNames {PauseMenu, QuitMenu,SettingsMenu,AudioMenu,ControlMenu,VideoMenu};
+	public enum menuNames {PauseMenu, QuitMenu,SettingsMenu,AudioMenu,ControlMenu,VideoMenu,EndLevelMenu};
 	
 	void Start () {
 		//Sets the BG to black with opacity of 90%
@@ -42,11 +46,11 @@ public class Pause : MonoBehaviour {
 		controlMenu.SetActive (false);
 		audioMenu.SetActive (false);
 		videoMenu.SetActive (false);
+		endLevelMenu.SetActive (false);
 		background.SetActive (false);
 
 		hands = GameObject.FindGameObjectWithTag ("Hands");
 		camera = GameObject.FindGameObjectWithTag ("MainCamera");
-
 
 		//Load Settings from file
 		GetComponent<SettingsController>().Load ();
@@ -65,6 +69,9 @@ public class Pause : MonoBehaviour {
 			}
 			else if(pauseMenu.activeSelf){
 				ResumePlay();
+			}
+			else if(endLevelMenu.activeSelf){
+				//Do nothing
 			}
 			else {
 				PausePlay();
@@ -91,6 +98,7 @@ public class Pause : MonoBehaviour {
 	public void ResumePlay(){
 		Time.timeScale = 1;
 		pauseMenu.SetActive(false);
+		endLevelMenu.SetActive (false);
 		background.SetActive (false);
 		player.GetComponent<RigidbodyFPSController> ().disableMouse = true;
 		player.GetComponent<RigidbodyFPSController> ().enableInput = true;
@@ -103,7 +111,30 @@ public class Pause : MonoBehaviour {
 	public void RestartLevel(){
 		player.GetComponent<Recorder> ().ResetRecording ();
 	}
-	
+
+	public void EndLevel(){
+		PausePlay ();
+		setMenuActive (menuNames.EndLevelMenu);
+
+		if (MainMenu_Controller.currentLevel == 3)
+			nextLevelMenu.SetActive(false);
+		else
+			nextLevelMenu.SetActive(true);
+
+	}
+
+	public void NextLevel(){
+		Time.timeScale = 1;
+		if (MainMenu_Controller.currentLevel == 0)
+			Application.LoadLevel ("Eliot Easy");
+		else if (MainMenu_Controller.currentLevel == 1)
+			Application.LoadLevel ("Eliot Medium");
+		else if (MainMenu_Controller.currentLevel == 2)
+			Application.LoadLevel ("Eliot Hard");
+		else 
+			Debug.Log ("Missing level in Goal");
+	}
+
 	public void SettingsMenu(){
 		setMenuActive (menuNames.SettingsMenu);
 	}
@@ -128,6 +159,11 @@ public class Pause : MonoBehaviour {
 		Time.timeScale = 1;
 		Application.LoadLevel ("Main Menu");
 		Goal.paused = false;
+	}
+
+	public void setEndLevelText(string s){
+		timeText.text = s;
+		Debug.Log (s);
 	}
 
 	public void SettingsApply(){
@@ -174,6 +210,7 @@ public class Pause : MonoBehaviour {
 		audioMenu.SetActive(false);
 		videoMenu.SetActive (false);
 		controlMenu.SetActive(false);
+		endLevelMenu.SetActive(false);
 		
 		switch(currentMenu)
 		{
@@ -194,6 +231,9 @@ public class Pause : MonoBehaviour {
 			break;
 		case menuNames.SettingsMenu:
 			settingsMenu.SetActive(true);
+			break;
+		case menuNames.EndLevelMenu:
+			endLevelMenu.SetActive(true);
 			break;
 		default:
 			Debug.Log("missing menu in Pause");
