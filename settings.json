@@ -5,9 +5,9 @@
             "viewmodel": 1
             }, 
           "audio": { 
-            "master": 4.871063, 
+            "master": 10, 
             "music": 10, 
-            "sound effects": 6.839228
+            "sound effects": 5.571424
             }, 
           "video": { 
             "ambientOcclusion": 0, 
