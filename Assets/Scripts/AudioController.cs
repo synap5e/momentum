@@ -11,7 +11,7 @@ public class AudioController : MonoBehaviour {
 	public AudioClip jumping;
 	public AudioClip landing;
 	public AudioClip panting;
-	public AudioClip runnning;
+	public AudioClip running;
 
 	private bool playAudio = true;
 	private bool inJump = false;
@@ -43,7 +43,7 @@ public class AudioController : MonoBehaviour {
 		audiosourceDic.Add (pantingSource,1f);
 		
 		runningSource = player.AddComponent<AudioSource>();
-		runningSource.clip = runnning;
+		runningSource.clip = running;
 		runningSource.loop = false;
 		audiosourceDic.Add (runningSource,0.5f);
 
