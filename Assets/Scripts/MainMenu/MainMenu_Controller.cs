@@ -6,12 +6,12 @@ using System.IO;
 using SimpleJSON;
 
 public class MainMenu_Controller : MonoBehaviour {
-
+	
 	[Header("Title")]
 	public GameObject fader;
 	public GameObject momentumTitle;
 	public float fadeSpeed = 5f;
-
+	
 	[Header("Menu")]
 	public GameObject mainMenu;
 	public GameObject modeMenu;	
@@ -22,19 +22,19 @@ public class MainMenu_Controller : MonoBehaviour {
 	public GameObject audioMenu;
 	public GameObject videoMenu;
 	public GameObject skipMenu;
-
+	
 	//Music
 	private AudioSource mainmenuSource;
-
+	
 	private bool fadedIn = false;
 	static public int currentLevel = 0;
 	static public int currentMode = 1; // 0 = Normal and 1 = SpeedRun
 	public enum menuNames {MainMenu, ModeMenu,LevelSelectMenu,CreditsMenu,SettingsMenu,AudioMenu,ControlMenu,VideoMenu};
-
+	
 	// Use this for initialization
 	void Awake () {
 		fader.gameObject.SetActive (true);
-
+		
 		// set menus to false except skipMenu
 		mainMenu.SetActive(false);
 		modeMenu.SetActive (false);
@@ -50,7 +50,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		
 		//fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
-
+		
 		//Load Settings from file
 		GetComponent<SettingsController>().Load ();
 		updateSettings ();
@@ -58,7 +58,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Animator anim = GetComponent<Animator>();
+		
 		//Returns to previous menu
 		if( Input.GetKeyDown(KeyCode.Escape))
 		{		
@@ -79,13 +79,11 @@ public class MainMenu_Controller : MonoBehaviour {
 				Debug.Log("Missing menu in escape listener in MainMenu_Controller");
 			}
 		}
-
+		
 		//Skip title
 		if(!fadedIn && Input.GetKeyDown(KeyCode.Space)){
 			TitleOff();
 			TextFadeIn();
-			anim.SetTrigger ("Skip");
-
 		}
 	}
 	
@@ -124,30 +122,30 @@ public class MainMenu_Controller : MonoBehaviour {
 	public void LevelSelect(){
 		setMenuActive (menuNames.LevelSelectMenu);
 	}
-
+	
 	public void Credits(){
 		setMenuActive (menuNames.CreditsMenu);
 	}
-
+	
 	public void Controls(){
 		setMenuActive (menuNames.ControlMenu);
 	}
-
+	
 	public void Settings(){
 		setMenuActive (menuNames.SettingsMenu);
 	}
-
+	
 	public void AudioMenu(){
 		setMenuActive (menuNames.AudioMenu);
 	}
-
+	
 	public void VideoMenu(){
 		setMenuActive (menuNames.VideoMenu);
 	}
-
+	
 	//Sets all menus to false except the currentMenu
 	public void setMenuActive(menuNames currentMenu){
-
+		
 		//set all menus to false
 		creditsMenu.SetActive (false);
 		levelSelectMenu.SetActive (false);
@@ -157,7 +155,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		audioMenu.SetActive(false);
 		videoMenu.SetActive(false);
 		controlMenu.SetActive(false);
-
+		
 		switch(currentMenu)
 		{
 		case menuNames.CreditsMenu:
@@ -189,36 +187,36 @@ public class MainMenu_Controller : MonoBehaviour {
 			break;
 		}
 	}
-
+	
 	//Sets what mode and starts the level
 	public void setMode(int mode){
 		currentMode = mode;
 		if (currentLevel == 1)
 			Application.LoadLevel ("Eliot Easy");
 		else if (currentLevel == 2)
-			Application.LoadLevel ("Eliot Medium");
+			Application.LoadLevel ("Regan_Medium");
 		else if (currentLevel == 3)
 			Application.LoadLevel ("Eliot Hard");
 		else 
 			Debug.Log ("Missing level in MainMenu_Controller");
 	}
-
+	
 	public void QuitGameYes(){
 		Application.Quit();
 		Debug.Log ("Quit");
 	}
-
+	
 	//Sets the current level
 	public void setLevel(int levelNumber){
 		currentLevel = levelNumber;
 		ModeMenu ();
 	}
-
+	
 	public void Tutorial(){
 		currentMode = 0;
 		Application.LoadLevel ("Eliot Tutorial");
 	}
-
+	
 	public void SettingsApply(){
 		GetComponent<SettingsController>().Save ();
 		updateSettings ();
@@ -228,12 +226,11 @@ public class MainMenu_Controller : MonoBehaviour {
 	public void SettingsRevert(){
 		GetComponent<SettingsController>().Load ();
 	}
-
+	
 	public void updateSettings(){
 		mainmenuSource.volume = GetComponent<SettingsController>().masterVolume / 10f * GetComponent<SettingsController>().musicVolume / 10f;
 	}
-
+	
 }
-
 
 
