@@ -1,12 +1,12 @@
 { 
           "settings": { 
-            "fov": 60, 
-            "sensitivity": 1.103806, 
+            "fov": 75, 
+            "sensitivity": 3.720234, 
             "viewmodel": 1
             }, 
           "audio": { 
             "master": 4.871063, 
-            "music": 1, 
+            "music": 10, 
             "sound effects": 6.839228
             }, 
           "video": { 
