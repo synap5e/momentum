@@ -7,6 +7,8 @@ using ExtensionMethods;
 public class Playback : MonoBehaviour {
 	public float Speed;
 	public float SpeedDampening;
+    public bool Free = false;
+    public bool Loop = false;
 
 	private int snapshotIndex = 0;
 	private bool playback = false;
@@ -18,8 +20,8 @@ public class Playback : MonoBehaviour {
 	private Recorder.Snapshot previousSnapshot;
 	private Recorder.Snapshot nextSnapshot;
 
-	private float previousSpeed;
-	private float nextSpeed;
+	private Vector3 previousVelocity;
+    private Vector3 nextVelocity;
 
 	public List<Recorder.Snapshot> Snapshots { get; set; }
 
@@ -50,11 +52,16 @@ public class Playback : MonoBehaviour {
         }
 
         bool pauseOnFrame = false;
-        Checkpoint playerCheckpoint = GameObject.FindObjectOfType<RespawnController>().CurrentCheckpoint;
-        if (currentCheckpoint != null && currentCheckpoint.Index > playerCheckpoint.Index && !currentSnapshot.inJump && Vector3.Dot(currentCheckpoint.spawn.transform.position - gameObject.transform.position, gameObject.transform.forward) < -1)
+        if (!Free)
         {
-            Debug.Log(string.Format("{0} vs {1}", currentCheckpoint.Index, playerCheckpoint.Index));
-            pauseOnFrame = true;
+            Checkpoint playerCheckpoint = GameObject.FindObjectOfType<RespawnController>().CurrentCheckpoint;
+            if (currentCheckpoint != null
+                && currentCheckpoint.Index > playerCheckpoint.Index
+                && !currentSnapshot.inJump
+                && Vector3.Dot(currentCheckpoint.spawn.transform.position - gameObject.transform.position, gameObject.transform.forward) < -1)
+            {
+                pauseOnFrame = true;
+            }
         }
 
         if (wasPaused)
@@ -73,10 +80,17 @@ public class Playback : MonoBehaviour {
             frameDuration -= currentSnapshot.duration;
             moveToNextSnapshot();
         }
+
         if (nextSnapshot == null)
         {
-            EndPlayback();
-            return;
+            if (Loop)
+            {
+                SetPlaybackPosition(0);
+            } else {
+                EndPlayback();
+                return;
+            }
+    
         }
 
         float framePercentageComplete = frameDuration / currentSnapshot.duration;
@@ -84,9 +98,16 @@ public class Playback : MonoBehaviour {
         Vector3 nextPosition = Vector3.Lerp(currentSnapshot.position, nextSnapshot.position, framePercentageComplete);
 
         gameObject.transform.position = nextPosition;
-        gameObject.transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
-
         float instantaneousSpeed = (nextPosition - previousPosition).ToXZ().magnitude;
+        if (instantaneousSpeed > 0.1)
+        {
+            Vector3 forward = Vector3.Slerp(previousVelocity, nextVelocity, framePercentageComplete);
+            forward.y = 0;
+            gameObject.transform.forward = forward.normalized;
+        } else {
+            gameObject.transform.rotation = Quaternion.Slerp(currentSnapshot.rotation, nextSnapshot.rotation, framePercentageComplete);
+        }
+
         bool inAir = currentSnapshot.inJump;
 
         // TODO: add more logic to handle free-fall vs jump
@@ -100,17 +121,17 @@ public class Playback : MonoBehaviour {
 		currentSnapshot = Snapshots[snapshotIndex];
 		previousSnapshot = null;
 		nextSnapshot = null;
-		previousSpeed = 0f;
+		previousVelocity = Vector3.zero;
 
 		if(snapshotIndex > 0)
 		{
 			previousSnapshot = Snapshots[snapshotIndex - 1];
-			previousSpeed = (currentSnapshot.position.ToXZ() - previousSnapshot.position.ToXZ()).magnitude / previousSnapshot.duration;
+			previousVelocity = (currentSnapshot.position - previousSnapshot.position);
 		}
 		if (snapshotIndex + 1 < Snapshots.Count)
 		{
 			nextSnapshot = Snapshots[snapshotIndex + 1];
-			nextSpeed = (nextSnapshot.position.ToXZ() - currentSnapshot.position.ToXZ()).magnitude / currentSnapshot.duration;
+			nextVelocity = (nextSnapshot.position - currentSnapshot.position);
 		}
 		snapshotIndex++;
 	}

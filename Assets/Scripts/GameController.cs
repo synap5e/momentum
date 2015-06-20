@@ -128,11 +128,6 @@ public class GameController : MonoBehaviour {
 			Player.GetComponent<Recorder>().Save("tutorial");
 		}
 
-//		if (Input.GetKeyDown(KeyCode.Escape))
-//		{
-//			Application.Quit();
-//		}
-
         if (FollowReplay && replayGhost != null)
         {
             EnableFirstPersonCamera(false);
@@ -165,10 +160,23 @@ public class GameController : MonoBehaviour {
             Player.GetComponent<Recorder>().StopRecording();
 		}
 
+        if (ghostPlayers.Any())
+        {
+            GameObject lastGhost = ghostPlayers.Last();
+            Playback lastPlayback = lastGhost.GetComponent<Playback>();
+            lastPlayback.StopPlayback();
+
+            Destroy(lastGhost);
+            ghostPlayers.RemoveAt(ghostPlayers.Count - 1);
+        }
+        Destroy(replayGhost);
+
 		//Setup new ghost
 		GameObject newGhost = Instantiate<GameObject>(GhostPlayerPrefab);
 		Playback playback = newGhost.GetComponent<Playback>();
         playback.Snapshots = Player.GetComponent<Recorder>().snapshotList;
+        playback.Free = true;
+        playback.Loop = true;
 		ghostPlayers.Add(newGhost);
 
 		//Set up camera
@@ -189,6 +197,10 @@ public class GameController : MonoBehaviour {
 		Player.SetActive(isFirstPerson);
 		FirstPersonCamera.SetActive(isFirstPerson);
 		FirstPersonCamera.GetComponent<AudioListener>().enabled = isFirstPerson;
+        if (!isFirstPerson)
+        {
+            GameObject.FindObjectOfType<Goal>().enabled = false;
+        }
 
 		ThirdPersonCamera.SetActive(!isFirstPerson);
 		ThirdPersonCamera.GetComponent<AudioListener>().enabled = !isFirstPerson;
