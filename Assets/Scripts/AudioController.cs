@@ -12,10 +12,12 @@ public class AudioController : MonoBehaviour {
 	public AudioClip landing;
 	public AudioClip panting;
 	public AudioClip running;
+	public AudioClip whoosh;
 
 	private bool playAudio = true;
 	private bool inJump = false;
 	private float startTime;
+	private bool playLand = false;
 
 	private AudioSource beepsource;
 	private AudioSource explosionsource;
@@ -23,6 +25,7 @@ public class AudioController : MonoBehaviour {
 	private AudioSource landingSource;
 	private AudioSource pantingSource;
 	private AudioSource runningSource;
+	private AudioSource whooshSource;
 
 	private Dictionary <AudioSource,float> audiosourceDic;
 
@@ -55,6 +58,11 @@ public class AudioController : MonoBehaviour {
 		explosionsource.clip = explosion;
 		audiosourceDic.Add (explosionsource,1f);
 
+		whooshSource = player.AddComponent<AudioSource>();
+		whooshSource.clip = whoosh;
+		whooshSource.loop = true;
+		audiosourceDic.Add (whooshSource,1f);
+
 		GetComponent<SettingsController>().Load ();
 		changeVolume ();
 	}
@@ -64,42 +72,64 @@ public class AudioController : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-
 		if (playAudio) {
 			bool jumping = !GetComponent<RigidbodyFPSController> ().onGround;
 			bool moving = Input.GetAxis ("Horizontal") != 0f || Input.GetAxis ("Vertical") != 0f;
 			BombActivator bombAc = player.GetComponent<BombActivator> ();
-			if (Input.GetKeyDown (KeyCode.Space)) {
+
+
+			//If in jump by pressing jump key
+			if (Input.GetKeyDown (KeyCode.Space) &&!inJump) {
 				jumpingSource.Play ();
 				runningSource.Stop ();
 				inJump = true;
 				startTime = Time.time;
 			}
-			else if(Time.time - startTime > 1f && inJump && !jumping){
-				landingSource.Play();
+
+			//If jumped more than 0.1 sec ago
+			if(inJump && jumping && Time.time - startTime > 0.1f){
+				playLand = true;
+			}
+
+			//If injump and landed
+			if(inJump && !jumping && Time.time - startTime > 0.1f){	
+				if(playLand)
+					landingSource.Play();
 				inJump = false;
+				playLand = false;
 			}
-			else if (moving && !inJump && !jumping && !runningSource.isPlaying ){
-				pantingSource.Stop ();
+
+			//If standing on the ground - not moving and not inJump
+			if (moving && !inJump && !jumping && !runningSource.isPlaying ){
 				runningSource.Play ();
+				pantingSource.Stop ();
 			}
-			else if (moving && !inJump && jumping){
-				runningSource.Stop ();
-			}
-			else if(!moving && !pantingSource.isPlaying){
-				runningSource.Stop ();
+
+			//if jumping and moving stop running 
+			if(moving && jumping)
+				runningSource.Stop ();	
+
+			//If standing on the ground - not moving and not inJump
+			if(!moving && !inJump && !pantingSource.isPlaying){
 				pantingSource.Play ();
+				runningSource.Stop ();
 			}
-			else if (bombAc.nearBomb ()) {
+
+			//If near bomb
+			if (bombAc.nearBomb ()) {
 				if (Input.GetMouseButtonDown (0)) {
 					beepsource.Play ();
 					explosionsource.Play ();
 				}
 			}
-//			else if(player.GetComponent<RigidbodyFPSController>().speed > 20f && !whooshSource.isPlaying){
-//				whooshSource.Play ();
-//			}
 
+			//if faster than 14units
+			if(player.GetComponent<RigidbodyFPSController>().currentSpeed > 14f){
+				if(!whooshSource.isPlaying)
+					whooshSource.Play ();
+			}
+			else
+				whooshSource.Stop ();
 		}
 	}
 
