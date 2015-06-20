@@ -58,6 +58,7 @@ public class MainMenu_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Animator anim = GetComponent<Animator>();
 		
 		//Returns to previous menu
 		if( Input.GetKeyDown(KeyCode.Escape))
@@ -84,6 +85,7 @@ public class MainMenu_Controller : MonoBehaviour {
 		if(!fadedIn && Input.GetKeyDown(KeyCode.Space)){
 			TitleOff();
 			TextFadeIn();
+			anim.SetTrigger ("Skip");
 		}
 	}
 	
