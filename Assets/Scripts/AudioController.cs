@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AudioController : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class AudioController : MonoBehaviour {
 	public AudioClip jumping;
 	public AudioClip landing;
 	public AudioClip panting;
-	public AudioClip runnning;
+	public AudioClip running;
 
 	private bool playAudio = true;
 	private bool inJump = false;
@@ -23,33 +24,43 @@ public class AudioController : MonoBehaviour {
 	private AudioSource pantingSource;
 	private AudioSource runningSource;
 
+	private Dictionary <AudioSource,float> audiosourceDic;
+
 	// Use this for initialization
 	void Start () {
+
 		jumpingSource = player.AddComponent<AudioSource>();
 		jumpingSource.clip = jumping;
-		jumpingSource.volume = 0.5f;
+		audiosourceDic.Add (jumpingSource,0.5f);
 		
 		landingSource = player.AddComponent<AudioSource>();
 		landingSource.clip = landing;
-		landingSource.volume = 0.5f;
+		audiosourceDic.Add (landingSource,0.5f);
 		
 		pantingSource = player.AddComponent<AudioSource>();
 		pantingSource.clip = panting;
-		pantingSource.volume = 1f;
 		pantingSource.loop = true;
+		audiosourceDic.Add (pantingSource,1f);
 		
 		runningSource = player.AddComponent<AudioSource>();
-		runningSource.clip = runnning;
-		runningSource.volume = 0.5f;
+		runningSource.clip = running;
 		runningSource.loop = false;
+		audiosourceDic.Add (runningSource,0.5f);
 
 		beepsource = player.AddComponent<AudioSource>();
 		beepsource.clip = beep;
-		beepsource.volume = 0.1f;
+		audiosourceDic.Add (beepsource,0.1f);
 		
 		explosionsource = player.AddComponent<AudioSource>();
 		explosionsource.clip = explosion;
-		explosionsource.volume = 0.5f;
+		audiosourceDic.Add (explosionsource,1f);
+
+		GetComponent<SettingsController>().Load ();
+		changeVolume ();
+	}
+
+	public AudioController(){		
+		audiosourceDic = new Dictionary <AudioSource,float> ();
 	}
 	
 	void FixedUpdate () {
@@ -105,4 +116,14 @@ public class AudioController : MonoBehaviour {
 		pantingSource.Pause();
 		runningSource.Pause();
 	}
+
+	public void changeVolume(){
+		foreach (AudioSource a in audiosourceDic.Keys) {
+			float masterVolume = GetComponent<SettingsController>().masterVolume/10f;
+			float soundEffectsVolume = GetComponent<SettingsController>().soundEffectsVolume/10f;
+			a.volume = masterVolume * soundEffectsVolume * audiosourceDic[a];
+		}
+	}
+
+
 }
