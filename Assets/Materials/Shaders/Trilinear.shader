@@ -3,7 +3,7 @@ Shader "Tri-Planar World" {
 		_MainTex("Texture", 2D) = "white" {}
 		_Scale("Scale", Float) = 2
 		_BumpMap("Bumpmap", 2D) = "bump" {}
-		_BumpScale("Bumpmap Scale", Float) = 2
+		_BumpScale("Bumpmap Scale", Float) = 0.2
 		_Color ("Color", Color) = (1,1,1,1)
 
 		_RimColor ("Rim Color", Color) = (0.26,0.19,0.16,0.0)

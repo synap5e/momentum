@@ -54,6 +54,8 @@ public class RigidbodyFPSController : MonoBehaviour
 
 	public bool disableMouse = true;
 
+	public float currentSpeed =0f;
+
     internal bool usingGroundedPhysics
     {
         get
@@ -153,7 +155,7 @@ public class RigidbodyFPSController : MonoBehaviour
 
 		Vector3 horvel = GetComponent<Rigidbody>().velocity;
 		horvel.y = 0;
-		int currentSpeed = (int) (Mathf.Round (horvel.magnitude * 10000) / 10000F);
+		currentSpeed = (int) (Mathf.Round (horvel.magnitude * 10000) / 10000F);
 		speedText.text = currentSpeed.ToString ("000");
     }
 

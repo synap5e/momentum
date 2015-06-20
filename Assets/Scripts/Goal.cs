@@ -170,14 +170,15 @@ public class Goal : MonoBehaviour
 			playerController.GetComponent<Recorder>().StopRecording();
 			
 			string run = playerController.GetComponent<Recorder>().SaveToString();
-			StartCoroutine(PostRun(run));
+
 			if(playMode== Mode.Speedrun){
 				player.GetComponent<Pause>().setEndLevelText("Time "+playerController.GetComponent<Recorder>().getTimeString());
 			}
 			else
 				player.GetComponent<Pause>().setEndLevelText("Finish");
 			player.GetComponent<Pause>().EndLevel();
-			
+
+			StartCoroutine(PostRun(run));
 			playerController.GetComponent<Recorder>().ResetRecording();
 			
 		}
