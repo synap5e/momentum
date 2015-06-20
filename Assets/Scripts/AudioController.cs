@@ -19,6 +19,7 @@ public class AudioController : MonoBehaviour {
 	private float startTime;
 	private bool playLand = false;
 	private float whooshTime;
+	private bool playWhoosh = false;
 
 	private AudioSource beepsource;
 	private AudioSource explosionsource;
@@ -135,10 +136,22 @@ public class AudioController : MonoBehaviour {
 					whooshTime = Time.time;
 					whooshSource.Play ();
 				}	
+				playWhoosh = true;
 				Debug.Log(volume);
 			}
 			else{
-				whooshSource.Stop ();
+				if(playWhoosh){
+					playWhoosh = false;
+					whooshTime = Time.time;
+				}	
+				float volume = 1f-(Time.time - whooshTime);
+				if(volume>0.1f){
+					audiosourceDic[whooshSource] = volume;
+					changeVolume();
+				}
+				else
+					whooshSource.Stop ();
+				Debug.Log(volume);
 			}
 		}
 	}
