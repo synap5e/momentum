@@ -127,7 +127,6 @@ public class GameController : MonoBehaviour {
 		{
 			Player.GetComponent<Recorder>().Save("tutorial");
 		}
-
         if (FollowReplay && replayGhost != null)
         {
             EnableFirstPersonCamera(false);
