@@ -1501,14 +1501,14 @@ ModelImporter:
     - serializedVersion: 16
       name: Bomb_Idle
       takeName: Take 001
-      firstFrame: 429
-      lastFrame: 476
+      firstFrame: 700
+      lastFrame: 750
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
