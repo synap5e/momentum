@@ -18,6 +18,8 @@ public class AudioController : MonoBehaviour {
 	private bool inJump = false;
 	private float startTime;
 	private bool playLand = false;
+	private float whooshTime;
+	private bool playWhoosh = false;
 
 	private AudioSource beepsource;
 	private AudioSource explosionsource;
@@ -61,7 +63,7 @@ public class AudioController : MonoBehaviour {
 		whooshSource = player.AddComponent<AudioSource>();
 		whooshSource.clip = whoosh;
 		whooshSource.loop = true;
-		audiosourceDic.Add (whooshSource,1f);
+		audiosourceDic.Add (whooshSource,0.1f);
 
 		GetComponent<SettingsController>().Load ();
 		changeVolume ();
@@ -124,12 +126,33 @@ public class AudioController : MonoBehaviour {
 			}
 
 			//if faster than 14units
-			if(player.GetComponent<RigidbodyFPSController>().currentSpeed > 14f){
-				if(!whooshSource.isPlaying)
+			if(player.GetComponent<RigidbodyFPSController>().currentSpeed > 14f){	
+				float volume = (Time.time - whooshTime);
+				if(volume<1f){
+					audiosourceDic[whooshSource] = volume;
+					changeVolume();
+				}
+				if(!whooshSource.isPlaying){
+					whooshTime = Time.time;
 					whooshSource.Play ();
+				}	
+				playWhoosh = true;
+				Debug.Log(volume);
 			}
-			else
-				whooshSource.Stop ();
+			else{
+				if(playWhoosh){
+					playWhoosh = false;
+					whooshTime = Time.time;
+				}	
+				float volume = 1f-(Time.time - whooshTime);
+				if(volume>0.1f){
+					audiosourceDic[whooshSource] = volume;
+					changeVolume();
+				}
+				else
+					whooshSource.Stop ();
+				Debug.Log(volume);
+			}
 		}
 	}
 
