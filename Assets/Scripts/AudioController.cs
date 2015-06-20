@@ -126,7 +126,7 @@ public class AudioController : MonoBehaviour {
 			}
 
 			//if faster than 14units
-			if(player.GetComponent<RigidbodyFPSController>().currentSpeed > 14f){	
+			if(player.GetComponent<RigidbodyFPSController>().currentSpeed > 18f){	
 				float volume = (Time.time - whooshTime);
 				if(volume<1f){
 					audiosourceDic[whooshSource] = volume;
@@ -140,7 +140,7 @@ public class AudioController : MonoBehaviour {
 				Debug.Log(volume);
 			}
 			else{
-				if(playWhoosh){
+				/*(if(playWhoosh){
 					playWhoosh = false;
 					whooshTime = Time.time;
 				}	
@@ -151,7 +151,9 @@ public class AudioController : MonoBehaviour {
 				}
 				else
 					whooshSource.Stop ();
-				Debug.Log(volume);
+				Debug.Log(volume); */
+
+				whooshSource.Stop ();
 			}
 		}
 	}
