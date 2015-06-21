@@ -11,9 +11,9 @@
             }, 
           "video": { 
             "ambientOcclusion": 0, 
-            "bloom": 0, 
+            "bloom": 1, 
             "edgeDetection": 0, 
-            "motionBlur": 0, 
+            "motionBlur": 1, 
             "vignetteAberration": 0
             }
           }
