@@ -6,11 +6,11 @@
             }, 
           "audio": { 
             "master": 10, 
-            "music": 1, 
+            "music": 2.154882, 
             "sound effects": 10
             }, 
           "video": { 
-            "bloom": 1, 
-            "motionBlur": 1
+            "bloom": 0, 
+            "motionBlur": 0
             }
           }

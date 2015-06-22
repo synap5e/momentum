@@ -47,6 +47,8 @@ public class MainMenu_Controller : MonoBehaviour {
 		skipMenu.SetActive (true);	
 		
 		mainmenuSource = GetComponent<AudioSource> ();
+		mainmenuSource.loop = true;
+		mainmenuSource.Play ();
 		
 		//fader = GameObject.Find("ScreenFader");
 		fader.GetComponent<UnityEngine.UI.RawImage> ().CrossFadeAlpha (0f,.5f, true);
