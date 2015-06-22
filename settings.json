@@ -10,7 +10,7 @@
             "sound effects": 10
             }, 
           "video": { 
-            "bloom": 1, 
-            "motionBlur": 1
+            "bloom": 0, 
+            "motionBlur": 0
             }
           }
