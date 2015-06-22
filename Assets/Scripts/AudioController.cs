@@ -14,6 +14,15 @@ public class AudioController : MonoBehaviour {
 	public AudioClip running;
 	public AudioClip whoosh;
 
+	public AudioClip music1;
+	public AudioClip music2;
+	public AudioClip music3;
+	public AudioClip music4;
+	public AudioClip music5;
+	public AudioClip music6;
+	public AudioClip music7;
+	public AudioClip music8;
+
 	private bool playAudio = true;
 	private bool inJump = false;
 	private float startTime;
@@ -29,11 +38,14 @@ public class AudioController : MonoBehaviour {
 	private AudioSource runningSource;
 	private AudioSource whooshSource;
 
+	private AudioSource musicSource;
+	private int playlistIndex =0;
+
 	private Dictionary <AudioSource,float> audiosourceDic;
+	private List<AudioClip> musicPlaylist;
 
 	// Use this for initialization
 	void Start () {
-
 		jumpingSource = player.AddComponent<AudioSource>();
 		jumpingSource.clip = jumping;
 		audiosourceDic.Add (jumpingSource,0.5f);
@@ -65,13 +77,41 @@ public class AudioController : MonoBehaviour {
 		whooshSource.loop = true;
 		audiosourceDic.Add (whooshSource,0.1f);
 
+		musicPlaylist.Add (music1);
+		musicPlaylist.Add (music2);
+		musicPlaylist.Add (music3);
+		musicPlaylist.Add (music4);
+		musicPlaylist.Add (music5);
+		musicPlaylist.Add (music6);
+		musicPlaylist.Add (music7);
+		musicPlaylist.Add (music8);
+		Shuffle (musicPlaylist);
+		musicSource = player.AddComponent<AudioSource>();
+		musicSource.clip = musicPlaylist [0];
+		Debug.Log ("playing " + musicPlaylist [0].ToString ());
+		musicSource.loop = false;
+
 		GetComponent<SettingsController>().Load ();
 		changeVolume ();
 	}
 
 	public AudioController(){		
 		audiosourceDic = new Dictionary <AudioSource,float> ();
+		musicPlaylist = new List<AudioClip> ();
 	}
+
+	void Shuffle<T>(List<T> list) {
+		System.Random random = new System.Random();
+		int n = list.Count;
+		while (n > 1) {
+			int k = random.Next(n);
+			n--;
+			T temp = list[k];
+			list[k] = list[n];
+			list[n] = temp;
+		}
+	}
+
 	
 	void FixedUpdate () {
 		if (playAudio) {
@@ -154,11 +194,22 @@ public class AudioController : MonoBehaviour {
 
 				whooshSource.Stop ();
 			}
+
+			if(!musicSource.isPlaying){
+				playlistIndex++;
+				if(playlistIndex == musicPlaylist.Count){
+					playlistIndex =0;
+					Shuffle (musicPlaylist);
+				}
+				musicSource.clip = musicPlaylist[playlistIndex];
+				musicSource.Play ();
+			}
 		}
 	}
 
 	public void PlayAudio(){
 		playAudio = true;
+		musicSource.UnPause ();
 	}
 
 	public void PauseAudio(){
@@ -169,14 +220,16 @@ public class AudioController : MonoBehaviour {
 		landingSource.Pause();
 		pantingSource.Pause();
 		runningSource.Pause();
+		musicSource.Pause ();
 	}
 
 	public void changeVolume(){
-		foreach (AudioSource a in audiosourceDic.Keys) {
-			float masterVolume = GetComponent<SettingsController>().masterVolume/10f;
-			float soundEffectsVolume = GetComponent<SettingsController>().soundEffectsVolume/10f;
+		float masterVolume = GetComponent<SettingsController>().masterVolume/10f;
+		float soundEffectsVolume = GetComponent<SettingsController>().soundEffectsVolume/10f;
+		float musicVolume = GetComponent<SettingsController>().musicVolume/10f;
+		foreach (AudioSource a in audiosourceDic.Keys) 
 			a.volume = masterVolume * soundEffectsVolume * audiosourceDic[a];
-		}
+		musicSource.volume = masterVolume * musicVolume;
 	}
 
 
