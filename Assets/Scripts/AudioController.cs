@@ -87,7 +87,7 @@ public class AudioController : MonoBehaviour {
 		musicPlaylist.Add (music8);
 		Shuffle (musicPlaylist);
 		musicSource = player.AddComponent<AudioSource>();
-		musicSource.clip = musicPlaylist [0];
+		musicSource.clip = musicPlaylist [0];		
 		Debug.Log ("playing " + musicPlaylist [0].ToString ());
 		musicSource.loop = false;
 
@@ -202,7 +202,8 @@ public class AudioController : MonoBehaviour {
 					Shuffle (musicPlaylist);
 				}
 				musicSource.clip = musicPlaylist[playlistIndex];
-				musicSource.Play ();
+				musicSource.Play ();				
+				Debug.Log ("playing " + musicPlaylist [playlistIndex].ToString ());
 			}
 		}
 	}

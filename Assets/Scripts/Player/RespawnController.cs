@@ -12,6 +12,7 @@ public class RespawnController : MonoBehaviour {
     public float minRespawnTime = 0.3f;
 
     public GameObject DeathOverlay;
+	public GameObject Text;
     public float deathOverlayCrossfadeTime = 0.5f;
 
     private float respawnTravelDuration = 0;
@@ -55,6 +56,7 @@ public class RespawnController : MonoBehaviour {
         {
             respawn.GetComponent<Renderer>().enabled = false;
         }
+		Text.SetActive(false);
 
         //DeathOverlay = GameObject.Find("Death Overlay");
         //deathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, 0f, true);
@@ -96,8 +98,8 @@ public class RespawnController : MonoBehaviour {
             {
                 respawning = false;
 //                deathOverlay.SetActive(false);
-                DeathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, deathOverlayCrossfadeTime, false);
-
+				DeathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(0f, deathOverlayCrossfadeTime, false);
+				Text.SetActive(false);
 
                 GetComponent<Collider>().enabled = true;
                 GetComponent<RigidbodyFPSController>().enableInput = true;
@@ -138,9 +140,9 @@ public class RespawnController : MonoBehaviour {
         respawning = true;
         GetComponent<RigidbodyFPSController>().enableInput = false;
         GetComponent<Collider>().enabled = false;
-
+		Text.SetActive(true);
         DeathOverlay.SetActive(true);
-        DeathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(1f, deathOverlayCrossfadeTime, false);
+		DeathOverlay.GetComponent<UnityEngine.UI.RawImage>().CrossFadeAlpha(1f, deathOverlayCrossfadeTime, false);
 
         if (GetComponent<BombActivator>() != null)
             GetComponent<BombActivator>().ReactivateBombs();
