@@ -106,6 +106,7 @@ public class Goal : MonoBehaviour
 		if (!paused) {
 			if (playMode == Mode.Speedrun) {
 				if (Input.GetButtonDown ("Restart Level")) {
+					player.GetComponent<RespawnController>().Restart();
 					RestartSpeedrun ();
 				}
 				if (playerController.enableInput) {
@@ -148,18 +149,19 @@ public class Goal : MonoBehaviour
 		}
 	}
 	
-	private void RestartSpeedrun()
+	public void RestartSpeedrun()
 	{
-		countdownRemaining = speedrunCountdownTime;
-		playerController.enableInput = false;
-		complete = false;
-		time = 0;
-		
-		playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		playerController.transform.position = spos;
-		playerController.transform.rotation = srot;
-		
-		playerController.GetComponent<Recorder>().ResetRecording();
+
+		if (playMode == Mode.Speedrun) {
+			countdownRemaining = speedrunCountdownTime;
+			playerController.enableInput = false;
+			complete = false;
+			time = 0;
+			playerController.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			playerController.transform.position = spos;
+			playerController.transform.rotation = srot;
+			playerController.GetComponent<Recorder> ().ResetRecording ();
+		}
 	}
 	
 	void OnCollisionEnter(Collision collision)
@@ -178,7 +180,7 @@ public class Goal : MonoBehaviour
 				player.GetComponent<Pause>().setEndLevelText("Finish");
 			player.GetComponent<Pause>().EndLevel();
 
-			StartCoroutine(PostRun(run));
+//			StartCoroutine(PostRun(run));
 			playerController.GetComponent<Recorder>().ResetRecording();
 			
 		}

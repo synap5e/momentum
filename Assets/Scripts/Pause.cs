@@ -109,6 +109,7 @@ public class Pause : MonoBehaviour {
 	}
 	
 	public void RestartLevel(){
+		FindObjectOfType<Goal> ().RestartSpeedrun ();
 		player.GetComponent<Recorder> ().ResetRecording ();
 	}
 	
@@ -186,9 +187,6 @@ public class Pause : MonoBehaviour {
 		feet.SetActive (GetComponent<SettingsController>().viewModelOn);
 		player.GetComponent<RigidbodyFPSController> ().changeSensitivity (GetComponent<SettingsController>().sensitivity);	
 		
-		camera.GetComponent<ScreenSpaceAmbientOcclusion>().enabled = GetComponent<SettingsController>().ambientOcclusion;
-		camera.GetComponent<VignetteAndChromaticAberration> ().enabled = GetComponent<SettingsController>().vignetteAberration;
-		camera.GetComponent<EdgeDetection> ().enabled = GetComponent<SettingsController>().edgeDetection;
 		camera.GetComponent<CameraMotionBlur> ().enabled = GetComponent<SettingsController>().motionBlur;
 		camera.GetComponent<Bloom> ().enabled = GetComponent<SettingsController>().bloom;
 	}
