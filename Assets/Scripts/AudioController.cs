@@ -137,7 +137,6 @@ public class AudioController : MonoBehaviour {
 					whooshSource.Play ();
 				}	
 				playWhoosh = true;
-				Debug.Log(volume);
 			}
 			else{
 				/*(if(playWhoosh){

@@ -32,8 +32,7 @@ public class Recorder : MonoBehaviour {
 	
 	public Recorder(){
 		keylist = new List<KeyRecording>();
-		snapshotList = new List<Snapshot> ();
-		
+		snapshotList = new List<Snapshot> ();		
 	}
 	
 	public class Snapshot{
@@ -148,7 +147,6 @@ public class Recorder : MonoBehaviour {
 		snapshotList = new List<Snapshot> ();
 		recording = true;
 		startTime = Time.time;
-		time = 0f;
 	}
 	
 	public void StartLoggingKeys(){

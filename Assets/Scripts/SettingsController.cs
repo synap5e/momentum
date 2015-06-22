@@ -20,11 +20,8 @@ public class SettingsController : MonoBehaviour {
 	public GameObject soundEffectSlider;
 
 	[Header("Video Settings Elements")]
-	public GameObject ambientOcclusionToggle;	
 	public GameObject bloomToggle;	
-	public GameObject edgeDetectionToggle;
 	public GameObject motionBlurToggle;
-	public GameObject vignetteAberrationToggle;
 
 	[Header("Settings")]
 	public float fov = 60f;
@@ -35,9 +32,6 @@ public class SettingsController : MonoBehaviour {
 	public float musicVolume = 10f;
 	public float soundEffectsVolume = 10f;	
 
-	public bool ambientOcclusion = false;
-	public bool vignetteAberration = false;
-	public bool edgeDetection = false;
 	public bool motionBlur = false;
 	public bool bloom = false;
 
@@ -53,12 +47,9 @@ public class SettingsController : MonoBehaviour {
 		N["audio"]["master"].AsFloat = masterVolume;
 		N["audio"]["music"].AsFloat = musicVolume;
 		N["audio"]["sound effects"].AsFloat = soundEffectsVolume;
-
-		N["video"]["ambientOcclusion"].AsFloat = ambientOcclusion ? 1 : 0;		
+	
 		N["video"]["bloom"].AsFloat = bloom ? 1 : 0;
-		N["video"]["edgeDetection"].AsFloat = edgeDetection ? 1 : 0;
 		N["video"]["motionBlur"].AsFloat = motionBlur ? 1 : 0;		
-		N["video"]["vignetteAberration"].AsFloat = vignetteAberration ? 1 : 0;
 
 		return N.ToJSON(4);
 	}
@@ -75,17 +66,11 @@ public class SettingsController : MonoBehaviour {
 		musicVolume = N["audio"]["music"].AsFloat;
 		soundEffectsVolume = N["audio"]["sound effects"].AsFloat;
 
-		ambientOcclusion = false;
-		vignetteAberration = false;
-		edgeDetection = false;
 		motionBlur = false;
 		bloom = false;
-
-		if(N["video"]["ambientOcclusion"].AsFloat == 1)ambientOcclusion=true;		
+	
 		if(N["video"]["bloom"].AsFloat == 1)bloom=true;
-		if(N["video"]["edgeDetection"].AsFloat == 1)edgeDetection=true;
 		if(N["video"]["motionBlur"].AsFloat == 1)motionBlur=true;		
-		if(N["video"]["vignetteAberration"].AsFloat == 1)vignetteAberration=true;
 
 	}
 
@@ -108,9 +93,6 @@ public class SettingsController : MonoBehaviour {
 		musicSlider.GetComponent<UnityEngine.UI.Slider> ().value = musicVolume;
 		soundEffectSlider.GetComponent<UnityEngine.UI.Slider> ().value = soundEffectsVolume;
 
-		ambientOcclusionToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = ambientOcclusion;
-		vignetteAberrationToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = vignetteAberration;
-		edgeDetectionToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = edgeDetection;
 		motionBlurToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = motionBlur;
 		bloomToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn = bloom;
 	}
@@ -124,9 +106,6 @@ public class SettingsController : MonoBehaviour {
 		musicVolume = musicSlider.GetComponent<UnityEngine.UI.Slider> ().value;
 		soundEffectsVolume = soundEffectSlider.GetComponent<UnityEngine.UI.Slider> ().value;	
 
-		ambientOcclusion = ambientOcclusionToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn;
-		vignetteAberration = vignetteAberrationToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn;
-		edgeDetection = edgeDetectionToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn;
 		motionBlur = motionBlurToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn;
 		bloom = bloomToggle.GetComponent<UnityEngine.UI.Toggle> ().isOn;
 
