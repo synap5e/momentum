@@ -87,7 +87,10 @@ public class GameController : MonoBehaviour {
         }
 
         Player.GetComponent<Recorder>().StartRecording();
-        CreateReplayGhost();
+        if (MainMenu_Controller.currentMode != 0)
+        {
+            CreateReplayGhost();
+        }
 
 	}
 	
