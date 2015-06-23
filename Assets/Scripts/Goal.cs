@@ -5,6 +5,7 @@ using System;
 public class Goal : MonoBehaviour
 {
 
+    public bool submitRuns = false;
     public string postRunURL = "http://uint8.me:8196/submit_run";
 
     public enum Mode { Normal, Speedrun, Practice };
@@ -115,8 +116,11 @@ public class Goal : MonoBehaviour
 
             playerController.GetComponent<Recorder>().StopRecording();
 
-            string run = playerController.GetComponent<Recorder>().SaveToString();
-            StartCoroutine(PostRun(run));
+            if (submitRuns)
+            {
+                string run = playerController.GetComponent<Recorder>().SaveToString();
+                StartCoroutine(PostRun(run));
+            }
 
             playerController.GetComponent<Recorder>().ResetRecording();
         }
@@ -124,8 +128,11 @@ public class Goal : MonoBehaviour
         {
             playerController.GetComponent<Recorder>().StopRecording();
 
-            string run = playerController.GetComponent<Recorder>().SaveToString();
-            StartCoroutine(PostRun(run));
+            if (submitRuns)
+            {
+                string run = playerController.GetComponent<Recorder>().SaveToString();
+                StartCoroutine(PostRun(run));
+            }
 
             playerController.GetComponent<Recorder>().ResetRecording();
         }
@@ -158,8 +165,11 @@ public class Goal : MonoBehaviour
             complete = true;
             playerController.GetComponent<Recorder>().StopRecording();
 
-            string run = playerController.GetComponent<Recorder>().SaveToString();
-            StartCoroutine(PostRun(run));
+            if (submitRuns)
+            {
+                string run = playerController.GetComponent<Recorder>().SaveToString();
+                StartCoroutine(PostRun(run));
+            }
 
             playerController.GetComponent<Recorder>().ResetRecording();
         }
