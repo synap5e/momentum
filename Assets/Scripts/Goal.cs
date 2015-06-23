@@ -18,6 +18,8 @@ public class Goal : MonoBehaviour
 
     public GameObject ghostPrefab;
 
+    static public bool paused = false;
+
     private float countdownRemaining;
     private float time;
 
@@ -30,6 +32,12 @@ public class Goal : MonoBehaviour
 
     private int playerIndex = 0;
 
+    private GameObject player;
+
+    private GameObject gui;
+
+
+
     RigidbodyFPSController playerController
     {
         get
@@ -40,17 +48,32 @@ public class Goal : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         this.spos = playerController.transform.position;
         this.srot = playerController.transform.rotation;
+        if (MainMenu_Controller.currentMode == 0)
+        {
+            Debug.Log("Playing Normal Mode");
+            playMode = Mode.Normal;
+        }
+        else
+        {
+            Debug.Log("Playing Speedrun Mode");
+            playMode = Mode.Speedrun;
+        }
+
+        gui = GameObject.FindGameObjectWithTag("GUI");
 
         if (playMode == Mode.Speedrun)
         {
             playerController.enableInput = false;
             RestartSpeedrun();
+            gui.SetActive(true);
         }
         else
         {
             playerController.GetComponent<Recorder>().StartRecording();
+            gui.SetActive(false);
         }
         playerController.GetComponent<Recorder>().StartLoggingKeys();
 
@@ -60,102 +83,107 @@ public class Goal : MonoBehaviour
         }
     }
 
-    void OnGUI()
-    {
-        // copy the "label" style from the current skin
-        Rect s = new Rect(0, 0, Screen.width, Screen.height);
-
-        if (playMode == Mode.Speedrun)
-        {
-            if (complete)
-            {
-                GUI.Label(s, time.ToString("#.###") + "s", announceText);
-            }
-            else if (playerController.enableInput)
-            {
-                GUI.Label(s, time.ToString("#.##") + "s", timeText);
-            }
-            else
-            {
-                GUI.Label(s, countdownRemaining.ToString("#.##") + "s", announceText);
-            }
-        }
-    }
+    //    void OnGUI()
+    //    {
+    //        // copy the "label" style from the current skin
+    //        Rect s = new Rect(0, 0, Screen.width, Screen.height);
+    //
+    //        if (playMode == Mode.Speedrun)
+    //        {
+    //            if (complete)
+    //            {
+    //                GUI.Label(s, time.ToString("#.###") + "s", announceText);
+    //            }
+    //            else if (playerController.enableInput)
+    //            {
+    //                GUI.Label(s, time.ToString("#.##") + "s", timeText);
+    //            }
+    //            else
+    //            {
+    //                GUI.Label(s, countdownRemaining.ToString("#.##") + "s", announceText);
+    //            }
+    //        }
+    //    }
 
     void Update()
     {
-        if (playMode == Mode.Speedrun)
+        if (!paused)
         {
-            if (Input.GetButtonDown("Restart Level"))
+            if (playMode == Mode.Speedrun)
             {
-                RestartSpeedrun();
-            }
-            if (playerController.enableInput)
-            {
-                if (!complete)
+                if (Input.GetButtonDown("Restart Level"))
                 {
-                    time += Time.deltaTime;
+                    player.GetComponent<RespawnController>().Restart();
+                    RestartSpeedrun();
+                }
+                if (playerController.enableInput)
+                {
+                    if (!complete)
+                    {
+                        time += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    countdownRemaining -= Time.deltaTime;
+                    if (countdownRemaining <= 0)
+                    {
+                        playerController.enableInput = true;
+                    }
+
                 }
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.Home))
             {
-                countdownRemaining -= Time.deltaTime;
-                if (countdownRemaining <= 0)
+                playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                playerController.transform.position = spos;
+                playerController.transform.rotation = srot;
+
+                playerController.GetComponent<Recorder>().StopRecording();
+
+                string run = playerController.GetComponent<Recorder>().SaveToString();
+                if (submitRuns)
                 {
-                    playerController.enableInput = true;
+                    StartCoroutine(PostRun(run));
                 }
 
+                playerController.GetComponent<Recorder>().ResetRecording();
+            }
+            if (Input.GetKeyDown(KeyCode.End))
+            {
+                playerController.GetComponent<Recorder>().StopRecording();
+
+                string run = playerController.GetComponent<Recorder>().SaveToString();
+                if (submitRuns)
+                {
+                    StartCoroutine(PostRun(run));
+                }
+
+                playerController.GetComponent<Recorder>().ResetRecording();
+            }
+
+            if (Input.GetKeyDown(KeyCode.PageUp) || Input.GetKeyDown(KeyCode.PageDown))
+            {
+                playerIndex++;
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Home))
+    public void RestartSpeedrun()
+    {
+
+        if (playMode == Mode.Speedrun)
         {
+            countdownRemaining = speedrunCountdownTime;
+            playerController.enableInput = false;
+            complete = false;
+            time = 0;
             playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
             playerController.transform.position = spos;
             playerController.transform.rotation = srot;
-
-            playerController.GetComponent<Recorder>().StopRecording();
-
-            if (submitRuns)
-            {
-                string run = playerController.GetComponent<Recorder>().SaveToString();
-                StartCoroutine(PostRun(run));
-            }
-
             playerController.GetComponent<Recorder>().ResetRecording();
         }
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-            playerController.GetComponent<Recorder>().StopRecording();
-
-            if (submitRuns)
-            {
-                string run = playerController.GetComponent<Recorder>().SaveToString();
-                StartCoroutine(PostRun(run));
-            }
-
-            playerController.GetComponent<Recorder>().ResetRecording();
-        }
-
-        if (Input.GetKeyDown(KeyCode.PageUp) || Input.GetKeyDown(KeyCode.PageDown))
-        {
-            playerIndex++;
-        }
-
-    }
-
-    private void RestartSpeedrun()
-    {
-        countdownRemaining = speedrunCountdownTime;
-        playerController.enableInput = false;
-        complete = false;
-        time = 0;
-
-        playerController.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        playerController.transform.position = spos;
-        playerController.transform.rotation = srot;
-
-        playerController.GetComponent<Recorder>().ResetRecording();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -165,13 +193,22 @@ public class Goal : MonoBehaviour
             complete = true;
             playerController.GetComponent<Recorder>().StopRecording();
 
+            string run = playerController.GetComponent<Recorder>().SaveToString();
+
+            if (playMode == Mode.Speedrun)
+            {
+                player.GetComponent<Pause>().setEndLevelText("Time " + playerController.GetComponent<Recorder>().getTimeString());
+            }
+            else
+                player.GetComponent<Pause>().setEndLevelText("Finish");
+            player.GetComponent<Pause>().EndLevel();
+
             if (submitRuns)
             {
-                string run = playerController.GetComponent<Recorder>().SaveToString();
                 StartCoroutine(PostRun(run));
             }
-
             playerController.GetComponent<Recorder>().ResetRecording();
+
         }
     }
 
@@ -181,8 +218,8 @@ public class Goal : MonoBehaviour
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allObjects)
         {
-            if (go.layer == LayerMask.NameToLayer("Ground")) 
-                accum += (int)Mathf.Round((go.transform.position.x + go.transform.position.y + go.transform.position.z + go.transform.rotation.w + go.transform.rotation.x + go.transform.rotation.y + go.transform.rotation.z)*100);
+            if (go.layer == LayerMask.NameToLayer("Ground"))
+                accum += (int)Mathf.Round((go.transform.position.x + go.transform.position.y + go.transform.position.z + go.transform.rotation.w + go.transform.rotation.x + go.transform.rotation.y + go.transform.rotation.z) * 100);
         }
         return accum.ToString();
     }
@@ -208,9 +245,10 @@ public class Goal : MonoBehaviour
         if (postRunURL != null)
         {
             WWW w = new WWW(postRunURL, form);
-			yield return w; // Better thread non-block?
+            yield return w; // Better thread non-block?
         }
         yield return null;
     }
+
 
 }
