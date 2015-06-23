@@ -230,7 +230,8 @@ public class AudioController : MonoBehaviour {
 		float musicVolume = GetComponent<SettingsController>().musicVolume/10f;
 		foreach (AudioSource a in audiosourceDic.Keys) 
 			a.volume = masterVolume * soundEffectsVolume * audiosourceDic[a];
-		musicSource.volume = masterVolume * musicVolume;
+		if (musicSource) 
+            musicSource.volume = masterVolume * musicVolume;
 	}
 
 
