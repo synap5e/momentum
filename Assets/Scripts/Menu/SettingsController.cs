@@ -33,7 +33,7 @@ public class SettingsController : MonoBehaviour {
 	public float soundEffectsVolume = 10f;	
 
 	public bool motionBlur = false;
-	public bool bloom = false;
+	public bool bloom = true;
 
 	private string filename = "settings.json";
 
