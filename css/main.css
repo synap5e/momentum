@@ -93,6 +93,10 @@ section{
 	color: rgb(26, 182, 220);
 }
 
+.testing section p{
+	text-shadow: 0px 0px 20px black;
+}
+
 @media all and (max-width: 800px) {
 	/*Woo a media query*/
  	body{
