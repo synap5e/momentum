@@ -1,0 +1,107 @@
+/*Woo css*/
+
+body{
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-size: 19px;
+}
+
+header, section, footer{
+	width: 100%;
+	padding: 10px;
+}
+
+section{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+header{
+	background-image: url("../img/bg.jpg");
+	background-size: cover;
+	background-position: center top;
+	display: flex;
+	height: 600px;
+}
+
+a{
+	color: rgb(26, 182, 220);
+}
+
+
+header .wrap{
+	max-width: 315px;
+	margin: auto;
+	text-align: center;
+	color: white;
+}
+
+.button{
+	background-color: rgb(26, 182, 220);
+	border-radius: 3px;
+	display: inline-block;
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: white;
+	text-decoration: none;
+	transition: ease all 0.2s;
+}
+
+.button:hover{
+	transform: scale(1.1);
+}
+
+.button.chill{
+	background-color: #212020;
+}
+
+section{
+	max-width: 950px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.trailer .wrap{
+	max-width: 800px;
+	margin: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.g-50{
+	width: 50%;
+	float: left;
+}
+
+.testing{
+	background-image: url("../img/testing.jpg");
+	background-size: cover;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	color: white;
+}
+
+.testing a{
+	color: white;
+}
+
+.testing a:hover{
+	color: rgb(26, 182, 220);
+}
+
+.testing section p{
+	text-shadow: 0px 0px 20px black;
+}
+
+@media all and (max-width: 800px) {
+	/*Woo a media query*/
+ 	body{
+ 		
+ 	}
+}
+
+
