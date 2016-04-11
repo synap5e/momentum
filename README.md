@@ -1,5 +1,5 @@
-# momentum
-
+![momentum](http://synap5e.github.io/momentum/img/logo-dark.png)
+---
 [Landing Page](https://synap5e.github.io/momentum/)
 
 [Releases](https://github.com/synap5e/momentum/releases)
